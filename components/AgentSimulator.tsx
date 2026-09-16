@@ -125,16 +125,16 @@ export default function AgentSimulator() {
     currentContent.scenarios[0];
 
   return (
-    <div className="border border-zinc-700 bg-zinc-950 rounded-xl overflow-hidden font-sans">
-      <div className="flex border-b border-zinc-800 bg-zinc-900/60 p-3 gap-2 overflow-x-auto">
+    <div className="border border-border bg-surface rounded-2xl overflow-hidden">
+      <div className="flex border-b border-border bg-surface-2 p-3 gap-2 overflow-x-auto">
         {currentContent.scenarios.map((sc) => (
           <button
             key={sc.id}
             onClick={() => setActiveScenarioId(sc.id)}
-            className={`px-3 py-1.5 rounded text-xs font-mono transition-colors whitespace-nowrap ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-mono transition-colors whitespace-nowrap ${
               activeScenario.id === sc.id
-                ? "bg-zinc-100 text-zinc-900 font-semibold"
-                : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                ? "bg-accent text-accent-foreground font-semibold"
+                : "bg-surface text-muted border border-border hover:text-foreground"
             }`}
           >
             {sc.name}
@@ -142,35 +142,36 @@ export default function AgentSimulator() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
-        {/* Panel Izquierdo: Conversación */}
-        <div className="p-5 flex flex-col justify-between h-[360px] bg-zinc-900/20">
+      <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border">
+        {/* Left panel: conversation */}
+        <div className="p-5 flex flex-col justify-between h-[360px] bg-surface">
           <div className="space-y-4">
-            <div className="bg-zinc-800 text-zinc-200 text-sm p-3 rounded-lg max-w-[85%] self-start">
-              <span className="text-[10px] text-zinc-400 block mb-1 font-mono">
+            <div className="bg-surface-2 text-foreground text-sm leading-relaxed p-3.5 rounded-2xl rounded-tl-sm max-w-[85%] self-start">
+              <span className="text-[10px] uppercase tracking-wider text-muted block mb-1 font-mono">
                 {currentContent.userLabel}
               </span>
               {activeScenario.userMessage}
             </div>
-            <div className="bg-emerald-950/40 border border-emerald-800/40 text-emerald-200 text-sm p-3 rounded-lg max-w-[85%] ml-auto">
-              <span className="text-[10px] text-emerald-400 block mb-1 font-mono">
+            <div className="bg-accent-soft border border-accent/25 text-foreground text-sm leading-relaxed p-3.5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto">
+              <span className="text-[10px] uppercase tracking-wider text-accent block mb-1 font-mono font-semibold">
                 {currentContent.agentLabel}
               </span>
               {activeScenario.botReply}
             </div>
           </div>
-          <div className="text-[11px] text-zinc-400 font-mono mt-4">
+          <div className="text-[11px] text-muted font-mono mt-4 flex items-center gap-2">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
             {currentContent.statusText}
           </div>
         </div>
 
-        {/* Panel Derecho: Inspector PM */}
-        <div className="p-5 bg-zinc-950 font-mono text-xs overflow-auto h-[360px]">
-          <div className="text-zinc-400 mb-2 pb-1 border-b border-zinc-800 flex justify-between">
-            <span>{currentContent.inspectorTitle}</span>
-            <span className="text-emerald-400">Spec v1.1.0</span>
+        {/* Right panel: PM inspector */}
+        <div className="p-5 bg-surface-2 font-mono text-xs overflow-auto h-[360px]">
+          <div className="text-muted mb-3 pb-2 border-b border-border flex justify-between">
+            <span className="uppercase tracking-wider">{currentContent.inspectorTitle}</span>
+            <span className="text-accent">Spec v1.1.0</span>
           </div>
-          <pre className="text-emerald-300">
+          <pre className="text-foreground/85 whitespace-pre-wrap">
             {JSON.stringify(activeScenario.inspectorData, null, 2)}
           </pre>
         </div>
