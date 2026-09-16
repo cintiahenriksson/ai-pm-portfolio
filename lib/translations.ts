@@ -252,7 +252,7 @@ export const translations = {
           cta: "Explore discovery pipeline & sizing →",
         },
         case2: {
-          tag: "Case 2 — “Where is my money?���",
+          tag: "Case 2 — “Where is my money?”",
           sub: "Functional Prototype & Evals",
           title: "Support agent for payments in transit with asymmetric release gates",
           p1: "Design and prototyping of an AI support agent that handles simulated money transfer tickets by classifying intent, extracting entities, and delivering state + next steps + timelines, backed by strict guardrails and human handoff protocols.",
