@@ -1,0 +1,24 @@
+# Cintia Henriksson — Senior Product Manager
+
+> Portfolio of Cintia Henriksson, a Senior Product Manager with 8+ years in fintech and telecom. She ships governed AI systems and multi-platform products from MVP to production, with a focus on reducing churn, deflecting support load, and delivering safe AI. She also holds a formal background in photography and visual arts, and is a certified meditation teacher.
+
+The site is bilingual (English and Spanish) and covers her product leadership, three in-depth AI case studies, and her creative and contemplative practice.
+
+## Pages
+
+- [Home](https://ai-pm-portfolio.vercel.app/): Overview, positioning, an outcome scorecard, and an index of case studies.
+- [About](https://ai-pm-portfolio.vercel.app/about): Career history, skills, education, languages, meditation teaching credentials, and links to external profiles.
+
+## Case studies
+
+- [Remesas Discovery](https://ai-pm-portfolio.vercel.app/cases/remesas-discovery): Product discovery for a cross-border remittances flow.
+- [Agente de Pagos](https://ai-pm-portfolio.vercel.app/cases/agente-pagos): A governed payments AI agent with release gates and safety controls, including an interactive agent simulator.
+- [Alumnas Roadmap](https://ai-pm-portfolio.vercel.app/cases/alumnas-roadmap): Roadmap prioritization work, including an interactive RICE calculator.
+
+## External profiles
+
+- LinkedIn: https://www.linkedin.com/in/cintiahenriksson
+- Medium (writing): https://cintiahenriksson.medium.com
+- Bio.site: https://bio.site/cintiamars
+- Instagram (photography): https://instagram.com/cintiamarsphoto
+- Instagram (meditation teachings): https://instagram.com/skydancerscircle
