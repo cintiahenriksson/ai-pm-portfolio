@@ -78,6 +78,22 @@ export default function AboutPage() {
                   >
                     Email ✉
                   </a>
+                  <a
+                    href="https://bio.site/cintiamars"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground hover:border-accent/60 hover:text-accent"
+                  >
+                    {t.bioSite} ↗
+                  </a>
+                  <a
+                    href="https://cintiahenriksson.medium.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground hover:border-accent/60 hover:text-accent"
+                  >
+                    {t.medium} ↗
+                  </a>
                 </div>
               </div>
             </div>
@@ -216,6 +232,33 @@ export default function AboutPage() {
                 <li>{t.lang3}</li>
                 <li>{t.lang4}</li>
               </ul>
+            </div>
+
+            <div className="md:col-span-2 rounded-2xl border border-accent/30 bg-gradient-to-br from-accent-soft/50 to-surface p-7 sm:p-9">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+                <h3 className="font-display text-xl tracking-tight text-accent">{t.meditationTitle}</h3>
+                <span className="text-xs uppercase tracking-[0.14em] text-muted">{t.meditationMeta}</span>
+              </div>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">{t.meditationDesc}</p>
+
+              <p className="mt-6 text-xs uppercase tracking-[0.16em] text-muted">{t.meditationLinksLabel}</p>
+              <div className="mt-3 flex flex-wrap gap-3">
+                <a
+                  href="https://instagram.com/skydancerscircle"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground hover:border-accent/60 hover:text-accent"
+                >
+                  {t.igTeachings} ↗
+                </a>
+                {/* Portfolio Instagram handle pending — replace href/label once provided */}
+                <span
+                  className="inline-flex items-center gap-2 rounded-full border border-dashed border-border bg-surface-2 px-5 py-2.5 text-sm font-medium text-muted"
+                  aria-disabled="true"
+                >
+                  {t.igPortfolio}
+                </span>
+              </div>
             </div>
           </div>
         </section>
