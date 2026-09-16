@@ -133,6 +133,9 @@ export default function Home() {
             <h2 className="font-display text-3xl sm:text-4xl tracking-tight">
               {t.casesSectionTitle}
             </h2>
+            <p className="max-w-2xl pt-1 text-sm leading-relaxed text-muted text-pretty">
+              {t.casesTransparency}
+            </p>
           </div>
 
           <div className="mt-10 space-y-6">

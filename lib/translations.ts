@@ -13,15 +13,17 @@ export const translations = {
       },
       scorecard: {
         title: "Portfolio Gates & Scorecard Coverage",
-        status: "4 de 4 Dimensiones Validadas",
+        status: "4 Dimensiones Basadas en Escenarios",
         items: [
           { label: "01. RESEARCH SÍNTESIS", title: "1.500 Reseñas", metric: "κ = 0.81 Acuerdo Humano" },
           { label: "02. PROTOTIPO & EVALS", title: "Agente con Release Gate", metric: "Harness de 120 tickets" },
           { label: "03. ROADMAP POR FEEDBACK", title: "Contexto Propio", metric: "Enseñanza de Meditación" },
-          { label: "04. RIGOR ANALÍTICO", title: "Sizing + RICE", metric: "18.8% Deflection Real" },
+          { label: "04. RIGOR ANALÍTICO", title: "Sizing + RICE Estresado", metric: "18.8% Deflection (modelado)" },
         ],
       },
       casesSectionTitle: "Casos de Estudio Detallados",
+    casesTransparency:
+      "Casos de portafolio basados en experiencia real de la industria — datos sintéticos, razonamiento real.",
       cases: {
         case1: {
           tag: "Caso 1 — “Por qué se van”",
@@ -46,7 +48,7 @@ export const translations = {
           p1: "Este caso diseña y prototipa un agente de IA que responde a tickets de soporte simulados sobre el estado de una transferencia, clasificando el intent, extrayendo entidades y generando una respuesta con estado + próximo paso + expectativa temporal, con guardrails explícitos y handoff a humano cuando toca.",
           privacyLabel: "Garantía de privacidad:",
           privacyText:
-            "Los tickets no son reales; están generados sintéticamente con IA a partir de los patrones del Caso 1, para poder mostrar un prototipo funcional sin acceder a datos internos de ninguna empresa.",
+            "Los tickets no son reales; están generados sintéticamente con IA a partir de los patrones del Caso 1, para poder mostrar un prototipo estilo producción sin acceder a datos internos de ninguna empresa.",
           whyLabel: "Por qué este caso:",
           whyText:
             "Es el gancho visual del portfolio: un prototipo clickable que engancha en 20 segundos y demuestra que puedes validar ideas sin depender de ingeniería.",
@@ -85,7 +87,7 @@ export const translations = {
         bio1: "Product Manager afincada en Estocolmo con más de una década de experiencia construyendo y escalando productos digitales. Mi trayectoria profesional comenzó en soporte técnico resolviendo más de 100 incidencias diarias y consultando directamente bases de datos con SQL, una experiencia fundacional que moldeó mi enfoque: entender cómo se rompe el software en la realidad y priorizar siempre la confianza del usuario final.",
         cvDownload: "Descargar CV (PDF)",
         strategicSectionTitle: "Visión Holística & Ejecución Rápida",
-        strategicP1: "Tras 12 años en Rebtel, he tenido la oportunidad de construir y reconstruir múltiples veces la infraestructura de telecomunicaciones que representa la principal fuente de ingresos de la compañía. Creo en los proyectos a largo plazo que transforman de forma integral la web, la aplicación y la marca, apoyados en una estrategia sólida y no en parches superficiales sin rumbo.",
+        strategicP1: "A lo largo de más de una década en el sector, he tenido la oportunidad de construir y reconstruir múltiples veces la infraestructura de telecomunicaciones que representa la principal fuente de ingresos de la compañía. Creo en los proyectos a largo plazo que transforman de forma integral la web, la aplicación y la marca, apoyados en una estrategia sólida y no en parches superficiales sin rumbo.",
         mvpBadge: "Caso de Éxito • De 0 a Producción en < 3 Meses",
         mvpLocation: "Miami → Estocolmo",
         mvpTitle: "MVP de Operador Global basado en EE. UU.",
@@ -100,11 +102,11 @@ export const translations = {
         rebtelLeadRole: "Lead Product Manager",
         rebtelLeadMeta: "Rebtel • Ene 2021 – Mar 2023",
         rebtelLeadDesc: "Definición y ejecución de la visión y roadmaps estratégicos junto al equipo ejecutivo. Escalado del producto de recargas móviles internacionales a usuarios de más de 50 países receptores. Lanzamiento de transferencias internacionales de dinero entre EE. UU. e India gestionando compliance, tipo de cambio (FX) y proveedores bancarios. PO de frontend web (5 idiomas) y apps móviles (11+ idiomas), actuando como administradora de Jira y líder ágil.",
-        majorityRole: "Product Manager — Website & Customer Experience",
+        majorityRole: "Product Manager — Website & Service Experience",
         majorityMeta: "MAJORITY • Sep 2019 – Dic 2020",
         majorityDesc: "Relaunch móvil de la web institucional con micro-animaciones, arquitectura CMS multi-idioma y herramientas de contratación integradas. Diseño y despliegue desde cero del portal web interno para unificar los flujos de trabajo de Soporte, Operaciones y Prevención de Fraude. Implementación de una suite omnicanal integrando soporte telefónico, live chat y correo.",
         rebtelJuniorRole: "Junior Product Manager — Calling Independence Lead",
-        rebtelJuniorMeta: "Rebtel • Ene 2019 – Dic 2019",
+        rebtelJuniorMeta: "Rebtel • Ene 2019 – Ago 2019",
         rebtelJuniorDesc: "Liderazgo del despliegue del motor de enrutamiento SIP en la nube, coordinando desarrolladores y especialistas de voz para migrar más de 105 millones de minutos de llamadas mensuales a la red interna, generando aproximadamente 85.000 USD mensuales en ahorros de costes recurrentes.",
         opsTitle: "Fundamentos Operativos & Gestión de Soporte (Rebtel, 2014 – 2018)",
         opsItem1Label: "Customer Support Manager (2017 – 2018):",
@@ -114,7 +116,7 @@ export const translations = {
         opsItem3Label: "Support Trainer & Agent (2014 – 2017):",
         opsItem3Text: " Formación presencial de centros de soporte distribuidos en Bolivia y Filipinas, gestionando más de 100 casos técnicos complejos diarios en primera línea.",
         purposeTitle: "Punto de Inflexión, Bienestar y Propósito",
-        purposeP1: "Los últimos dos años plantearon un desafío profesional y vital significativo. Llegué a un punto de bloqueo que me obligó a detenerme y evaluar prioridades con honestidad. Decidí invertir conscientemente en mí misma y completé un programa de seis meses de formación como profesora de meditación en el Buddhist Studies Institute.",
+        purposeP1: "Los últimos dos años plantearon un desafío profesional y vital significativo. Llegué a un punto de bloqueo que me obligó a detenerme y evaluar prioridades con honestidad. Decidí invertir conscientemente en mí misma y completé un programa de nueve meses de formación como profesora de meditación en el Buddhist Studies Institute.",
         purposeP2: "Ese proceso me enseñó a pausar, a encontrar mi lugar sin prisas y a entender que el bienestar no es un accesorio, sino una necesidad fundamental para liderar con claridad. Hoy soy profesora de meditación certificada por uno de los linajes más respetados del budismo tibetano. Vuelvo con energía renovada para aportar mis más de 8 años como Product Manager a proyectos con visión de largo plazo e impacto humano tangible.",
         aiTitle: "Cómo Abordo los Productos de IA",
         aiItem1Title: "Gobernanza & Spec",
@@ -221,15 +223,17 @@ export const translations = {
       },
       scorecard: {
         title: "Portfolio Gates & Scorecard Coverage",
-        status: "4 of 4 Dimensions Validated",
+        status: "4 Scenario-Based Dimensions",
         items: [
           { label: "01. RESEARCH SYNTHESIS", title: "1,500 Reviews", metric: "κ = 0.81 Human Agreement" },
           { label: "02. PROTOTYPE & EVALS", title: "Agent with Release Gate", metric: "120-ticket test harness" },
           { label: "03. FEEDBACK-DRIVEN ROADMAP", title: "First-party Domain", metric: "Meditation Instruction" },
-          { label: "04. ANALYTICAL RIGOR", title: "Sizing + Stressed RICE", metric: "18.8% Net Deflection" },
+          { label: "04. ANALYTICAL RIGOR", title: "Sizing + Stressed RICE", metric: "18.8% Deflection (modeled)" },
         ],
       },
       casesSectionTitle: "Detailed Case Studies",
+    casesTransparency:
+      "Scenario-based portfolio cases built on real industry experience — synthetic data, real reasoning.",
       cases: {
         case1: {
           tag: "Case 1 — “Why They Leave”",
@@ -248,13 +252,13 @@ export const translations = {
           cta: "Explore discovery pipeline & sizing →",
         },
         case2: {
-          tag: "Case 2 — “Where is my money?”",
+          tag: "Case 2 — “Where is my money?���",
           sub: "Functional Prototype & Evals",
           title: "Support agent for payments in transit with asymmetric release gates",
           p1: "Design and prototyping of an AI support agent that handles simulated money transfer tickets by classifying intent, extracting entities, and delivering state + next steps + timelines, backed by strict guardrails and human handoff protocols.",
           privacyLabel: "Privacy guarantee:",
           privacyText:
-            "Tickets are synthetically generated from Case 1 pain points, demonstrating a fully working, production-grade agent without exposing proprietary internal data.",
+            "Tickets are synthetically generated from Case 1 pain points, demonstrating a working, production-style prototype without exposing proprietary internal data.",
           whyLabel: "Why this case:",
           whyText:
             "It serves as the portfolio's functional centerpiece: a clickable prototype that hooks hiring teams in 20 seconds and shows you can validate AI ideas independently.",
@@ -293,7 +297,7 @@ export const translations = {
         bio1: "Product Manager based in Stockholm with over a decade of experience building and scaling digital products. My career began in technical support, answering 100+ complex technical cases daily and querying databases directly with SQL—a foundational experience that shaped my approach: understanding how software breaks in reality and prioritizing user trust above all else.",
         cvDownload: "Download CV (PDF)",
         strategicSectionTitle: "Holistic Vision & Rapid Execution",
-        strategicP1: "After 12 years at Rebtel, I had the opportunity to build and rebuild the telecom infrastructure that represents the company's primary revenue source multiple times. I believe in long-term, comprehensive projects that elevate web, app, and brand coherence based on strategic vision rather than uncoordinated quick fixes.",
+        strategicP1: "Over more than a decade in the industry, I had the opportunity to build and rebuild the telecom infrastructure that represents the company's primary revenue source multiple times. I believe in long-term, comprehensive projects that elevate web, app, and brand coherence based on strategic vision rather than uncoordinated quick fixes.",
         mvpBadge: "Success Story • From 0 to Production in < 3 Months",
         mvpLocation: "Miami → Stockholm",
         mvpTitle: "US-Based Global Operator MVP",
@@ -308,11 +312,11 @@ export const translations = {
         rebtelLeadRole: "Lead Product Manager",
         rebtelLeadMeta: "Rebtel • Jan 2021 – Mar 2023",
         rebtelLeadDesc: "Formulated and executed product vision and roadmaps alongside executive leadership. Scaled international mobile top-up products to users originating globally into 50+ receiving countries. Launched US-India cross-border money transfers overseeing compliance, FX, and banking integrations. Frontend PO for web (5 languages) and mobile apps (11+ languages), acting as Jira Administrator and Agile Lead.",
-        majorityRole: "Product Manager — Website & Customer Experience",
+        majorityRole: "Product Manager — Website & Service Experience",
         majorityMeta: "MAJORITY • Sep 2019 – Dec 2020",
         majorityDesc: "Led mobile-first website relaunch with interactive UX micro-animations, multi-language CMS architecture, and recruitment tools. Designed and launched an internal web portal from scratch to streamline Customer Support, Operations, and Risk workflows. Configured omnichannel support suite integrating phone, live chat, and email.",
         rebtelJuniorRole: "Junior Product Manager — Calling Independence Lead",
-        rebtelJuniorMeta: "Rebtel • Jan 2019 – Dec 2019",
+        rebtelJuniorMeta: "Rebtel • Jan 2019 – Aug 2019",
         rebtelJuniorDesc: "Led the cloud SIP routing engine migration, coordinating voice specialists and developers to move 105M+ monthly VoIP minutes onto the internal network, generating approximately $85,000 in monthly recurring cost savings.",
         opsTitle: "Operational Foundations & Support Leadership (Rebtel, 2014 – 2018)",
         opsItem1Label: "Customer Support Manager (2017 – 2018):",
@@ -322,7 +326,7 @@ export const translations = {
         opsItem3Label: "Support Trainer & Agent (2014 – 2017):",
         opsItem3Text: " On-site training for distributed support centers in Bolivia and the Philippines, managing 100+ complex tier-1 technical cases daily.",
         purposeTitle: "Turning Point, Well-Being & Purpose",
-        purposeP1: "The last two years brought significant professional and personal challenges, reaching a point of friction that led me to pause and evaluate priorities with honesty. I chose to invest consciously in myself, completing a six-month meditation teacher training program at the Buddhist Studies Institute.",
+        purposeP1: "The last two years brought significant professional and personal challenges, reaching a point of friction that led me to pause and evaluate priorities with honesty. I chose to invest consciously in myself, completing a nine-month meditation teacher training program at the Buddhist Studies Institute.",
         purposeP2: "That journey taught me to pause, find my place without rushing, and understand that well-being is not a luxury, but a necessity to lead with clarity. Today, I am a certified meditation teacher in one of Tibetan Buddhism's most respected lineages. I return with renewed energy to bring 8+ years of PM leadership to purposeful products with long-term human impact.",
         aiTitle: "My Approach to AI Products",
         aiItem1Title: "Governance & Specs",
