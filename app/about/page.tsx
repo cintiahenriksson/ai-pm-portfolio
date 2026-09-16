@@ -251,13 +251,14 @@ export default function AboutPage() {
                 >
                   {t.igTeachings} ↗
                 </a>
-                {/* Portfolio Instagram handle pending — replace href/label once provided */}
-                <span
-                  className="inline-flex items-center gap-2 rounded-full border border-dashed border-border bg-surface-2 px-5 py-2.5 text-sm font-medium text-muted"
-                  aria-disabled="true"
+                <a
+                  href="https://instagram.com/cintiamarsphoto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground hover:border-accent/60 hover:text-accent"
                 >
-                  {t.igPortfolio}
-                </span>
+                  {t.igPortfolio} ↗
+                </a>
               </div>
             </div>
           </div>

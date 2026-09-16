@@ -138,7 +138,7 @@ export const translations = {
         meditationDesc: "Profesora de meditación certificada por el Buddhist Studies Institute, fundado por Pema Khandro Rinpoche. Una práctica contemplativa que informa mi forma de liderar: presencia, escucha y claridad bajo presión.",
         meditationLinksLabel: "Enlaces",
         igTeachings: "Instagram · Enseñanzas de meditación",
-        igPortfolio: "Instagram · Portafolio (próximamente)",
+        igPortfolio: "Instagram · Fotografía",
       },
       case1Page: {
         badge: "Caso 01 • Síntesis Cualitativa & Sizing",
@@ -346,7 +346,7 @@ export const translations = {
         meditationDesc: "Certified meditation teacher under the Buddhist Studies Institute, founded by Pema Khandro Rinpoche. A contemplative practice that shapes how I lead: presence, deep listening, and clarity under pressure.",
         meditationLinksLabel: "Links",
         igTeachings: "Instagram · Meditation teachings",
-        igPortfolio: "Instagram · Portfolio (coming soon)",
+        igPortfolio: "Instagram · Photography",
       },
       case1Page: {
         badge: "Case 01 • Qualitative Synthesis & Sizing",
