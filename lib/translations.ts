@@ -59,13 +59,13 @@ export const translations = {
           tag: "Caso 3 — Feedback de Alumnas a Roadmap",
           sub: "Decisiones en disputa & RICE",
           title: "Del feedback de mis alumnas a un roadmap de producto digital",
-          p1: "Este caso convierte feedback simulado de alumnas (encuestas, DMs y comentarios de Instagram generados sintéticamente) en un roadmap priorizado con RICE, análisis de sensibilidad y decisiones en disputa documentadas.",
+          p1: "Este caso convierte feedback simulado de alumnas de meditación (encuestas, DMs y comentarios de Instagram generados sintéticamente) en un roadmap priorizado para una app de mindfulness, con RICE, análisis de sensibilidad y decisiones en disputa documentadas.",
           privacyLabel: "Garantía de privacidad:",
           privacyText:
             "Los datos no son reales; están creados con IA a partir de patrones típicos de preguntas y objeciones en contextos de enseñanza de meditación, para poder publicar el caso sin exponer información privada de personas reales.",
           whyLabel: "Por qué este caso:",
           whyText:
-            "Es el único caso con un contexto propio (mi práctica de enseñanza), lo que evita que el portfolio parezca un ejercicio de laboratorio y responde “¿esto es transferible?” con evidencia aplicada a un dominio que conozco.",
+            "Es el único caso con un contexto propio: soy profesora de meditación certificada por el Buddhist Studies Institute (fundado por Pema Khandro Rinpoche), así que aplico discovery y priorización a un producto de mindfulness que enseño de primera mano. Eso evita que el portfolio parezca un ejercicio de laboratorio y responde “¿esto es transferible?” con evidencia real.",
           bgLabel: "Background:",
           bgText:
             "Un escenario realista: alumnas que terminan una clase y no tienen nada entre “clase en vivo” y “app de meditación genérica”, lo que lleva a que la práctica se caiga a los 10 días y no haya retención ni ingreso recurrente.",
@@ -152,7 +152,7 @@ export const translations = {
           { label: "TOP FRICCIÓN", val: "46%", sub: "Incertidumbre en transferencias" },
         ],
         s1Title: "01. Contexto & Codebook de Clasificación",
-        s1Desc: "Analizar quejas en 4 idiomas de forma manual introduce inconsistencias y sesgos de confirmación. Diseñé un codebook estructurado con 5 categorías taxonómicas cerradas y definiciones operativas estrictas para que el LLM etiquetara de forma reproducible.",
+        s1Desc: "Analizar quejas en 4 idiomas de forma manual introduce inconsistencias y sesgos de confirmación. Diseñ�� un codebook estructurado con 5 categorías taxonómicas cerradas y definiciones operativas estrictas para que el LLM etiquetara de forma reproducible.",
         s2Title: "02. Validación Inter-Anotador (Human-in-the-loop)",
         s2Desc: "Para garantizar que el modelo no inventara categorías ni sesgara el análisis, se tomó una muestra aleatoria de 150 reseñas evaluada a ciegas por un analista humano frente al LLM, logrando un Cohen's Kappa de 0.81.",
         s3Title: "03. Opportunity Sizing & Causa Raíz",
@@ -267,13 +267,13 @@ export const translations = {
           tag: "Case 3 — Student Feedback to Roadmap",
           sub: "Disputed Decisions & RICE",
           title: "Translating student feedback into a prioritized digital roadmap",
-          p1: "Transforming simulated student feedback (surveys, direct messages, and comments) into a prioritized feature roadmap using RICE, sensitivity stress testing, and documented trade-offs.",
+          p1: "Transforming simulated feedback from meditation students (surveys, direct messages, and comments) into a prioritized roadmap for a mindfulness app, using RICE, sensitivity stress testing, and documented trade-offs.",
           privacyLabel: "Privacy guarantee:",
           privacyText:
             "Data points are synthetically generated based on real-world objections and feedback patterns in meditation teaching, protecting student confidentiality while demonstrating transferable PM frameworks.",
           whyLabel: "Why this case:",
           whyText:
-            "It grounds the portfolio in a real-world vertical outside corporate fintech, answering 'is this PM framework transferable?' by applying discovery and prioritization to a domain I personally manage.",
+            "It's the only case grounded in a domain I personally own: I'm a certified meditation teacher through the Buddhist Studies Institute (founded by Pema Khandro Rinpoche), so I apply discovery and prioritization to a mindfulness product I teach first-hand. That keeps the portfolio out of lab-exercise territory and answers 'is this PM framework transferable?' with applied evidence.",
           bgLabel: "Background:",
           bgText:
             "A common product hurdle: students finish a live session with no continuous support between live classes and generic apps, causing practice to drop off after 10 days without retention or sustainable recurring revenue.",

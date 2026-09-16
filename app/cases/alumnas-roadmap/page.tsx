@@ -12,7 +12,7 @@ const content = {
     badge: "Caso 03 • Roadmap guiado por Feedback & RICE",
     fileTag: "roadmap/rice_sensitivity.v1.xlsx",
     title: "Del feedback de mis alumnas a un roadmap de producto digital",
-    desc: "Captura cualitativa sobre usuarias reales (alumnas directas, Instagram y transacciones en Gumroad). Filtrado de sesgos de cortesía, priorización con matriz RICE estresada y defensa con datos para descartar la funcionalidad más pedida en redes sociales.",
+    desc: "Un caso de discovery para una app de mindfulness, apoyado en mi experiencia como profesora de meditación certificada por el Buddhist Studies Institute (fundado por Pema Khandro Rinpoche). Captura cualitativa sobre usuarias reales (alumnas directas, Instagram y transacciones en Gumroad), filtrado de sesgos de cortesía, priorización con matriz RICE estresada y defensa con datos para descartar la funcionalidad más pedida en redes sociales.",
     metrics: [
       { label: "ORIGEN DE DATOS", val: "1ª Mano", sub: "Alumnas + IG + Gumroad" },
       { label: "DECISIÓN INCÓMODA", val: "-10 sem", sub: "Descarte de App Nativa" },
@@ -21,7 +21,7 @@ const content = {
     ],
     s1: {
       title: "01. Captura Cualitativa: Eliminación del Sesgo de Cortesía",
-      p1: "El problema de producto: las alumnas de formación física y hábitos pierden el ritmo entre sesiones guiadas. Para no caer en la trampa de preguntar «¿Qué te gustaría que construya?» (que produce listas de deseos infinitas y cero compromiso), la micro-encuesta v2 se calibró sobre comportamiento pasado y disposición transaccional inmediata.",
+      p1: "El problema de producto: las alumnas de meditación y mindfulness pierden el ritmo de práctica entre sesiones guiadas. Como profesora de meditación certificada por el Buddhist Studies Institute (fundado por Pema Khandro Rinpoche), tengo acceso directo a ese dolor y al vocabulario real de las practicantes. Para no caer en la trampa de preguntar «¿Qué te gustaría que construya?» (que produce listas de deseos infinitas y cero compromiso), la micro-encuesta v2 se calibró sobre comportamiento pasado y disposición transaccional inmediata.",
       boxTitle: "Micro-encuesta de 5 preguntas (sin sesgo inductivo):",
       q1Label: "Frecuencia real:",
       q1Text: "En los últimos 14 días, ¿cuántas veces dedicaste al menos 15 minutos a practicar en solitario?",
@@ -65,7 +65,7 @@ const content = {
     badge: "Case 03 • Feedback-Driven Roadmap & RICE",
     fileTag: "roadmap/rice_sensitivity.v1.xlsx",
     title: "From Student Feedback to a Digital Product Roadmap",
-    desc: "Qualitative discovery on authentic users (direct students, Instagram, and Gumroad transactions). Politeness bias filtering, prioritization with a stressed RICE matrix, and data-backed rationale for discarding the most requested feature on social media.",
+    desc: "A discovery case for a mindfulness app, grounded in my work as a certified meditation teacher through the Buddhist Studies Institute (founded by Pema Khandro Rinpoche). Qualitative discovery on authentic users (direct students, Instagram, and Gumroad transactions), politeness-bias filtering, prioritization with a stressed RICE matrix, and data-backed rationale for discarding the most requested feature on social media.",
     metrics: [
       { label: "DATA SOURCE", val: "1st-Party", sub: "Students + IG + Gumroad" },
       { label: "KEY TRADE-OFF", val: "-10 wks", sub: "Native App Rejected" },
@@ -74,7 +74,7 @@ const content = {
     ],
     s1: {
       title: "01. Qualitative Discovery: Eliminating Politeness Bias",
-      p1: "The product problem: students in physical training and mindfulness habits lose momentum between live sessions. To avoid the trap of asking “What would you like me to build?” (which yields endless wishlists and zero commitment), the v2 micro-survey was calibrated around past observable behavior and immediate transactional willingness.",
+      p1: "The product problem: meditation and mindfulness students lose their practice rhythm between guided sessions. As a certified meditation teacher through the Buddhist Studies Institute (founded by Pema Khandro Rinpoche), I have first-hand access to that pain point and to how practitioners actually describe it. To avoid the trap of asking “What would you like me to build?” (which yields endless wishlists and zero commitment), the v2 micro-survey was calibrated around past observable behavior and immediate transactional willingness.",
       boxTitle: "5-Question Micro-Survey (Zero Inductive Bias):",
       q1Label: "Actual frequency:",
       q1Text: "In the last 14 days, how many times did you spend at least 15 minutes practicing solo?",
