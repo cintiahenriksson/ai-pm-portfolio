@@ -83,48 +83,6 @@ export default function Home() {
         </section>
 
         {/* ---------------------------------------------------------- */}
-        {/* Scorecard                                                  */}
-        {/* ---------------------------------------------------------- */}
-        <section className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-border pb-5">
-            <div className="space-y-1">
-              <p className="text-xs uppercase tracking-[0.22em] text-accent">Scorecard</p>
-              <h2 className="font-display text-2xl sm:text-3xl tracking-tight">
-                {t.scorecard.title}
-              </h2>
-            </div>
-            <span className="inline-flex items-center gap-2 self-start sm:self-auto rounded-full bg-accent-soft px-3.5 py-1.5 text-xs font-medium text-accent">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              {t.scorecard.status}
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-8">
-            {t.scorecard.items.map((item, index) => {
-              const [num, ...rest] = item.label.split(". ");
-              const label = rest.join(". ");
-              return (
-                <div
-                  key={index}
-                  className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-accent/40 hover:-translate-y-1 transition-all"
-                >
-                  <span className="font-display text-3xl text-accent/40 group-hover:text-accent/70 transition-colors">
-                    {num}
-                  </span>
-                  <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-muted">
-                    {label}
-                  </p>
-                  <p className="mt-1 font-display text-xl tracking-tight leading-snug">
-                    {item.title}
-                  </p>
-                  <p className="mt-3 text-xs text-accent font-medium">{item.metric}</p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* ---------------------------------------------------------- */}
         {/* Case studies                                               */}
         {/* ---------------------------------------------------------- */}
         <section id="casos" className="max-w-6xl mx-auto px-5 sm:px-8 py-8 sm:py-12 scroll-mt-20">
