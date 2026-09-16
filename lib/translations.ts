@@ -6,10 +6,10 @@ export const translations = {
         backHome: "← Volver al Portfolio",
       },
       hero: {
-        badge: "Senior Product Manager • AI & Multi-platform Systems",
-        title: "Sistemas de IA orientados a impacto, medición determinista y mitigación de fallos.",
+        badge: "Senior Product Manager • 8+ años en fintech y telecom • IA hands-on",
+        title: "Reducir churn, aliviar la carga de soporte y llevar IA segura a producción.",
         subtitle:
-          "Tres casos de estudio de extremo a extremo: desde la síntesis cualitativa estructurada y la especificación técnica con release gates, hasta la priorización de roadmaps con análisis de sensibilidad.",
+          "Una líder de producto con 8+ años en fintech y telecom, llevando productos de MVP a producción en sistemas multiplataforma y multi-PSP. Estos tres casos de extremo a extremo aplican ese mismo rigor a la IA: discovery estructurado de clientes, harness de evaluación con release gates y roadmaps sometidos a análisis de sensibilidad.",
       },
       scorecard: {
         title: "Portfolio Gates & Scorecard Coverage",
@@ -214,10 +214,10 @@ export const translations = {
         backHome: "← Back to Portfolio",
       },
       hero: {
-        badge: "Senior Product Manager • AI & Multi-platform Systems",
-        title: "Impact-driven AI systems with deterministic evals and robust safety gates.",
+        badge: "Senior Product Manager • 8+ years in fintech & telecom • Deep hands-on AI",
+        title: "Cutting churn, deflecting support load, and shipping safe AI to production.",
         subtitle:
-          "Three end-to-end product cases: from structured qualitative customer discovery and formal behavior specs with release gates, to data-backed roadmaps stressed with sensitivity analysis.",
+          "A product leader with 8+ years in fintech and telecom, taking products from MVP to production across multi-platform, multi-PSP systems. These three end-to-end cases apply that same rigor to AI: structured customer discovery, formal eval harnesses with release gates, and roadmaps stressed with sensitivity analysis.",
       },
       scorecard: {
         title: "Portfolio Gates & Scorecard Coverage",
