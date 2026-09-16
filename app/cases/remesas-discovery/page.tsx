@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import LanguageSwitch from "@/components/LanguageSwitch";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/context/LanguageContext";
 
 const content = {
@@ -143,203 +143,157 @@ export default function RemesasDiscoveryPage() {
   const t = content[lang] || content.es;
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-foreground">
-      {/* Navegación y Selectores */}
-      <nav className="flex items-center justify-between border-b border-border pb-5">
-        <Link
-          href="/"
-          className="text-xs font-mono text-muted hover:text-foreground transition-colors inline-flex items-center gap-1"
-        >
-          {t.back}
-        </Link>
-        <div className="flex items-center gap-3 sm:gap-4">
-          <LanguageSwitch />
-          <ThemeToggle />
-        </div>
-      </nav>
+    <>
+      <SiteHeader variant="inner" />
 
-      {/* Header y Métricas */}
-      <section className="space-y-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
-            {t.badge}
-          </span>
-          <span className="text-muted font-mono text-xs">{t.fileTag}</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
-          {t.title}
-        </h1>
-        <p className="text-sm text-muted max-w-3xl leading-relaxed">
-          {t.desc}
-        </p>
-
-        {/* Data Strip / Métricas Clave */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-xs font-mono">
-          {t.metrics.map((m, i) => (
-            <div key={i} className="p-3 rounded-xl bg-surface border border-border shadow-sm">
-              <span className="text-muted block text-[10px] font-semibold">{m.label}</span>
-              <span className="text-emerald-600 dark:text-emerald-400 text-lg font-bold">{m.val}</span>
-              <span className="text-[10px] text-muted block mt-0.5">{m.sub}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 1. Problem Statement y Fuente de Datos */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s1.title}
-        </h2>
-        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
-          {t.s1.p1}
-        </p>
-        <div className="p-4 rounded-xl bg-surface border border-border text-xs text-muted space-y-2 shadow-sm">
-          <div className="font-mono text-foreground text-[11px] font-semibold">
-            {t.s1.boxTitle}
-          </div>
-          <p className="text-[11px] text-muted leading-relaxed font-sans">
-            {t.s1.boxDesc}
-          </p>
-        </div>
-      </section>
-
-      {/* 2. Metodología: Codebook Versionado y Kappa */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s2.title}
-        </h2>
-        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
-          {t.s2.p1}
-        </p>
-
-        {/* Tabla de Resultados de Validación */}
-        <div className="p-5 rounded-2xl bg-surface border border-border space-y-3 shadow-sm">
-          <div className="flex justify-between items-baseline">
-            <span className="text-xs font-mono font-bold text-foreground">
-              {t.s2.cardTitle}
-            </span>
-            <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s2.cardAgreement}</span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
-            <div className="p-3 bg-background rounded-lg border border-border">
-              <span className="text-muted block text-[10px]">{t.s2.box1Label}</span>
-              <span className="text-emerald-600 dark:text-emerald-400 font-bold">{t.s2.box1Val}</span>
-              <span className="text-muted block text-[11px] mt-1">
-                {t.s2.box1Sub}
+      <main className="text-foreground">
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-accent/12 blur-[110px]"
+          />
+          <div className="max-w-5xl mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-8">
+            <div className="animate-rise space-y-5">
+              <span className="inline-flex items-center rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-accent">
+                {t.badge}
               </span>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance">
+                {t.title}
+              </h1>
+              <p className="max-w-3xl text-base sm:text-lg leading-relaxed text-muted">{t.desc}</p>
             </div>
-            <div className="p-3 bg-background rounded-lg border border-border">
-              <span className="text-muted block text-[10px]">{t.s2.box2Label}</span>
-              <span className="text-amber-600 dark:text-amber-400 font-bold">{t.s2.box2Val}</span>
-              <span className="text-muted block text-[11px] mt-1">
-                {t.s2.box2Sub}
-              </span>
-            </div>
-          </div>
-          <p className="text-[11px] text-muted font-mono pt-1">
-            {t.s2.rule}
-          </p>
-        </div>
-      </section>
 
-      {/* 3. Sizing de Oportunidades con Aritmética Visible */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s3.title}
-        </h2>
-        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
-          {t.s3.p1}
-        </p>
-
-        <div className="overflow-x-auto rounded-xl border border-border shadow-sm">
-          <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-surface text-muted border-b border-border">
-              <tr>
-                <th className="p-3 font-semibold">{t.s3.thCode}</th>
-                <th className="p-3 font-semibold">{t.s3.thCorpus}</th>
-                <th className="p-3 font-semibold">{t.s3.thMix}</th>
-                <th className="p-3 font-semibold">{t.s3.thIncidence}</th>
-                <th className="p-3 font-semibold">{t.s3.thCost}</th>
-                <th className="p-3 text-right font-semibold">{t.s3.thScore}</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border bg-surface text-foreground/85">
-              {t.s3.rows.map((r, idx) => (
-                <tr
-                  key={idx}
-                  className={r.highlight ? "bg-emerald-500/10 font-semibold" : "hover:bg-background/50 transition-colors"}
-                >
-                  <td className={`p-3 ${r.highlight ? "text-emerald-700 dark:text-emerald-300" : "text-foreground"}`}>
-                    {r.code}
-                  </td>
-                  <td className="p-3">{r.n}</td>
-                  <td className={`p-3 ${r.highlight ? "text-emerald-600 dark:text-emerald-400 font-bold" : "text-foreground"}`}>
-                    {r.mix}
-                  </td>
-                  <td className="p-3">{r.inc}</td>
-                  <td className="p-3">{r.cost}</td>
-                  <td className={`p-3 text-right font-bold ${r.highlight ? "text-emerald-600 dark:text-emerald-400" : "text-foreground"}`}>
-                    {r.score}
-                  </td>
-                </tr>
+            <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {t.metrics.map((m, i) => (
+                <div key={i} className="rounded-2xl border border-border bg-surface p-5">
+                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted">{m.label}</p>
+                  <p className="mt-2 font-display text-2xl sm:text-3xl tracking-tight text-accent tabular-nums">
+                    {m.val}
+                  </p>
+                  <p className="mt-1 text-xs text-muted">{m.sub}</p>
+                </div>
               ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-[11px] font-mono text-muted pt-1">
-          {t.s3.note}
-        </p>
-      </section>
-
-      {/* 4. Galería de Fallos y Reversión Metodológica */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s4.title}
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <span className="font-mono text-rose-600 dark:text-rose-400 text-[11px] block font-bold">
-              {t.s4.fail1Title}
-            </span>
-            <p className="text-muted leading-relaxed italic">
-              {t.s4.fail1Quote}
-            </p>
-            <p className="text-foreground/80 leading-relaxed">
-              {t.s4.fail1Desc}
-            </p>
-            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border">
-              <strong>{t.s4.fail1Fix}</strong>
             </div>
           </div>
+        </section>
 
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <span className="font-mono text-amber-600 dark:text-amber-400 text-[11px] block font-bold">
-              {t.s4.fail2Title}
-            </span>
-            <p className="text-muted leading-relaxed">
-              {t.s4.fail2Attempt}
-            </p>
-            <p className="text-foreground/80 leading-relaxed">
-              {t.s4.fail2Fix}
-            </p>
-          </div>
-        </div>
-      </section>
+        <div className="max-w-5xl mx-auto px-5 sm:px-8 pb-16 space-y-16">
+          {/* S1 */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s1.title}</h2>
+            <p className="max-w-3xl text-[15px] leading-relaxed text-foreground/85">{t.s1.p1}</p>
+            <div className="rounded-2xl border-l-2 border-accent/50 bg-surface-2 p-5 space-y-2">
+              <p className="text-sm font-semibold text-foreground">{t.s1.boxTitle}</p>
+              <p className="text-sm leading-relaxed text-muted">{t.s1.boxDesc}</p>
+            </div>
+          </section>
 
-      {/* 5. Cierre: Conexión con el Caso 2 */}
-      <section className="p-6 rounded-2xl bg-surface border border-border shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div className="space-y-1">
-          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s5.badge}</span>
-          <p className="text-xs text-muted font-sans">{t.s5.desc}</p>
+          {/* S2 */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s2.title}</h2>
+            <p className="max-w-3xl text-[15px] leading-relaxed text-foreground/85">{t.s2.p1}</p>
+
+            <div className="rounded-2xl border border-border bg-surface p-6 sm:p-7 space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                <span className="font-display text-lg tracking-tight">{t.s2.cardTitle}</span>
+                <span className="text-sm font-semibold text-accent">{t.s2.cardAgreement}</span>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-xl bg-surface-2 p-4">
+                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted">{t.s2.box1Label}</p>
+                  <p className="mt-1.5 font-display text-xl tracking-tight text-accent">{t.s2.box1Val}</p>
+                  <p className="mt-1 font-mono text-xs text-muted">{t.s2.box1Sub}</p>
+                </div>
+                <div className="rounded-xl bg-surface-2 p-4">
+                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted">{t.s2.box2Label}</p>
+                  <p className="mt-1.5 font-display text-xl tracking-tight text-warm">{t.s2.box2Val}</p>
+                  <p className="mt-1 font-mono text-xs text-muted">{t.s2.box2Sub}</p>
+                </div>
+              </div>
+              <p className="text-xs leading-relaxed text-muted">{t.s2.rule}</p>
+            </div>
+          </section>
+
+          {/* S3 */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s3.title}</h2>
+            <p className="max-w-3xl text-[15px] leading-relaxed text-foreground/85">{t.s3.p1}</p>
+
+            <div className="overflow-x-auto rounded-2xl border border-border">
+              <table className="w-full text-left text-sm tabular-nums">
+                <thead className="bg-surface-2 text-muted">
+                  <tr className="text-[11px] uppercase tracking-[0.1em]">
+                    <th className="p-4 font-semibold">{t.s3.thCode}</th>
+                    <th className="p-4 font-semibold">{t.s3.thCorpus}</th>
+                    <th className="p-4 font-semibold">{t.s3.thMix}</th>
+                    <th className="p-4 font-semibold">{t.s3.thIncidence}</th>
+                    <th className="p-4 font-semibold">{t.s3.thCost}</th>
+                    <th className="p-4 text-right font-semibold">{t.s3.thScore}</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border bg-surface text-foreground/80">
+                  {t.s3.rows.map((r, idx) => (
+                    <tr key={idx} className={r.highlight ? "bg-accent-soft" : ""}>
+                      <td className={`p-4 ${r.highlight ? "text-accent font-semibold" : "text-foreground"}`}>
+                        {r.code}
+                      </td>
+                      <td className="p-4">{r.n}</td>
+                      <td className={`p-4 ${r.highlight ? "text-accent font-semibold" : ""}`}>{r.mix}</td>
+                      <td className="p-4">{r.inc}</td>
+                      <td className="p-4">{r.cost}</td>
+                      <td className={`p-4 text-right font-semibold ${r.highlight ? "text-accent" : "text-foreground"}`}>
+                        {r.score}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs leading-relaxed text-muted">{t.s3.note}</p>
+          </section>
+
+          {/* S4 */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s4.title}</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-2xl border border-border bg-surface p-6 space-y-3">
+                <p className="font-display text-base tracking-tight text-warm">{t.s4.fail1Title}</p>
+                <p className="text-sm italic leading-relaxed text-muted">{t.s4.fail1Quote}</p>
+                <p className="text-sm leading-relaxed text-foreground/80">{t.s4.fail1Desc}</p>
+                <p className="border-t border-border pt-3 text-sm leading-relaxed text-foreground">
+                  <strong className="text-accent">{t.s4.fail1Fix}</strong>
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border bg-surface p-6 space-y-3">
+                <p className="font-display text-base tracking-tight text-warm">{t.s4.fail2Title}</p>
+                <p className="text-sm leading-relaxed text-muted">{t.s4.fail2Attempt}</p>
+                <p className="border-t border-border pt-3 text-sm leading-relaxed text-foreground/80">
+                  {t.s4.fail2Fix}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* S5 — next case */}
+          <section className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-accent-soft/70 to-surface p-8 sm:p-10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+              <div className="space-y-2 max-w-xl">
+                <p className="text-xs uppercase tracking-[0.2em] text-accent">{t.s5.badge}</p>
+                <p className="text-[15px] leading-relaxed text-foreground/85">{t.s5.desc}</p>
+              </div>
+              <Link
+                href="/cases/agente-pagos"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground hover:opacity-90 hover:-translate-y-0.5 whitespace-nowrap"
+              >
+                {t.s5.btn.replace(" →", "")} <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </section>
         </div>
-        <Link
-          href="/cases/agente-pagos"
-          className="px-4 py-2.5 rounded-lg bg-foreground text-background text-xs font-mono font-semibold hover:opacity-90 transition-opacity whitespace-nowrap shadow-sm"
-        >
-          {t.s5.btn}
-        </Link>
-      </section>
-    </main>
+      </main>
+
+      <SiteFooter />
+    </>
   );
 }

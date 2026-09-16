@@ -1,253 +1,227 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import LanguageSwitch from "@/components/LanguageSwitch";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
 export default function AboutPage() {
   const { lang } = useLanguage();
   const t = translations[lang].aboutPage;
-  const navT = translations[lang].nav;
+
+  const roles = [
+    { role: t.rebtelSeniorRole, meta: t.rebtelSeniorMeta, desc: t.rebtelSeniorDesc, current: true },
+    { role: t.rebtelCoreRole, meta: t.rebtelCoreMeta, desc: t.rebtelCoreDesc },
+    { role: t.rebtelLeadRole, meta: t.rebtelLeadMeta, desc: t.rebtelLeadDesc },
+    { role: t.majorityRole, meta: t.majorityMeta, desc: t.majorityDesc },
+    { role: t.rebtelJuniorRole, meta: t.rebtelJuniorMeta, desc: t.rebtelJuniorDesc },
+  ];
+
+  const aiPrinciples = [
+    { title: t.aiItem1Title, desc: t.aiItem1Desc },
+    { title: t.aiItem2Title, desc: t.aiItem2Desc },
+    { title: t.aiItem3Title, desc: t.aiItem3Desc },
+  ];
 
   return (
-    <main className="max-w-4xl mx-auto px-6 py-12 font-sans space-y-16 text-foreground">
-      {/* Navegación y Switches */}
-      <nav className="flex items-center justify-between border-b border-border pb-5">
-        <Link
-          href="/"
-          className="text-xs font-mono text-muted hover:text-foreground transition-colors inline-flex items-center gap-1"
-        >
-          {navT.backHome}
-        </Link>
-        <div className="flex items-center gap-3 sm:gap-4">
-          <LanguageSwitch />
-          <ThemeToggle />
-        </div>
-      </nav>
+    <>
+      <SiteHeader variant="inner" />
 
-      {/* Header & Bio Principal */}
-      <section className="flex flex-col sm:flex-row items-start gap-8 border-b border-border pb-12">
-        <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden bg-surface border border-border flex-shrink-0 shadow-sm">
-          <Image
-            src="/profile.jpg"
-            alt="Cintia Henriksson"
-            fill
-            className="object-cover"
-            priority
+      <main className="text-foreground">
+        {/* ---------------------------------------------------------- */}
+        {/* Intro                                                      */}
+        {/* ---------------------------------------------------------- */}
+        <section className="relative overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-accent/12 blur-[110px]"
           />
-        </div>
+          <div className="max-w-5xl mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-12 sm:pb-16">
+            <div className="grid gap-10 md:grid-cols-[auto_1fr] md:items-center">
+              <div className="relative mx-auto md:mx-0 animate-rise">
+                <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-[1.75rem] bg-accent/25" aria-hidden="true" />
+                <div className="relative h-44 w-44 sm:h-52 sm:w-52 overflow-hidden rounded-[1.75rem] border border-border bg-surface-2">
+                  <Image src="/profile.jpg" alt="Cintia Henriksson" fill className="object-cover" priority />
+                </div>
+              </div>
 
-        <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-surface border border-border text-xs font-mono text-emerald-600 dark:text-emerald-400">
-            {t.badge}
+              <div className="space-y-5 animate-rise" style={{ animationDelay: "100ms" }}>
+                <span className="inline-flex items-center rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted">
+                  {t.badge}
+                </span>
+                <h1 className="font-display text-4xl sm:text-6xl tracking-tight leading-[1.04]">
+                  {t.title}
+                </h1>
+                <p className="max-w-2xl text-[15px] sm:text-base leading-relaxed text-muted">
+                  {t.bio1}
+                </p>
+                <div className="flex flex-wrap gap-3 pt-1">
+                  <a
+                    href="/cv.pdf"
+                    download
+                    className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground hover:opacity-90 hover:-translate-y-0.5"
+                  >
+                    {t.cvDownload} <span aria-hidden="true">↓</span>
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/cintiamars/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground hover:border-accent/60 hover:text-accent"
+                  >
+                    LinkedIn ↗
+                  </a>
+                  <a
+                    href="mailto:cintia.henriksson@gmail.com"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground hover:border-accent/60 hover:text-accent"
+                  >
+                    Email ✉
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
-            {t.title}
-          </h1>
-          <p className="text-sm text-foreground/85 leading-relaxed font-sans">
-            {t.bio1}
+        </section>
+
+        {/* ---------------------------------------------------------- */}
+        {/* Strategic vision + MVP highlight                           */}
+        {/* ---------------------------------------------------------- */}
+        <section className="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
+          <p className="text-xs uppercase tracking-[0.22em] text-accent">{t.strategicSectionTitle}</p>
+          <p className="mt-5 max-w-3xl font-display text-xl sm:text-2xl leading-snug tracking-tight text-foreground/90">
+            {t.strategicP1}
           </p>
-          <div className="flex flex-wrap gap-3 pt-2">
-            <a
-              href="/cv.pdf"
-              download
-              className="px-4 py-2 rounded-lg bg-foreground text-background text-xs font-mono font-semibold hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm"
-            >
-              <span>{t.cvDownload}</span>
-              <span>↓</span>
-            </a>
-            <a
-              href="https://linkedin.com/in/cintiamars/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-lg bg-surface text-foreground text-xs font-mono border border-border hover:bg-background transition-colors shadow-sm"
-            >
-              LinkedIn ↗
-            </a>
-            <a
-              href="mailto:cintia.henriksson@gmail.com"
-              className="px-4 py-2 rounded-lg bg-surface text-foreground text-xs font-mono border border-border hover:bg-background transition-colors shadow-sm"
-            >
-              Email ✉
-            </a>
-          </div>
-        </div>
-      </section>
 
-      {/* Visión Estratégica & Proyecto Destacado */}
-      <section className="space-y-6">
-        <h2 className="text-xs font-mono uppercase tracking-widest text-muted">
-          {t.strategicSectionTitle}
-        </h2>
-        <div className="space-y-4 text-sm text-foreground/85 leading-relaxed font-sans">
-          <p>{t.strategicP1}</p>
-
-          {/* Destacado: MVP US Global Operator */}
-          <div className="p-6 rounded-xl bg-surface border border-emerald-500/30 dark:border-emerald-500/20 space-y-3 shadow-sm">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider">
-                {t.mvpBadge}
-              </span>
-              <span className="text-[11px] font-mono text-muted">{t.mvpLocation}</span>
+          <div className="relative mt-8 overflow-hidden rounded-3xl border border-accent/30 bg-surface p-8 sm:p-10">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent/10 blur-2xl"
+            />
+            <div className="relative space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-2 rounded-full bg-accent-soft px-3.5 py-1.5 text-xs font-semibold text-accent">
+                  {t.mvpBadge}
+                </span>
+                <span className="text-xs uppercase tracking-[0.16em] text-muted">{t.mvpLocation}</span>
+              </div>
+              <h3 className="font-display text-2xl sm:text-3xl tracking-tight">{t.mvpTitle}</h3>
+              <p className="max-w-2xl text-[15px] leading-relaxed text-muted">{t.mvpDesc}</p>
             </div>
-            <h3 className="text-base font-semibold text-foreground">
-              {t.mvpTitle}
-            </h3>
-            <p className="text-xs text-muted leading-relaxed">
-              {t.mvpDesc}
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Trayectoria Completa de Producto */}
-      <section className="space-y-6">
-        <h2 className="text-xs font-mono uppercase tracking-widest text-muted border-b border-border pb-2">
-          {t.historySectionTitle}
-        </h2>
-        
-        <div className="space-y-5">
-          {/* Senior PM - Core & Brand */}
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <div className="flex flex-col sm:flex-row justify-between text-xs font-mono">
-              <span className="text-emerald-600 dark:text-emerald-400 font-bold">{t.rebtelSeniorRole}</span>
-              <span className="text-muted">{t.rebtelSeniorMeta}</span>
-            </div>
-            <p className="text-xs text-foreground/80 leading-relaxed font-sans">
-              {t.rebtelSeniorDesc}
-            </p>
-          </div>
+        {/* ---------------------------------------------------------- */}
+        {/* Career timeline                                            */}
+        {/* ---------------------------------------------------------- */}
+        <section className="max-w-5xl mx-auto px-5 sm:px-8 py-8 sm:py-12">
+          <h2 className="font-display text-3xl sm:text-4xl tracking-tight border-b border-border pb-5">
+            {t.historySectionTitle}
+          </h2>
 
-          {/* PM - Core */}
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <div className="flex flex-col sm:flex-row justify-between text-xs font-mono">
-              <span className="text-foreground font-bold">{t.rebtelCoreRole}</span>
-              <span className="text-muted">{t.rebtelCoreMeta}</span>
-            </div>
-            <p className="text-xs text-foreground/80 leading-relaxed font-sans">
-              {t.rebtelCoreDesc}
-            </p>
-          </div>
+          <ol className="mt-8 space-y-0">
+            {roles.map((r, i) => (
+              <li
+                key={i}
+                className="group relative grid gap-1.5 sm:grid-cols-[1fr_2fr] gap-x-8 border-l-2 border-border pl-6 pb-8 last:pb-0"
+              >
+                <span
+                  className={`absolute -left-[7px] top-1.5 h-3 w-3 rounded-full ring-4 ring-background ${
+                    r.current ? "bg-accent" : "bg-border group-hover:bg-accent/60"
+                  } transition-colors`}
+                  aria-hidden="true"
+                />
+                <div className="space-y-1">
+                  <h3 className="font-display text-lg tracking-tight leading-tight">{r.role}</h3>
+                  <p className="text-xs uppercase tracking-[0.12em] text-accent">{r.meta}</p>
+                </div>
+                <p className="text-sm leading-relaxed text-muted">{r.desc}</p>
+              </li>
+            ))}
+          </ol>
 
-          {/* Lead PM */}
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <div className="flex flex-col sm:flex-row justify-between text-xs font-mono">
-              <span className="text-foreground font-bold">{t.rebtelLeadRole}</span>
-              <span className="text-muted">{t.rebtelLeadMeta}</span>
-            </div>
-            <p className="text-xs text-foreground/80 leading-relaxed font-sans">
-              {t.rebtelLeadDesc}
-            </p>
-          </div>
-
-          {/* PM Website & CX - MAJORITY */}
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <div className="flex flex-col sm:flex-row justify-between text-xs font-mono">
-              <span className="text-foreground font-bold">{t.majorityRole}</span>
-              <span className="text-muted">{t.majorityMeta}</span>
-            </div>
-            <p className="text-xs text-foreground/80 leading-relaxed font-sans">
-              {t.majorityDesc}
-            </p>
-          </div>
-
-          {/* Junior PM / Calling Independence */}
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <div className="flex flex-col sm:flex-row justify-between text-xs font-mono">
-              <span className="text-foreground font-bold">{t.rebtelJuniorRole}</span>
-              <span className="text-muted">{t.rebtelJuniorMeta}</span>
-            </div>
-            <p className="text-xs text-foreground/80 leading-relaxed font-sans">
-              {t.rebtelJuniorDesc}
-            </p>
-          </div>
-
-          {/* Experiencia Operativa Previa */}
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-3 shadow-sm">
-            <span className="text-xs font-mono text-muted font-bold uppercase tracking-wider block">
-              {t.opsTitle}
-            </span>
-            <ul className="space-y-3 text-xs text-muted font-sans">
+          {/* Operational foundations */}
+          <div className="mt-4 rounded-3xl border border-border bg-surface-2 p-7 sm:p-9">
+            <h3 className="text-xs uppercase tracking-[0.16em] text-muted">{t.opsTitle}</h3>
+            <ul className="mt-5 space-y-4 text-sm leading-relaxed text-muted">
               <li>
-                <strong className="text-foreground font-mono">{t.opsItem1Label}</strong>
+                <strong className="text-foreground font-semibold">{t.opsItem1Label}</strong>
                 {t.opsItem1Text}
               </li>
               <li>
-                <strong className="text-foreground font-mono">{t.opsItem2Label}</strong>
+                <strong className="text-foreground font-semibold">{t.opsItem2Label}</strong>
                 {t.opsItem2Text}
               </li>
               <li>
-                <strong className="text-foreground font-mono">{t.opsItem3Label}</strong>
+                <strong className="text-foreground font-semibold">{t.opsItem3Label}</strong>
                 {t.opsItem3Text}
               </li>
             </ul>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Punto de Inflexión Personal & Filosofía */}
-      <section className="space-y-6">
-        <h2 className="text-xs font-mono uppercase tracking-widest text-muted border-b border-border pb-2">
-          {t.purposeTitle}
-        </h2>
-        <div className="space-y-4 text-sm text-foreground/85 leading-relaxed font-sans">
-          <p>{t.purposeP1}</p>
-          <p>{t.purposeP2}</p>
-        </div>
-      </section>
+        {/* ---------------------------------------------------------- */}
+        {/* Purpose / turning point                                    */}
+        {/* ---------------------------------------------------------- */}
+        <section className="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-accent-soft/60 to-surface p-8 sm:p-12">
+            <p className="text-xs uppercase tracking-[0.22em] text-accent">{t.purposeTitle}</p>
+            <div className="mt-5 space-y-5 max-w-3xl text-[15px] sm:text-lg leading-relaxed text-foreground/85 font-display tracking-tight">
+              <p>{t.purposeP1}</p>
+              <p>{t.purposeP2}</p>
+            </div>
+          </div>
+        </section>
 
-      {/* Enfoque Pragmático de Inteligencia Artificial */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-widest text-muted border-b border-border pb-2">
-          {t.aiTitle}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
-          <div className="p-4 rounded-xl bg-surface border border-border space-y-1.5 shadow-sm">
-            <span className="text-emerald-600 dark:text-emerald-400 font-bold block">{t.aiItem1Title}</span>
-            <p className="text-muted font-sans">{t.aiItem1Desc}</p>
+        {/* ---------------------------------------------------------- */}
+        {/* AI principles                                              */}
+        {/* ---------------------------------------------------------- */}
+        <section className="max-w-5xl mx-auto px-5 sm:px-8 py-8 sm:py-12">
+          <h2 className="font-display text-3xl sm:text-4xl tracking-tight border-b border-border pb-5">
+            {t.aiTitle}
+          </h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {aiPrinciples.map((p, i) => (
+              <div
+                key={i}
+                className="group rounded-2xl border border-border bg-surface p-6 hover:border-accent/40 hover:-translate-y-1 transition-all"
+              >
+                <span className="font-display text-3xl text-accent/40 group-hover:text-accent/70 transition-colors">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 font-display text-lg tracking-tight">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{p.desc}</p>
+              </div>
+            ))}
           </div>
-          <div className="p-4 rounded-xl bg-surface border border-border space-y-1.5 shadow-sm">
-            <span className="text-emerald-600 dark:text-emerald-400 font-bold block">{t.aiItem2Title}</span>
-            <p className="text-muted font-sans">{t.aiItem2Desc}</p>
-          </div>
-          <div className="p-4 rounded-xl bg-surface border border-border space-y-1.5 shadow-sm">
-            <span className="text-emerald-600 dark:text-emerald-400 font-bold block">{t.aiItem3Title}</span>
-            <p className="text-muted font-sans">{t.aiItem3Desc}</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Educación & Idiomas */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-widest text-muted border-b border-border pb-2">
-          {t.skillsTitle}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-          <div className="p-4 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold block">
-              {t.photoTitle}
-            </span>
-            <p className="text-muted leading-relaxed">
-              {t.photoDesc}
-            </p>
+        {/* ---------------------------------------------------------- */}
+        {/* Education & languages                                      */}
+        {/* ---------------------------------------------------------- */}
+        <section className="max-w-5xl mx-auto px-5 sm:px-8 py-8 sm:py-16">
+          <h2 className="font-display text-3xl sm:text-4xl tracking-tight border-b border-border pb-5">
+            {t.skillsTitle}
+          </h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-surface p-7">
+              <h3 className="font-display text-xl tracking-tight text-accent">{t.photoTitle}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{t.photoDesc}</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-surface p-7">
+              <h3 className="font-display text-xl tracking-tight text-accent">{t.langTitle}</h3>
+              <ul className="mt-3 space-y-2 text-sm text-muted">
+                <li>{t.lang1}</li>
+                <li>{t.lang2}</li>
+                <li>{t.lang3}</li>
+                <li>{t.lang4}</li>
+              </ul>
+            </div>
           </div>
+        </section>
+      </main>
 
-          <div className="p-4 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold block">
-              {t.langTitle}
-            </span>
-            <ul className="text-muted space-y-1 font-mono text-[11px]">
-              <li>{t.lang1}</li>
-              <li>{t.lang2}</li>
-              <li>{t.lang3}</li>
-              <li>{t.lang4}</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </main>
+      <SiteFooter />
+    </>
   );
 }

@@ -2,8 +2,8 @@
 import React from "react";
 import Link from "next/link";
 import AgentSimulator from "@/components/AgentSimulator";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import LanguageSwitch from "@/components/LanguageSwitch";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/context/LanguageContext";
 
 const content = {
@@ -32,7 +32,7 @@ const content = {
     },
     s2: {
       title: "02. Prototipo Operativo (Live Simulator)",
-      badge: "spec/behavior_spec.v1.json",
+      badge: "behavior_spec.v1",
       desc: "Selecciona un escenario de prueba para observar el comportamiento conversacional en paralelo con la inspección del contrato JSON y la activación de guardrails en tiempo real.",
     },
     s3: {
@@ -98,7 +98,7 @@ const content = {
     },
     s2: {
       title: "02. Operating Prototype (Live Simulator)",
-      badge: "spec/behavior_spec.v1.json",
+      badge: "behavior_spec.v1",
       desc: "Select a test scenario to inspect conversational behavior in real time alongside JSON contract extraction and guardrail enforcement.",
     },
     s3: {
@@ -146,232 +146,187 @@ export default function AgentePagosPage() {
   const t = content[lang] || content.es;
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-foreground">
-      {/* Navegación y Selectores */}
-      <nav className="flex items-center justify-between border-b border-border pb-5">
-        <Link
-          href="/"
-          className="text-xs font-mono text-muted hover:text-foreground transition-colors inline-flex items-center gap-1"
-        >
-          {t.back}
-        </Link>
-        <div className="flex items-center gap-3 sm:gap-4">
-          <LanguageSwitch />
-          <ThemeToggle />
-        </div>
-      </nav>
+    <>
+      <SiteHeader variant="inner" />
 
-      {/* Header y Métricas */}
-      <section className="space-y-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
-            {t.badge}
-          </span>
-          <span className="text-muted font-mono text-xs">{t.fileTag}</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
-          {t.title}
-        </h1>
-        <p className="text-sm text-muted max-w-3xl leading-relaxed">
-          {t.desc}
-        </p>
+      <main className="text-foreground">
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-accent/12 blur-[110px]"
+          />
+          <div className="max-w-5xl mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-8">
+            <div className="animate-rise space-y-5">
+              <span className="inline-flex items-center rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-accent">
+                {t.badge}
+              </span>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance">
+                {t.title}
+              </h1>
+              <p className="max-w-3xl text-base sm:text-lg leading-relaxed text-muted">{t.desc}</p>
+            </div>
 
-        {/* Data Strip / Métricas Clave */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-xs font-mono">
-          <div className="p-3 rounded-xl bg-surface border border-border shadow-sm">
-            <span className="text-muted block text-[10px] font-semibold">{t.metrics[0].label}</span>
-            <span className="text-emerald-600 dark:text-emerald-400 text-lg font-bold">{t.metrics[0].val}</span>
-            <span className="text-[10px] text-muted block mt-0.5">{t.metrics[0].sub}</span>
-          </div>
-          <div className="p-3 rounded-xl bg-surface border border-border shadow-sm">
-            <span className="text-muted block text-[10px] font-semibold">{t.metrics[1].label}</span>
-            <span className="text-emerald-600 dark:text-emerald-400 text-lg font-bold">{t.metrics[1].val}</span>
-            <span className="text-[10px] text-muted block mt-0.5">{t.metrics[1].sub}</span>
-          </div>
-          <div className="p-3 rounded-xl bg-surface border border-border shadow-sm">
-            <span className="text-muted block text-[10px] font-semibold">{t.metrics[2].label}</span>
-            <span className="text-foreground text-lg font-bold">{t.metrics[2].val}</span>
-            <span className="text-[10px] text-muted block mt-0.5">{t.metrics[2].sub}</span>
-          </div>
-          <div className="p-3 rounded-xl bg-surface border border-border shadow-sm">
-            <span className="text-muted block text-[10px] font-semibold">{t.metrics[3].label}</span>
-            <span className="text-foreground text-lg font-bold">{t.metrics[3].val}</span>
-            <span className="text-[10px] text-muted block mt-0.5">{t.metrics[3].sub}</span>
-          </div>
-        </div>
-      </section>
-
-      {/* 1. Problem Statement y Hechos Regulados */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s1.title}
-        </h2>
-        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
-          {t.s1.p1}
-        </p>
-        <div className="p-4 rounded-xl bg-surface border border-border text-xs text-muted space-y-2 shadow-sm">
-          <div className="font-mono text-foreground text-[11px] font-semibold">
-            {t.s1.boxTitle}
-          </div>
-          <ul className="list-disc pl-5 space-y-1 font-mono text-[11px]">
-            {t.s1.items.map((item, idx) => (
-              <li key={idx}>{item}</li>
-            ))}
-          </ul>
-          <p className="text-[11px] text-muted font-mono pt-1">
-            {t.s1.note}
-          </p>
-        </div>
-      </section>
-
-      {/* 2. Prototipo Interactivo */}
-      <section className="space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-border pb-2">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-muted">
-            {t.s2.title}
-          </h2>
-          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s2.badge}</span>
-        </div>
-        <p className="text-xs text-muted font-sans">
-          {t.s2.desc}
-        </p>
-        
-        {/* Componente del Simulador */}
-        <AgentSimulator />
-      </section>
-
-      {/* 3. El Release Gate y Comparativa de Modelos */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s3.title}
-        </h2>
-        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
-          {t.s3.p1}
-        </p>
-
-        <div className="overflow-x-auto rounded-xl border border-border shadow-sm">
-          <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-surface text-muted border-b border-border">
-              <tr>
-                <th className="p-3 font-semibold">{t.s3.thModel}</th>
-                <th className="p-3 font-semibold">{t.s3.thCost}</th>
-                <th className="p-3 font-semibold">{t.s3.thLatency}</th>
-                <th className="p-3 font-semibold">{t.s3.thPass}</th>
-                <th className="p-3 font-semibold">{t.s3.thViolations}</th>
-                <th className="p-3 text-right font-semibold">{t.s3.thDecision}</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border bg-surface text-foreground/85">
-              <tr className="hover:bg-background/40 transition-colors">
-                <td className="p-3 font-semibold text-foreground">Frontier-A</td>
-                <td className="p-3">14,20 USD</td>
-                <td className="p-3">1.850 ms</td>
-                <td className="p-3">94,1%</td>
-                <td className="p-3 text-rose-600 dark:text-rose-400 font-bold">1 violación (C2.1)</td>
-                <td className="p-3 text-right">
-                  <span className="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-[10px] font-semibold">
-                    {t.s3.decisionBlocked}
-                  </span>
-                </td>
-              </tr>
-              <tr className="hover:bg-background/40 transition-colors">
-                <td className="p-3 font-semibold text-foreground">Frontier-B</td>
-                <td className="p-3">11,50 USD</td>
-                <td className="p-3">1.200 ms</td>
-                <td className="p-3">91,6%</td>
-                <td className="p-3 text-emerald-600 dark:text-emerald-400">0 violaciones</td>
-                <td className="p-3 text-right">
-                  <span className="px-2 py-0.5 rounded bg-background text-muted border border-border text-[10px]">
-                    {t.s3.decisionRejected}
-                  </span>
-                </td>
-              </tr>
-              <tr className="bg-emerald-500/10 font-semibold">
-                <td className="p-3 text-emerald-700 dark:text-emerald-300">Economy-C (Guarded)</td>
-                <td className="p-3 text-emerald-700 dark:text-emerald-300 font-bold">1,80 USD</td>
-                <td className="p-3 text-emerald-700 dark:text-emerald-300 font-bold">480 ms</td>
-                <td className="p-3 text-emerald-700 dark:text-emerald-300">89,2%</td>
-                <td className="p-3 text-emerald-700 dark:text-emerald-300 font-bold">0 violaciones</td>
-                <td className="p-3 text-right">
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">
-                    {t.s3.decisionApproved}
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      {/* 4. Galería de Fallos y Reversión Post-Mortem */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s4.title}
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <span className="font-mono text-rose-600 dark:text-rose-400 text-[11px] block font-bold">
-              {t.s4.fail1Title}
-            </span>
-            <p className="text-muted leading-relaxed italic">
-              «{t.s4.fail1Quote}». <span className="not-italic text-foreground/80">{t.s4.fail1Desc}</span>
-            </p>
-            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border">
-              <strong>{t.s4.fail1FixLabel}</strong> {t.s4.fail1FixText}
+            <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {t.metrics.map((m, i) => (
+                <div key={i} className="rounded-2xl border border-border bg-surface p-5">
+                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted">{m.label}</p>
+                  <p className="mt-2 font-display text-2xl sm:text-3xl tracking-tight text-accent tabular-nums">
+                    {m.val}
+                  </p>
+                  <p className="mt-1 text-xs text-muted">{m.sub}</p>
+                </div>
+              ))}
             </div>
           </div>
+        </section>
 
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <span className="font-mono text-amber-600 dark:text-amber-400 text-[11px] block font-bold">
-              {t.s4.fail2Title}
-            </span>
-            <p className="text-foreground/80 leading-relaxed">
-              {t.s4.fail2Desc}
-            </p>
-            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border">
-              <strong>{t.s4.fail2FixLabel}</strong> {t.s4.fail2FixText}
+        <div className="max-w-5xl mx-auto px-5 sm:px-8 pb-16 space-y-16">
+          {/* S1 */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s1.title}</h2>
+            <p className="max-w-3xl text-[15px] leading-relaxed text-foreground/85">{t.s1.p1}</p>
+            <div className="rounded-2xl border-l-2 border-accent/50 bg-surface-2 p-5 space-y-3">
+              <p className="text-sm font-semibold text-foreground">{t.s1.boxTitle}</p>
+              <ul className="space-y-2">
+                {t.s1.items.map((item, idx) => (
+                  <li key={idx} className="flex gap-3 text-sm leading-relaxed text-muted">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs italic leading-relaxed text-muted pt-1">{t.s1.note}</p>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* 5. Modelo de Deflection de Negocio */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s5.title}
-        </h2>
-        <div className="p-5 rounded-xl bg-surface border border-border space-y-4 text-xs shadow-sm">
-          <div className="flex flex-col sm:flex-row justify-between gap-2 items-baseline">
-            <span className="font-mono font-semibold text-foreground">{t.s5.chainTitle}</span>
-            <span className="font-mono text-emerald-600 dark:text-emerald-400 text-sm font-bold">{t.s5.chainBadge}</span>
-          </div>
-          <div className="bg-background p-3.5 rounded-lg border border-border font-mono text-muted text-[11px] overflow-x-auto">
-            {t.s5.formula}
-          </div>
-          <p className="text-muted leading-relaxed font-sans">
-            {t.s5.p1}
-          </p>
-        </div>
-      </section>
+          {/* S2 — simulator */}
+          <section className="space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s2.title}</h2>
+              <span className="font-mono text-xs text-accent">{t.s2.badge}</span>
+            </div>
+            <p className="max-w-3xl text-[15px] leading-relaxed text-muted">{t.s2.desc}</p>
+            <AgentSimulator />
+          </section>
 
-      {/* 6. Cierre: Conexión con el Caso 3 */}
-      <section className="p-6 rounded-2xl bg-surface border border-border shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div className="space-y-1">
-          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
-            {t.s6.badge}
-          </span>
-          <p className="text-xs text-muted font-sans">
-            {t.s6.desc}
-          </p>
+          {/* S3 — release gate table */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s3.title}</h2>
+            <p className="max-w-3xl text-[15px] leading-relaxed text-foreground/85">{t.s3.p1}</p>
+
+            <div className="overflow-x-auto rounded-2xl border border-border">
+              <table className="w-full text-left text-sm tabular-nums">
+                <thead className="bg-surface-2 text-muted">
+                  <tr className="text-[11px] uppercase tracking-[0.1em]">
+                    <th className="p-4 font-semibold">{t.s3.thModel}</th>
+                    <th className="p-4 font-semibold">{t.s3.thCost}</th>
+                    <th className="p-4 font-semibold">{t.s3.thLatency}</th>
+                    <th className="p-4 font-semibold">{t.s3.thPass}</th>
+                    <th className="p-4 font-semibold">{t.s3.thViolations}</th>
+                    <th className="p-4 text-right font-semibold">{t.s3.thDecision}</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border bg-surface text-foreground/80">
+                  <tr>
+                    <td className="p-4 font-semibold text-foreground">Frontier-A</td>
+                    <td className="p-4">14,20 USD</td>
+                    <td className="p-4">1.850 ms</td>
+                    <td className="p-4">94,1%</td>
+                    <td className="p-4 font-semibold text-warm">1 violación (C2.1)</td>
+                    <td className="p-4 text-right">
+                      <span className="inline-block rounded-full border border-warm/30 bg-warm/10 px-2.5 py-1 text-[11px] font-semibold text-warm">
+                        {t.s3.decisionBlocked}
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-semibold text-foreground">Frontier-B</td>
+                    <td className="p-4">11,50 USD</td>
+                    <td className="p-4">1.200 ms</td>
+                    <td className="p-4">91,6%</td>
+                    <td className="p-4">0 violaciones</td>
+                    <td className="p-4 text-right">
+                      <span className="inline-block rounded-full border border-border bg-surface-2 px-2.5 py-1 text-[11px] text-muted">
+                        {t.s3.decisionRejected}
+                      </span>
+                    </td>
+                  </tr>
+                  <tr className="bg-accent-soft">
+                    <td className="p-4 font-semibold text-accent">Economy-C (Guarded)</td>
+                    <td className="p-4 font-semibold text-accent">1,80 USD</td>
+                    <td className="p-4 font-semibold text-accent">480 ms</td>
+                    <td className="p-4 text-accent">89,2%</td>
+                    <td className="p-4 font-semibold text-accent">0 violaciones</td>
+                    <td className="p-4 text-right">
+                      <span className="inline-block rounded-full bg-accent px-2.5 py-1 text-[11px] font-semibold text-accent-foreground">
+                        {t.s3.decisionApproved}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* S4 — failure gallery */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s4.title}</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-2xl border border-border bg-surface p-6 space-y-3">
+                <p className="font-display text-base tracking-tight text-warm">{t.s4.fail1Title}</p>
+                <p className="text-sm leading-relaxed text-muted">
+                  <span className="italic">{t.s4.fail1Quote}</span>{" "}
+                  <span className="text-foreground/80">{t.s4.fail1Desc}</span>
+                </p>
+                <p className="border-t border-border pt-3 text-sm leading-relaxed text-foreground">
+                  <strong className="text-accent">{t.s4.fail1FixLabel}</strong> {t.s4.fail1FixText}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border bg-surface p-6 space-y-3">
+                <p className="font-display text-base tracking-tight text-warm">{t.s4.fail2Title}</p>
+                <p className="text-sm leading-relaxed text-foreground/80">{t.s4.fail2Desc}</p>
+                <p className="border-t border-border pt-3 text-sm leading-relaxed text-foreground">
+                  <strong className="text-accent">{t.s4.fail2FixLabel}</strong> {t.s4.fail2FixText}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* S5 — economic model */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s5.title}</h2>
+            <div className="rounded-2xl border border-border bg-surface p-6 sm:p-7 space-y-4">
+              <div className="flex flex-col sm:flex-row justify-between gap-2 items-baseline">
+                <span className="text-sm font-semibold text-foreground">{t.s5.chainTitle}</span>
+                <span className="font-display text-lg tracking-tight text-accent">{t.s5.chainBadge}</span>
+              </div>
+              <div className="overflow-x-auto rounded-xl bg-surface-2 p-4 font-mono text-xs leading-relaxed text-muted">
+                {t.s5.formula}
+              </div>
+              <p className="text-sm leading-relaxed text-muted">{t.s5.p1}</p>
+            </div>
+          </section>
+
+          {/* S6 — next case */}
+          <section className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-accent-soft/70 to-surface p-8 sm:p-10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+              <div className="space-y-2 max-w-xl">
+                <p className="text-xs uppercase tracking-[0.2em] text-accent">{t.s6.badge}</p>
+                <p className="text-[15px] leading-relaxed text-foreground/85">{t.s6.desc}</p>
+              </div>
+              <Link
+                href="/cases/alumnas-roadmap"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground hover:opacity-90 hover:-translate-y-0.5 whitespace-nowrap"
+              >
+                {t.s6.btn.replace(" →", "")} <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </section>
         </div>
-        <Link
-          href="/cases/alumnas-roadmap"
-          className="px-4 py-2.5 rounded-lg bg-foreground text-background text-xs font-mono font-semibold hover:opacity-90 transition-opacity whitespace-nowrap shadow-sm"
-        >
-          {t.s6.btn}
-        </Link>
-      </section>
-    </main>
+      </main>
+
+      <SiteFooter />
+    </>
   );
 }

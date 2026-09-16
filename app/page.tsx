@@ -1,234 +1,242 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import LanguageSwitch from "@/components/LanguageSwitch";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
+
+const caseSlugs = ["remesas-discovery", "agente-pagos", "alumnas-roadmap"] as const;
 
 export default function Home() {
   const { lang } = useLanguage();
   const t = translations[lang];
+  const cases = [t.cases.case1, t.cases.case2, t.cases.case3];
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-20 text-foreground">
-      {/* Barra de Navegación Superior */}
-      <nav className="flex items-center justify-between border-b border-border pb-5">
-        <span className="font-mono text-sm font-semibold text-foreground tracking-tight">
-          Cintia Henriksson
-        </span>
-        <div className="flex items-center gap-3 sm:gap-5 text-xs font-mono">
-          <a href="#casos" className="text-muted hover:text-foreground transition-colors">
-            {t.nav.cases}
-          </a>
-          <Link
-            href="/about"
-            className="px-3 py-1.5 rounded-lg bg-surface border border-border text-emerald-600 dark:text-emerald-400 hover:border-emerald-500/50 transition-colors"
-          >
-            {t.nav.about}
-          </Link>
-          <LanguageSwitch />
-          <ThemeToggle />
-        </div>
-      </nav>
+    <>
+      <SiteHeader variant="home" />
 
-      {/* 1. Hero & Posicionamiento */}
-      <section className="space-y-6 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-muted shadow-sm">
-          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          {t.hero.badge}
-        </div>
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground leading-tight">
-          {t.hero.title}
-        </h1>
-        <p className="text-base text-muted leading-relaxed">
-          {t.hero.subtitle}
-        </p>
-      </section>
+      <main className="text-foreground">
+        {/* ---------------------------------------------------------- */}
+        {/* Hero                                                       */}
+        {/* ---------------------------------------------------------- */}
+        <section className="relative overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-40 -right-32 h-[32rem] w-[32rem] rounded-full bg-accent/15 blur-[120px]"
+          />
+          <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-16 sm:pb-24">
+            <div className="grid lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-16 items-center">
+              <div className="animate-rise space-y-8">
+                <span className="inline-flex items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                  </span>
+                  {t.hero.badge}
+                </span>
 
-      {/* 2. Cobertura del Scorecard */}
-      <section className="space-y-6">
-        <div className="flex justify-between items-baseline border-b border-border pb-3">
-          <h2 className="text-xs font-mono uppercase tracking-widest text-muted">
-            {t.scorecard.title}
-          </h2>
-          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400">
-            {t.scorecard.status}
-          </span>
-        </div>
+                <h1 className="font-display text-[2.6rem] leading-[1.03] sm:text-6xl lg:text-[4.4rem] tracking-tight text-balance">
+                  {t.hero.title}
+                </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-mono">
-          {t.scorecard.items.map((item, index) => (
-            <div key={index} className="p-4 rounded-xl bg-surface border border-border shadow-sm">
-              <span className="text-muted block text-[10px] mb-1 font-bold">{item.label}</span>
-              <span className="text-foreground font-semibold block text-sm">{item.title}</span>
-              <span className="text-emerald-600 dark:text-emerald-400 block mt-2 text-[11px]">
-                {item.metric}
-              </span>
+                <p className="max-w-xl text-lg text-muted leading-relaxed text-pretty">
+                  {t.hero.subtitle}
+                </p>
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <a
+                    href="#casos"
+                    className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground hover:opacity-90 hover:-translate-y-0.5"
+                  >
+                    {t.nav.cases}
+                    <span aria-hidden="true">↓</span>
+                  </a>
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 text-sm font-semibold text-foreground hover:border-accent/60 hover:text-accent"
+                  >
+                    {t.aboutTeaser.aboutBtn}
+                  </Link>
+                </div>
+              </div>
+
+              {/* Portrait */}
+              <div className="animate-rise relative mx-auto w-full max-w-sm lg:max-w-none" style={{ animationDelay: "120ms" }}>
+                <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-[2rem] bg-accent/25" aria-hidden="true" />
+                <div className="absolute -left-3 -top-3 h-16 w-16 rounded-full border border-warm/50 bg-warm/10" aria-hidden="true" />
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-border bg-surface-2">
+                  <img
+                    src="/profile.jpg"
+                    alt="Portrait of Cintia Henriksson"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-2xl border border-border/60 bg-background/80 px-4 py-2.5 backdrop-blur-md">
+                    <span className="font-display text-base tracking-tight">Cintia Henriksson</span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-muted">Stockholm</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* 3. Casos de Estudio Detallados */}
-      <section id="casos" className="space-y-8 scroll-mt-10">
-        <h2 className="text-xs font-mono uppercase tracking-widest text-muted border-b border-border pb-3">
-          {t.casesSectionTitle}
-        </h2>
-
-        <div className="space-y-8">
-          {/* Tarjeta Caso 1 */}
-          <Link
-            href="/cases/remesas-discovery"
-            className="group block p-8 rounded-2xl bg-surface border border-border hover:border-emerald-500/40 hover:shadow-md transition-all space-y-4"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
-                {t.cases.case1.tag}
-              </span>
-              <span className="text-xs font-mono text-muted">{t.cases.case1.sub}</span>
+        {/* ---------------------------------------------------------- */}
+        {/* Scorecard                                                  */}
+        {/* ---------------------------------------------------------- */}
+        <section className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-border pb-5">
+            <div className="space-y-1">
+              <p className="text-xs uppercase tracking-[0.22em] text-accent">Scorecard</p>
+              <h2 className="font-display text-2xl sm:text-3xl tracking-tight">
+                {t.scorecard.title}
+              </h2>
             </div>
-            
-            <h3 className="text-2xl font-medium text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-              {t.cases.case1.title}
-            </h3>
+            <span className="inline-flex items-center gap-2 self-start sm:self-auto rounded-full bg-accent-soft px-3.5 py-1.5 text-xs font-medium text-accent">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              {t.scorecard.status}
+            </span>
+          </div>
 
-            <div className="space-y-3 text-sm text-foreground/90 leading-relaxed font-sans">
-              <p>{t.cases.case1.p1}</p>
-              <p className="text-xs text-muted bg-background/80 p-3.5 rounded-lg border border-border leading-relaxed">
-                <strong className="text-foreground">{t.cases.case1.privacyLabel} </strong>
-                {t.cases.case1.privacyText}
-              </p>
-              <p>
-                <strong>{t.cases.case1.whyLabel} </strong>
-                {t.cases.case1.whyText}
-              </p>
-              <p className="text-xs text-muted">
-                <strong>{t.cases.case1.bgLabel} </strong>
-                {t.cases.case1.bgText}
-              </p>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-8">
+            {t.scorecard.items.map((item, index) => {
+              const [num, ...rest] = item.label.split(". ");
+              const label = rest.join(". ");
+              return (
+                <div
+                  key={index}
+                  className="group relative rounded-2xl border border-border bg-surface p-6 hover:border-accent/40 hover:-translate-y-1 transition-all"
+                >
+                  <span className="font-display text-3xl text-accent/40 group-hover:text-accent/70 transition-colors">
+                    {num}
+                  </span>
+                  <p className="mt-3 text-[11px] uppercase tracking-[0.16em] text-muted">
+                    {label}
+                  </p>
+                  <p className="mt-1 font-display text-xl tracking-tight leading-snug">
+                    {item.title}
+                  </p>
+                  <p className="mt-3 text-xs text-accent font-medium">{item.metric}</p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
 
-            <div className="pt-2 flex items-center justify-end text-xs font-mono text-muted group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-              {t.cases.case1.cta}
-            </div>
-          </Link>
+        {/* ---------------------------------------------------------- */}
+        {/* Case studies                                               */}
+        {/* ---------------------------------------------------------- */}
+        <section id="casos" className="max-w-6xl mx-auto px-5 sm:px-8 py-8 sm:py-12 scroll-mt-20">
+          <div className="space-y-2 border-b border-border pb-5">
+            <p className="text-xs uppercase tracking-[0.22em] text-accent">01 — 03</p>
+            <h2 className="font-display text-3xl sm:text-4xl tracking-tight">
+              {t.casesSectionTitle}
+            </h2>
+          </div>
 
-          {/* Tarjeta Caso 2 */}
-          <Link
-            href="/cases/agente-pagos"
-            className="group block p-8 rounded-2xl bg-surface border border-border hover:border-emerald-500/40 hover:shadow-md transition-all space-y-4"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
-                {t.cases.case2.tag}
-              </span>
-              <span className="text-xs font-mono text-muted">{t.cases.case2.sub}</span>
-            </div>
+          <div className="mt-10 space-y-6">
+            {cases.map((c, i) => (
+              <Link
+                key={caseSlugs[i]}
+                href={`/cases/${caseSlugs[i]}`}
+                className="group relative block overflow-hidden rounded-3xl border border-border bg-surface p-7 sm:p-10 hover:border-accent/40 hover:shadow-[0_24px_60px_-24px_rgba(75,69,212,0.35)] hover:-translate-y-1 transition-all"
+              >
+                <div className="grid gap-6 lg:grid-cols-[auto_1fr] lg:gap-10">
+                  <div className="flex items-baseline gap-4 lg:flex-col lg:items-start lg:gap-2">
+                    <span className="font-display text-6xl sm:text-7xl leading-none text-accent/25 group-hover:text-accent/60 transition-colors">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-xs uppercase tracking-[0.16em] text-muted lg:mt-2">
+                      {c.sub}
+                    </span>
+                  </div>
 
-            <h3 className="text-2xl font-medium text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-              {t.cases.case2.title}
-            </h3>
+                  <div className="space-y-5">
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium text-accent">{c.tag}</p>
+                      <h3 className="font-display text-2xl sm:text-[2rem] leading-tight tracking-tight text-balance group-hover:text-accent transition-colors">
+                        {c.title}
+                      </h3>
+                    </div>
 
-            <div className="space-y-3 text-sm text-foreground/90 leading-relaxed font-sans">
-              <p>{t.cases.case2.p1}</p>
-              <p className="text-xs text-muted bg-background/80 p-3.5 rounded-lg border border-border leading-relaxed">
-                <strong className="text-foreground">{t.cases.case2.privacyLabel} </strong>
-                {t.cases.case2.privacyText}
-              </p>
-              <p>
-                <strong>{t.cases.case2.whyLabel} </strong>
-                {t.cases.case2.whyText}
-              </p>
-              <p className="text-xs text-muted">
-                <strong>{t.cases.case2.bgLabel} </strong>
-                {t.cases.case2.bgText}
-              </p>
-            </div>
+                    <p className="max-w-2xl text-[15px] leading-relaxed text-foreground/85">
+                      {c.p1}
+                    </p>
 
-            <div className="pt-2 flex items-center justify-end text-xs font-mono text-muted group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-              {t.cases.case2.cta}
-            </div>
-          </Link>
+                    <div className="grid gap-4 sm:grid-cols-2 pt-1">
+                      <p className="text-sm leading-relaxed text-muted">
+                        <span className="font-semibold text-foreground">{c.whyLabel} </span>
+                        {c.whyText}
+                      </p>
+                      <p className="rounded-xl border-l-2 border-accent/50 bg-surface-2 px-4 py-3 text-xs leading-relaxed text-muted">
+                        <span className="font-semibold text-foreground">{c.privacyLabel} </span>
+                        {c.privacyText}
+                      </p>
+                    </div>
 
-          {/* Tarjeta Caso 3 */}
-          <Link
-            href="/cases/alumnas-roadmap"
-            className="group block p-8 rounded-2xl bg-surface border border-border hover:border-emerald-500/40 hover:shadow-md transition-all space-y-4"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
-                {t.cases.case3.tag}
-              </span>
-              <span className="text-xs font-mono text-muted">{t.cases.case3.sub}</span>
-            </div>
+                    <p className="text-xs leading-relaxed text-muted">
+                      <span className="font-semibold text-foreground/80">{c.bgLabel} </span>
+                      {c.bgText}
+                    </p>
 
-            <h3 className="text-2xl font-medium text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-              {t.cases.case3.title}
-            </h3>
+                    <span className="inline-flex items-center gap-2 pt-2 text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                      {c.cta.replace(" →", "")}
+                      <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-            <div className="space-y-3 text-sm text-foreground/90 leading-relaxed font-sans">
-              <p>{t.cases.case3.p1}</p>
-              <p className="text-xs text-muted bg-background/80 p-3.5 rounded-lg border border-border leading-relaxed">
-                <strong className="text-foreground">{t.cases.case3.privacyLabel} </strong>
-                {t.cases.case3.privacyText}
-              </p>
-              <p>
-                <strong>{t.cases.case3.whyLabel} </strong>
-                {t.cases.case3.whyText}
-              </p>
-              <p className="text-xs text-muted">
-                <strong>{t.cases.case3.bgLabel} </strong>
-                {t.cases.case3.bgText}
-              </p>
-            </div>
-
-            <div className="pt-2 flex items-center justify-end text-xs font-mono text-muted group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-              {t.cases.case3.cta}
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      {/* 4. Sección Sobre Mí & Acceso a la Bio */}
-      <section className="p-8 rounded-2xl bg-surface border border-border shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
-        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
-          <div className="relative w-20 h-20 rounded-full overflow-hidden bg-background border border-border flex-shrink-0">
-            <img
-              src="/profile.jpg"
-              alt="Cintia Henriksson"
-              className="w-full h-full object-cover"
+        {/* ---------------------------------------------------------- */}
+        {/* About teaser                                               */}
+        {/* ---------------------------------------------------------- */}
+        <section className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-24">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 sm:p-12">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-accent/10 blur-3xl"
             />
-          </div>
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-background border border-border text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
-              {t.aboutTeaser.badge}
-            </div>
-            <h3 className="text-xl font-medium text-foreground">
-              {t.aboutTeaser.title}
-            </h3>
-            <p className="text-xs text-muted max-w-xl leading-relaxed font-sans">
-              {t.aboutTeaser.desc}
-            </p>
-          </div>
-        </div>
+            <div className="relative grid gap-10 md:grid-cols-[auto_1fr] md:items-center">
+              <div className="relative mx-auto md:mx-0">
+                <div className="absolute inset-0 translate-x-2 translate-y-2 rounded-3xl bg-warm/20" aria-hidden="true" />
+                <div className="relative h-40 w-40 overflow-hidden rounded-3xl border border-border bg-surface-2">
+                  <img src="/profile.jpg" alt="Cintia Henriksson" className="h-full w-full object-cover" />
+                </div>
+              </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto justify-end flex-shrink-0">
-          <a
-            href="/cv.pdf"
-            download
-            className="w-full sm:w-auto text-center px-4 py-2.5 rounded-lg bg-surface hover:bg-background text-foreground text-xs font-mono border border-border transition-colors"
-          >
-            {t.aboutTeaser.cvBtn}
-          </a>
-          <Link
-            href="/about"
-            className="w-full sm:w-auto text-center px-4 py-2.5 rounded-lg bg-foreground text-background text-xs font-mono font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
-          >
-            {t.aboutTeaser.aboutBtn}
-          </Link>
-        </div>
-      </section>
-    </main>
+              <div className="space-y-5 text-center md:text-left">
+                <p className="text-xs uppercase tracking-[0.22em] text-accent">{t.aboutTeaser.badge}</p>
+                <h2 className="font-display text-3xl sm:text-4xl tracking-tight">{t.aboutTeaser.title}</h2>
+                <p className="mx-auto md:mx-0 max-w-2xl text-[15px] leading-relaxed text-muted">
+                  {t.aboutTeaser.desc}
+                </p>
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-1">
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground hover:opacity-90 hover:-translate-y-0.5"
+                  >
+                    {t.aboutTeaser.aboutBtn.replace(" →", "")}
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                  <a
+                    href="/cv.pdf"
+                    download
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 text-sm font-semibold text-foreground hover:border-accent/60 hover:text-accent"
+                  >
+                    {t.aboutTeaser.cvBtn}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter />
+    </>
   );
 }

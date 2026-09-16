@@ -2,8 +2,8 @@
 import React from "react";
 import Link from "next/link";
 import RiceCalculator from "@/components/RiceCalculator";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import LanguageSwitch from "@/components/LanguageSwitch";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/context/LanguageContext";
 
 const content = {
@@ -119,160 +119,128 @@ export default function AlumnasRoadmapPage() {
   const { lang } = useLanguage();
   const t = content[lang] || content.es;
 
+  const questions = [
+    { label: t.s1.q1Label, text: t.s1.q1Text, sub: t.s1.q1Sub },
+    { label: t.s1.q2Label, text: t.s1.q2Text, sub: t.s1.q2Sub },
+    { label: t.s1.q3Label, text: t.s1.q3Text, sub: t.s1.q3Sub },
+    { label: t.s1.q4Label, text: t.s1.q4Text, sub: "" },
+    { label: t.s1.q5Label, text: t.s1.q5Text, sub: t.s1.q5Sub },
+  ];
+
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-foreground">
-      {/* Navegación y Selectores */}
-      <nav className="flex items-center justify-between border-b border-border pb-5">
-        <Link
-          href="/"
-          className="text-xs font-mono text-muted hover:text-foreground transition-colors inline-flex items-center gap-1"
-        >
-          {t.back}
-        </Link>
-        <div className="flex items-center gap-3 sm:gap-4">
-          <LanguageSwitch />
-          <ThemeToggle />
-        </div>
-      </nav>
+    <>
+      <SiteHeader variant="inner" />
 
-      {/* Header y Métricas */}
-      <section className="space-y-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
-            {t.badge}
-          </span>
-          <span className="text-muted font-mono text-xs">{t.fileTag}</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
-          {t.title}
-        </h1>
-        <p className="text-sm text-muted max-w-3xl leading-relaxed">
-          {t.desc}
-        </p>
-
-        {/* Data Strip / Métricas Clave */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-xs font-mono">
-          {t.metrics.map((m, i) => (
-            <div key={i} className="p-3 rounded-xl bg-surface border border-border shadow-sm">
-              <span className="text-muted block text-[10px] font-semibold">{m.label}</span>
-              <span
-                className={`text-lg font-bold ${
-                  i === 1
-                    ? "text-rose-600 dark:text-rose-400"
-                    : i === 2
-                    ? "text-foreground"
-                    : "text-emerald-600 dark:text-emerald-400"
-                }`}
-              >
-                {m.val}
+      <main className="text-foreground">
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-accent/12 blur-[110px]"
+          />
+          <div className="max-w-5xl mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-8">
+            <div className="animate-rise space-y-5">
+              <span className="inline-flex items-center rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-accent">
+                {t.badge}
               </span>
-              <span className="text-[10px] text-muted block mt-0.5">{m.sub}</span>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance">
+                {t.title}
+              </h1>
+              <p className="max-w-3xl text-base sm:text-lg leading-relaxed text-muted">{t.desc}</p>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* 1. Problem Statement y Micro-encuesta v2 */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s1.title}
-        </h2>
-        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
-          {t.s1.p1}
-        </p>
-
-        <div className="p-5 rounded-xl bg-surface border border-border text-xs text-muted space-y-3 shadow-sm">
-          <div className="font-mono text-foreground text-[11px] font-semibold">
-            {t.s1.boxTitle}
-          </div>
-          <ol className="list-decimal pl-5 space-y-2 font-mono text-[11px] text-foreground/80">
-            <li>
-              <strong className="text-foreground">{t.s1.q1Label}</strong> {t.s1.q1Text}{" "}
-              <em className="text-muted">{t.s1.q1Sub}</em>
-            </li>
-            <li>
-              <strong className="text-foreground">{t.s1.q2Label}</strong> {t.s1.q2Text}{" "}
-              <em className="text-muted">{t.s1.q2Sub}</em>
-            </li>
-            <li>
-              <strong className="text-foreground">{t.s1.q3Label}</strong> {t.s1.q3Text}{" "}
-              <em className="text-muted">{t.s1.q3Sub}</em>
-            </li>
-            <li>
-              <strong className="text-foreground">{t.s1.q4Label}</strong> {t.s1.q4Text}
-            </li>
-            <li>
-              <strong className="text-foreground">{t.s1.q5Label}</strong> {t.s1.q5Text}{" "}
-              <em className="text-muted">{t.s1.q5Sub}</em>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      {/* 2. Matriz RICE Interactiva */}
-      <section className="space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-border pb-2">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-muted">
-            {t.s2.title}
-          </h2>
-          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s2.badge}</span>
-        </div>
-        <p className="text-xs text-muted font-sans">
-          {t.s2.desc}
-        </p>
-
-        {/* Componente del Simulador RICE */}
-        <RiceCalculator />
-      </section>
-
-      {/* 3. La Decisión Incómoda y el Fallo Documentado */}
-      <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
-          {t.s3.title}
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-          {/* Trade-off incómodo */}
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <span className="font-mono text-rose-600 dark:text-rose-400 text-[11px] block font-bold">
-              {t.s3.tradeoffTitle}
-            </span>
-            <p className="text-muted leading-relaxed">
-              {t.s3.tradeoffP1}
-            </p>
-            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border leading-relaxed">
-              <strong>{t.s3.tradeoffDefenseLabel}</strong> {t.s3.tradeoffDefenseText}
+            <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {t.metrics.map((m, i) => (
+                <div key={i} className="rounded-2xl border border-border bg-surface p-5">
+                  <p className="text-[11px] uppercase tracking-[0.14em] text-muted">{m.label}</p>
+                  <p
+                    className={`mt-2 font-display text-2xl sm:text-3xl tracking-tight tabular-nums ${
+                      i === 1 ? "text-warm" : "text-accent"
+                    }`}
+                  >
+                    {m.val}
+                  </p>
+                  <p className="mt-1 text-xs text-muted">{m.sub}</p>
+                </div>
+              ))}
             </div>
           </div>
+        </section>
 
-          {/* Fallo y reversión */}
-          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
-            <span className="font-mono text-amber-600 dark:text-amber-400 text-[11px] block font-bold">
-              {t.s3.failureTitle}
-            </span>
-            <p className="text-muted leading-relaxed">
-              {t.s3.failureP1}
-            </p>
-            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border leading-relaxed">
-              <strong>{t.s3.failureFixLabel}</strong> {t.s3.failureFixText}
+        <div className="max-w-5xl mx-auto px-5 sm:px-8 pb-16 space-y-16">
+          {/* S1 — survey */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s1.title}</h2>
+            <p className="max-w-3xl text-[15px] leading-relaxed text-foreground/85">{t.s1.p1}</p>
+
+            <div className="rounded-2xl border border-border bg-surface p-6 sm:p-7 space-y-4">
+              <p className="text-sm font-semibold text-foreground">{t.s1.boxTitle}</p>
+              <ol className="space-y-4">
+                {questions.map((q, idx) => (
+                  <li key={idx} className="flex gap-4">
+                    <span className="font-display text-xl leading-none text-accent/50">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-sm leading-relaxed text-muted">
+                      <strong className="text-foreground">{q.label}</strong> {q.text}{" "}
+                      {q.sub && <em className="text-accent/80 not-italic">{q.sub}</em>}
+                    </p>
+                  </li>
+                ))}
+              </ol>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* 4. Conexión de Cierre del Portfolio */}
-      <section className="p-6 rounded-2xl bg-surface border border-border shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div className="space-y-1">
-          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s4.badge}</span>
-          <p className="text-xs text-muted font-sans">{t.s4.desc}</p>
+          {/* S2 — RICE calculator */}
+          <section className="space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s2.title}</h2>
+              <span className="font-mono text-xs text-accent">{t.s2.badge}</span>
+            </div>
+            <p className="max-w-3xl text-[15px] leading-relaxed text-muted">{t.s2.desc}</p>
+            <RiceCalculator />
+          </section>
+
+          {/* S3 — trade-offs */}
+          <section className="space-y-5">
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">{t.s3.title}</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-2xl border border-border bg-surface p-6 space-y-3">
+                <p className="font-display text-base tracking-tight text-warm">{t.s3.tradeoffTitle}</p>
+                <p className="text-sm leading-relaxed text-muted">{t.s3.tradeoffP1}</p>
+                <p className="border-t border-border pt-3 text-sm leading-relaxed text-foreground">
+                  <strong className="text-accent">{t.s3.tradeoffDefenseLabel}</strong> {t.s3.tradeoffDefenseText}
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border bg-surface p-6 space-y-3">
+                <p className="font-display text-base tracking-tight text-warm">{t.s3.failureTitle}</p>
+                <p className="text-sm leading-relaxed text-muted">{t.s3.failureP1}</p>
+                <p className="border-t border-border pt-3 text-sm leading-relaxed text-foreground">
+                  <strong className="text-accent">{t.s3.failureFixLabel}</strong> {t.s3.failureFixText}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* S4 — closing */}
+          <section className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-accent-soft/70 to-surface p-8 sm:p-10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+              <div className="space-y-2 max-w-xl">
+                <p className="text-xs uppercase tracking-[0.2em] text-accent">{t.s4.badge}</p>
+                <p className="text-[15px] leading-relaxed text-foreground/85">{t.s4.desc}</p>
+              </div>
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-foreground hover:opacity-90 hover:-translate-y-0.5 whitespace-nowrap"
+              >
+                {t.s4.btn.replace(" →", "")} <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </section>
         </div>
-        <Link
-          href="/"
-          className="px-4 py-2.5 rounded-lg bg-foreground text-background text-xs font-mono font-semibold hover:opacity-90 transition-opacity whitespace-nowrap shadow-sm"
-        >
-          {t.s4.btn}
-        </Link>
-      </section>
-    </main>
+      </main>
+
+      <SiteFooter />
+    </>
   );
 }
