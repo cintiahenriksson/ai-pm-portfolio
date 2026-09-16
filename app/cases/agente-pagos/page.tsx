@@ -44,6 +44,8 @@ const content = {
       thPass: "Aprobado",
       thViolations: "Violaciones Gate",
       thDecision: "Decisión Release",
+      violationsOne: "1 violación (C2.1)",
+      violationsZero: "0 violaciones",
       decisionBlocked: "BLOQUEADO",
       decisionRejected: "DESCARTADO (COSTE)",
       decisionApproved: "RELEASE APROBADO",
@@ -110,6 +112,8 @@ const content = {
       thPass: "Pass Rate",
       thViolations: "Gate Violations",
       thDecision: "Release Decision",
+      violationsOne: "1 violation (C2.1)",
+      violationsZero: "0 violations",
       decisionBlocked: "BLOCKED",
       decisionRejected: "DISCARDED (COST)",
       decisionApproved: "RELEASE APPROVED",
@@ -233,7 +237,7 @@ export default function AgentePagosPage() {
                     <td className="p-4">14,20 USD</td>
                     <td className="p-4">1.850 ms</td>
                     <td className="p-4">94,1%</td>
-                    <td className="p-4 font-semibold text-warm">1 violación (C2.1)</td>
+                    <td className="p-4 font-semibold text-warm">{t.s3.violationsOne}</td>
                     <td className="p-4 text-right">
                       <span className="inline-block rounded-full border border-warm/30 bg-warm/10 px-2.5 py-1 text-[11px] font-semibold text-warm">
                         {t.s3.decisionBlocked}
@@ -245,7 +249,7 @@ export default function AgentePagosPage() {
                     <td className="p-4">11,50 USD</td>
                     <td className="p-4">1.200 ms</td>
                     <td className="p-4">91,6%</td>
-                    <td className="p-4">0 violaciones</td>
+                    <td className="p-4">{t.s3.violationsZero}</td>
                     <td className="p-4 text-right">
                       <span className="inline-block rounded-full border border-border bg-surface-2 px-2.5 py-1 text-[11px] text-muted">
                         {t.s3.decisionRejected}
@@ -257,7 +261,7 @@ export default function AgentePagosPage() {
                     <td className="p-4 font-semibold text-accent">1,80 USD</td>
                     <td className="p-4 font-semibold text-accent">480 ms</td>
                     <td className="p-4 text-accent">89,2%</td>
-                    <td className="p-4 font-semibold text-accent">0 violaciones</td>
+                    <td className="p-4 font-semibold text-accent">{t.s3.violationsZero}</td>
                     <td className="p-4 text-right">
                       <span className="inline-block rounded-full bg-accent px-2.5 py-1 text-[11px] font-semibold text-accent-foreground">
                         {t.s3.decisionApproved}
