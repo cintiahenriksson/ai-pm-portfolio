@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import LanguageSwitch from "@/components/LanguageSwitch";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -142,40 +143,43 @@ export default function RemesasDiscoveryPage() {
   const t = content[lang] || content.es;
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-zinc-200">
-      {/* Navegación y Selector */}
-      <nav className="flex items-center justify-between border-b border-zinc-800/80 pb-5">
+    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-foreground">
+      {/* Navegación y Selectores */}
+      <nav className="flex items-center justify-between border-b border-border pb-5">
         <Link
           href="/"
-          className="text-xs font-mono text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center gap-1"
+          className="text-xs font-mono text-muted hover:text-foreground transition-colors inline-flex items-center gap-1"
         >
           {t.back}
         </Link>
-        <LanguageSwitch />
+        <div className="flex items-center gap-3 sm:gap-4">
+          <LanguageSwitch />
+          <ThemeToggle />
+        </div>
       </nav>
 
       {/* Header y Métricas */}
       <section className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/60 text-[11px] font-mono text-emerald-400">
+          <span className="px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
             {t.badge}
           </span>
-          <span className="text-zinc-500 font-mono text-xs">{t.fileTag}</span>
+          <span className="text-muted font-mono text-xs">{t.fileTag}</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-100">
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
           {t.title}
         </h1>
-        <p className="text-sm text-zinc-400 max-w-3xl leading-relaxed">
+        <p className="text-sm text-muted max-w-3xl leading-relaxed">
           {t.desc}
         </p>
 
         {/* Data Strip / Métricas Clave */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-xs font-mono">
           {t.metrics.map((m, i) => (
-            <div key={i} className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-              <span className="text-zinc-500 block text-[10px]">{m.label}</span>
-              <span className="text-emerald-400 text-lg font-bold">{m.val}</span>
-              <span className="text-[10px] text-zinc-500 block mt-0.5">{m.sub}</span>
+            <div key={i} className="p-3 rounded-xl bg-surface border border-border shadow-sm">
+              <span className="text-muted block text-[10px] font-semibold">{m.label}</span>
+              <span className="text-emerald-600 dark:text-emerald-400 text-lg font-bold">{m.val}</span>
+              <span className="text-[10px] text-muted block mt-0.5">{m.sub}</span>
             </div>
           ))}
         </div>
@@ -183,17 +187,17 @@ export default function RemesasDiscoveryPage() {
 
       {/* 1. Problem Statement y Fuente de Datos */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s1.title}
         </h2>
-        <p className="text-sm text-zinc-300 leading-relaxed">
+        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
           {t.s1.p1}
         </p>
-        <div className="p-4 rounded-lg bg-zinc-900/30 border border-zinc-800 text-xs text-zinc-400 space-y-2">
-          <div className="font-mono text-zinc-300 text-[11px] font-semibold">
+        <div className="p-4 rounded-xl bg-surface border border-border text-xs text-muted space-y-2 shadow-sm">
+          <div className="font-mono text-foreground text-[11px] font-semibold">
             {t.s1.boxTitle}
           </div>
-          <p className="text-[11px] text-zinc-400 leading-relaxed">
+          <p className="text-[11px] text-muted leading-relaxed font-sans">
             {t.s1.boxDesc}
           </p>
         </div>
@@ -201,38 +205,38 @@ export default function RemesasDiscoveryPage() {
 
       {/* 2. Metodología: Codebook Versionado y Kappa */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s2.title}
         </h2>
-        <p className="text-sm text-zinc-300 leading-relaxed">
+        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
           {t.s2.p1}
         </p>
 
         {/* Tabla de Resultados de Validación */}
-        <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-3">
+        <div className="p-5 rounded-2xl bg-surface border border-border space-y-3 shadow-sm">
           <div className="flex justify-between items-baseline">
-            <span className="text-xs font-mono font-bold text-zinc-200">
+            <span className="text-xs font-mono font-bold text-foreground">
               {t.s2.cardTitle}
             </span>
-            <span className="text-xs font-mono text-emerald-400">{t.s2.cardAgreement}</span>
+            <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s2.cardAgreement}</span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
-            <div className="p-3 bg-zinc-950 rounded border border-zinc-800">
-              <span className="text-zinc-500 block text-[10px]">{t.s2.box1Label}</span>
-              <span className="text-emerald-400 font-bold">{t.s2.box1Val}</span>
-              <span className="text-zinc-400 block text-[11px] mt-1">
+            <div className="p-3 bg-background rounded-lg border border-border">
+              <span className="text-muted block text-[10px]">{t.s2.box1Label}</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-bold">{t.s2.box1Val}</span>
+              <span className="text-muted block text-[11px] mt-1">
                 {t.s2.box1Sub}
               </span>
             </div>
-            <div className="p-3 bg-zinc-950 rounded border border-zinc-800">
-              <span className="text-zinc-500 block text-[10px]">{t.s2.box2Label}</span>
-              <span className="text-amber-400 font-bold">{t.s2.box2Val}</span>
-              <span className="text-zinc-400 block text-[11px] mt-1">
+            <div className="p-3 bg-background rounded-lg border border-border">
+              <span className="text-muted block text-[10px]">{t.s2.box2Label}</span>
+              <span className="text-amber-600 dark:text-amber-400 font-bold">{t.s2.box2Val}</span>
+              <span className="text-muted block text-[11px] mt-1">
                 {t.s2.box2Sub}
               </span>
             </div>
           </div>
-          <p className="text-[11px] text-zinc-500 font-mono">
+          <p className="text-[11px] text-muted font-mono pt-1">
             {t.s2.rule}
           </p>
         </div>
@@ -240,38 +244,41 @@ export default function RemesasDiscoveryPage() {
 
       {/* 3. Sizing de Oportunidades con Aritmética Visible */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s3.title}
         </h2>
-        <p className="text-sm text-zinc-300 leading-relaxed">
+        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
           {t.s3.p1}
         </p>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono border border-zinc-800 rounded-lg overflow-hidden">
-            <thead className="bg-zinc-900/60 text-zinc-400">
-              <tr className="border-b border-zinc-800">
-                <th className="p-3">{t.s3.thCode}</th>
-                <th className="p-3">{t.s3.thCorpus}</th>
-                <th className="p-3">{t.s3.thMix}</th>
-                <th className="p-3">{t.s3.thIncidence}</th>
-                <th className="p-3">{t.s3.thCost}</th>
-                <th className="p-3 text-right">{t.s3.thScore}</th>
+        <div className="overflow-x-auto rounded-xl border border-border shadow-sm">
+          <table className="w-full text-left text-xs font-mono">
+            <thead className="bg-surface text-muted border-b border-border">
+              <tr>
+                <th className="p-3 font-semibold">{t.s3.thCode}</th>
+                <th className="p-3 font-semibold">{t.s3.thCorpus}</th>
+                <th className="p-3 font-semibold">{t.s3.thMix}</th>
+                <th className="p-3 font-semibold">{t.s3.thIncidence}</th>
+                <th className="p-3 font-semibold">{t.s3.thCost}</th>
+                <th className="p-3 text-right font-semibold">{t.s3.thScore}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-800/60 bg-zinc-950 text-zinc-300">
+            <tbody className="divide-y divide-border bg-surface text-foreground/85">
               {t.s3.rows.map((r, idx) => (
-                <tr key={idx} className={r.highlight ? "bg-emerald-950/20" : ""}>
-                  <td className={`p-3 font-semibold ${r.highlight ? "text-emerald-300" : "text-zinc-100"}`}>
+                <tr
+                  key={idx}
+                  className={r.highlight ? "bg-emerald-500/10 font-semibold" : "hover:bg-background/50 transition-colors"}
+                >
+                  <td className={`p-3 ${r.highlight ? "text-emerald-700 dark:text-emerald-300" : "text-foreground"}`}>
                     {r.code}
                   </td>
                   <td className="p-3">{r.n}</td>
-                  <td className={`p-3 font-bold ${r.highlight ? "text-emerald-400" : "text-zinc-200"}`}>
+                  <td className={`p-3 ${r.highlight ? "text-emerald-600 dark:text-emerald-400 font-bold" : "text-foreground"}`}>
                     {r.mix}
                   </td>
                   <td className="p-3">{r.inc}</td>
                   <td className="p-3">{r.cost}</td>
-                  <td className={`p-3 text-right font-bold ${r.highlight ? "text-emerald-400" : "text-zinc-200"}`}>
+                  <td className={`p-3 text-right font-bold ${r.highlight ? "text-emerald-600 dark:text-emerald-400" : "text-foreground"}`}>
                     {r.score}
                   </td>
                 </tr>
@@ -279,41 +286,41 @@ export default function RemesasDiscoveryPage() {
             </tbody>
           </table>
         </div>
-        <p className="text-[11px] font-mono text-zinc-500 pt-1">
+        <p className="text-[11px] font-mono text-muted pt-1">
           {t.s3.note}
         </p>
       </section>
 
       {/* 4. Galería de Fallos y Reversión Metodológica */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s4.title}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-          <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-2">
-            <span className="font-mono text-rose-400 text-[11px] block font-semibold">
+          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
+            <span className="font-mono text-rose-600 dark:text-rose-400 text-[11px] block font-bold">
               {t.s4.fail1Title}
             </span>
-            <p className="text-zinc-400 leading-relaxed">
+            <p className="text-muted leading-relaxed italic">
               {t.s4.fail1Quote}
             </p>
-            <p className="text-zinc-400 leading-relaxed">
+            <p className="text-foreground/80 leading-relaxed">
               {t.s4.fail1Desc}
             </p>
-            <div className="pt-2 text-[11px] font-mono text-zinc-300 border-t border-zinc-800/60">
+            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border">
               <strong>{t.s4.fail1Fix}</strong>
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-2">
-            <span className="font-mono text-amber-400 text-[11px] block font-semibold">
+          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
+            <span className="font-mono text-amber-600 dark:text-amber-400 text-[11px] block font-bold">
               {t.s4.fail2Title}
             </span>
-            <p className="text-zinc-400 leading-relaxed">
+            <p className="text-muted leading-relaxed">
               {t.s4.fail2Attempt}
             </p>
-            <p className="text-zinc-400 leading-relaxed">
+            <p className="text-foreground/80 leading-relaxed">
               {t.s4.fail2Fix}
             </p>
           </div>
@@ -321,14 +328,14 @@ export default function RemesasDiscoveryPage() {
       </section>
 
       {/* 5. Cierre: Conexión con el Caso 2 */}
-      <section className="p-6 rounded-xl bg-zinc-900/30 border border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <section className="p-6 rounded-2xl bg-surface border border-border shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="space-y-1">
-          <span className="text-xs font-mono text-emerald-400">{t.s5.badge}</span>
-          <p className="text-xs text-zinc-300 font-sans">{t.s5.desc}</p>
+          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s5.badge}</span>
+          <p className="text-xs text-muted font-sans">{t.s5.desc}</p>
         </div>
         <Link
           href="/cases/agente-pagos"
-          className="px-4 py-2 rounded bg-zinc-100 text-zinc-900 text-xs font-mono font-semibold hover:bg-emerald-400 transition-colors whitespace-nowrap"
+          className="px-4 py-2.5 rounded-lg bg-foreground text-background text-xs font-mono font-semibold hover:opacity-90 transition-opacity whitespace-nowrap shadow-sm"
         >
           {t.s5.btn}
         </Link>

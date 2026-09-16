@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import AgentSimulator from "@/components/AgentSimulator";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import LanguageSwitch from "@/components/LanguageSwitch";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -145,68 +146,71 @@ export default function AgentePagosPage() {
   const t = content[lang] || content.es;
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-zinc-200">
-      {/* Navegación y Selector */}
-      <nav className="flex items-center justify-between border-b border-zinc-800/80 pb-5">
+    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-foreground">
+      {/* Navegación y Selectores */}
+      <nav className="flex items-center justify-between border-b border-border pb-5">
         <Link
           href="/"
-          className="text-xs font-mono text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center gap-1"
+          className="text-xs font-mono text-muted hover:text-foreground transition-colors inline-flex items-center gap-1"
         >
           {t.back}
         </Link>
-        <LanguageSwitch />
+        <div className="flex items-center gap-3 sm:gap-4">
+          <LanguageSwitch />
+          <ThemeToggle />
+        </div>
       </nav>
 
       {/* Header y Métricas */}
       <section className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/60 text-[11px] font-mono text-emerald-400">
+          <span className="px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
             {t.badge}
           </span>
-          <span className="text-zinc-500 font-mono text-xs">{t.fileTag}</span>
+          <span className="text-muted font-mono text-xs">{t.fileTag}</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-100">
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
           {t.title}
         </h1>
-        <p className="text-sm text-zinc-400 max-w-3xl leading-relaxed">
+        <p className="text-sm text-muted max-w-3xl leading-relaxed">
           {t.desc}
         </p>
 
         {/* Data Strip / Métricas Clave */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-xs font-mono">
-          <div className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-            <span className="text-zinc-500 block text-[10px]">{t.metrics[0].label}</span>
-            <span className="text-emerald-400 text-lg font-bold">{t.metrics[0].val}</span>
-            <span className="text-[10px] text-zinc-500 block mt-0.5">{t.metrics[0].sub}</span>
+          <div className="p-3 rounded-xl bg-surface border border-border shadow-sm">
+            <span className="text-muted block text-[10px] font-semibold">{t.metrics[0].label}</span>
+            <span className="text-emerald-600 dark:text-emerald-400 text-lg font-bold">{t.metrics[0].val}</span>
+            <span className="text-[10px] text-muted block mt-0.5">{t.metrics[0].sub}</span>
           </div>
-          <div className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-            <span className="text-zinc-500 block text-[10px]">{t.metrics[1].label}</span>
-            <span className="text-emerald-400 text-lg font-bold">{t.metrics[1].val}</span>
-            <span className="text-[10px] text-zinc-500 block mt-0.5">{t.metrics[1].sub}</span>
+          <div className="p-3 rounded-xl bg-surface border border-border shadow-sm">
+            <span className="text-muted block text-[10px] font-semibold">{t.metrics[1].label}</span>
+            <span className="text-emerald-600 dark:text-emerald-400 text-lg font-bold">{t.metrics[1].val}</span>
+            <span className="text-[10px] text-muted block mt-0.5">{t.metrics[1].sub}</span>
           </div>
-          <div className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-            <span className="text-zinc-500 block text-[10px]">{t.metrics[2].label}</span>
-            <span className="text-zinc-200 text-lg font-bold">{t.metrics[2].val}</span>
-            <span className="text-[10px] text-zinc-500 block mt-0.5">{t.metrics[2].sub}</span>
+          <div className="p-3 rounded-xl bg-surface border border-border shadow-sm">
+            <span className="text-muted block text-[10px] font-semibold">{t.metrics[2].label}</span>
+            <span className="text-foreground text-lg font-bold">{t.metrics[2].val}</span>
+            <span className="text-[10px] text-muted block mt-0.5">{t.metrics[2].sub}</span>
           </div>
-          <div className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-            <span className="text-zinc-500 block text-[10px]">{t.metrics[3].label}</span>
-            <span className="text-zinc-200 text-lg font-bold">{t.metrics[3].val}</span>
-            <span className="text-[10px] text-zinc-500 block mt-0.5">{t.metrics[3].sub}</span>
+          <div className="p-3 rounded-xl bg-surface border border-border shadow-sm">
+            <span className="text-muted block text-[10px] font-semibold">{t.metrics[3].label}</span>
+            <span className="text-foreground text-lg font-bold">{t.metrics[3].val}</span>
+            <span className="text-[10px] text-muted block mt-0.5">{t.metrics[3].sub}</span>
           </div>
         </div>
       </section>
 
       {/* 1. Problem Statement y Hechos Regulados */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s1.title}
         </h2>
-        <p className="text-sm text-zinc-300 leading-relaxed">
+        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
           {t.s1.p1}
         </p>
-        <div className="p-4 rounded-lg bg-zinc-900/30 border border-zinc-800 text-xs text-zinc-400 space-y-2">
-          <div className="font-mono text-zinc-300 text-[11px] font-semibold">
+        <div className="p-4 rounded-xl bg-surface border border-border text-xs text-muted space-y-2 shadow-sm">
+          <div className="font-mono text-foreground text-[11px] font-semibold">
             {t.s1.boxTitle}
           </div>
           <ul className="list-disc pl-5 space-y-1 font-mono text-[11px]">
@@ -214,7 +218,7 @@ export default function AgentePagosPage() {
               <li key={idx}>{item}</li>
             ))}
           </ul>
-          <p className="text-[11px] text-zinc-500 pt-1">
+          <p className="text-[11px] text-muted font-mono pt-1">
             {t.s1.note}
           </p>
         </div>
@@ -222,13 +226,13 @@ export default function AgentePagosPage() {
 
       {/* 2. Prototipo Interactivo */}
       <section className="space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-zinc-800 pb-2">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-border pb-2">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-muted">
             {t.s2.title}
           </h2>
-          <span className="text-xs font-mono text-emerald-400">{t.s2.badge}</span>
+          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s2.badge}</span>
         </div>
-        <p className="text-xs text-zinc-400">
+        <p className="text-xs text-muted font-sans">
           {t.s2.desc}
         </p>
         
@@ -238,58 +242,58 @@ export default function AgentePagosPage() {
 
       {/* 3. El Release Gate y Comparativa de Modelos */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s3.title}
         </h2>
-        <p className="text-sm text-zinc-300 leading-relaxed">
+        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
           {t.s3.p1}
         </p>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono border border-zinc-800 rounded-lg overflow-hidden">
-            <thead className="bg-zinc-900/60 text-zinc-400">
-              <tr className="border-b border-zinc-800">
-                <th className="p-3">{t.s3.thModel}</th>
-                <th className="p-3">{t.s3.thCost}</th>
-                <th className="p-3">{t.s3.thLatency}</th>
-                <th className="p-3">{t.s3.thPass}</th>
-                <th className="p-3">{t.s3.thViolations}</th>
-                <th className="p-3 text-right">{t.s3.thDecision}</th>
+        <div className="overflow-x-auto rounded-xl border border-border shadow-sm">
+          <table className="w-full text-left text-xs font-mono">
+            <thead className="bg-surface text-muted border-b border-border">
+              <tr>
+                <th className="p-3 font-semibold">{t.s3.thModel}</th>
+                <th className="p-3 font-semibold">{t.s3.thCost}</th>
+                <th className="p-3 font-semibold">{t.s3.thLatency}</th>
+                <th className="p-3 font-semibold">{t.s3.thPass}</th>
+                <th className="p-3 font-semibold">{t.s3.thViolations}</th>
+                <th className="p-3 text-right font-semibold">{t.s3.thDecision}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-800/60 bg-zinc-950 text-zinc-300">
-              <tr>
-                <td className="p-3 font-semibold text-zinc-100">Frontier-A</td>
+            <tbody className="divide-y divide-border bg-surface text-foreground/85">
+              <tr className="hover:bg-background/40 transition-colors">
+                <td className="p-3 font-semibold text-foreground">Frontier-A</td>
                 <td className="p-3">14,20 USD</td>
                 <td className="p-3">1.850 ms</td>
                 <td className="p-3">94,1%</td>
-                <td className="p-3 text-rose-400 font-bold">1 violación (C2.1)</td>
+                <td className="p-3 text-rose-600 dark:text-rose-400 font-bold">1 violación (C2.1)</td>
                 <td className="p-3 text-right">
-                  <span className="px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800 text-[10px]">
+                  <span className="px-2 py-0.5 rounded bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-[10px] font-semibold">
                     {t.s3.decisionBlocked}
                   </span>
                 </td>
               </tr>
-              <tr>
-                <td className="p-3 font-semibold text-zinc-100">Frontier-B</td>
+              <tr className="hover:bg-background/40 transition-colors">
+                <td className="p-3 font-semibold text-foreground">Frontier-B</td>
                 <td className="p-3">11,50 USD</td>
                 <td className="p-3">1.200 ms</td>
                 <td className="p-3">91,6%</td>
-                <td className="p-3 text-emerald-400">0 violaciones</td>
+                <td className="p-3 text-emerald-600 dark:text-emerald-400">0 violaciones</td>
                 <td className="p-3 text-right">
-                  <span className="px-2 py-0.5 rounded bg-zinc-800 text-zinc-400 text-[10px]">
+                  <span className="px-2 py-0.5 rounded bg-background text-muted border border-border text-[10px]">
                     {t.s3.decisionRejected}
                   </span>
                 </td>
               </tr>
-              <tr className="bg-emerald-950/20">
-                <td className="p-3 font-semibold text-emerald-300">Economy-C (Guarded)</td>
-                <td className="p-3 text-emerald-300 font-bold">1,80 USD</td>
-                <td className="p-3 text-emerald-300 font-bold">480 ms</td>
-                <td className="p-3 text-emerald-300">89,2%</td>
-                <td className="p-3 text-emerald-300 font-bold">0 violaciones</td>
+              <tr className="bg-emerald-500/10 font-semibold">
+                <td className="p-3 text-emerald-700 dark:text-emerald-300">Economy-C (Guarded)</td>
+                <td className="p-3 text-emerald-700 dark:text-emerald-300 font-bold">1,80 USD</td>
+                <td className="p-3 text-emerald-700 dark:text-emerald-300 font-bold">480 ms</td>
+                <td className="p-3 text-emerald-700 dark:text-emerald-300">89,2%</td>
+                <td className="p-3 text-emerald-700 dark:text-emerald-300 font-bold">0 violaciones</td>
                 <td className="p-3 text-right">
-                  <span className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] font-bold">
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 text-[10px] font-bold">
                     {t.s3.decisionApproved}
                   </span>
                 </td>
@@ -301,31 +305,31 @@ export default function AgentePagosPage() {
 
       {/* 4. Galería de Fallos y Reversión Post-Mortem */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s4.title}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-          <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-2">
-            <span className="font-mono text-rose-400 text-[11px] block font-semibold">
+          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
+            <span className="font-mono text-rose-600 dark:text-rose-400 text-[11px] block font-bold">
               {t.s4.fail1Title}
             </span>
-            <p className="text-zinc-400 leading-relaxed">
-              <em>{t.s4.fail1Quote}</em>. {t.s4.fail1Desc}
+            <p className="text-muted leading-relaxed italic">
+              «{t.s4.fail1Quote}». <span className="not-italic text-foreground/80">{t.s4.fail1Desc}</span>
             </p>
-            <div className="pt-2 text-[11px] font-mono text-zinc-300 border-t border-zinc-800/60">
+            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border">
               <strong>{t.s4.fail1FixLabel}</strong> {t.s4.fail1FixText}
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-2">
-            <span className="font-mono text-amber-400 text-[11px] block font-semibold">
+          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
+            <span className="font-mono text-amber-600 dark:text-amber-400 text-[11px] block font-bold">
               {t.s4.fail2Title}
             </span>
-            <p className="text-zinc-400 leading-relaxed">
+            <p className="text-foreground/80 leading-relaxed">
               {t.s4.fail2Desc}
             </p>
-            <div className="pt-2 text-[11px] font-mono text-zinc-300 border-t border-zinc-800/60">
+            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border">
               <strong>{t.s4.fail2FixLabel}</strong> {t.s4.fail2FixText}
             </div>
           </div>
@@ -334,36 +338,36 @@ export default function AgentePagosPage() {
 
       {/* 5. Modelo de Deflection de Negocio */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s5.title}
         </h2>
-        <div className="p-5 rounded-xl bg-zinc-900/30 border border-zinc-800 space-y-4 text-xs">
+        <div className="p-5 rounded-xl bg-surface border border-border space-y-4 text-xs shadow-sm">
           <div className="flex flex-col sm:flex-row justify-between gap-2 items-baseline">
-            <span className="font-mono font-semibold text-zinc-200">{t.s5.chainTitle}</span>
-            <span className="font-mono text-emerald-400 text-sm font-bold">{t.s5.chainBadge}</span>
+            <span className="font-mono font-semibold text-foreground">{t.s5.chainTitle}</span>
+            <span className="font-mono text-emerald-600 dark:text-emerald-400 text-sm font-bold">{t.s5.chainBadge}</span>
           </div>
-          <div className="bg-zinc-950 p-3 rounded font-mono text-zinc-400 text-[11px] overflow-x-auto">
+          <div className="bg-background p-3.5 rounded-lg border border-border font-mono text-muted text-[11px] overflow-x-auto">
             {t.s5.formula}
           </div>
-          <p className="text-zinc-400 leading-relaxed font-sans">
+          <p className="text-muted leading-relaxed font-sans">
             {t.s5.p1}
           </p>
         </div>
       </section>
 
       {/* 6. Cierre: Conexión con el Caso 3 */}
-      <section className="p-6 rounded-xl bg-zinc-900/30 border border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <section className="p-6 rounded-2xl bg-surface border border-border shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="space-y-1">
-          <span className="text-xs font-mono text-emerald-400">
+          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
             {t.s6.badge}
           </span>
-          <p className="text-xs text-zinc-300 font-sans">
+          <p className="text-xs text-muted font-sans">
             {t.s6.desc}
           </p>
         </div>
         <Link
           href="/cases/alumnas-roadmap"
-          className="px-4 py-2 rounded bg-zinc-100 text-zinc-900 text-xs font-mono font-semibold hover:bg-emerald-400 transition-colors whitespace-nowrap"
+          className="px-4 py-2.5 rounded-lg bg-foreground text-background text-xs font-mono font-semibold hover:opacity-90 transition-opacity whitespace-nowrap shadow-sm"
         >
           {t.s6.btn}
         </Link>

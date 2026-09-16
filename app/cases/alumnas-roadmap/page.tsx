@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import RiceCalculator from "@/components/RiceCalculator";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import LanguageSwitch from "@/components/LanguageSwitch";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -119,42 +120,53 @@ export default function AlumnasRoadmapPage() {
   const t = content[lang] || content.es;
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-zinc-200">
-      {/* Navegación y Selector */}
-      <nav className="flex items-center justify-between border-b border-zinc-800/80 pb-5">
+    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-foreground">
+      {/* Navegación y Selectores */}
+      <nav className="flex items-center justify-between border-b border-border pb-5">
         <Link
           href="/"
-          className="text-xs font-mono text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center gap-1"
+          className="text-xs font-mono text-muted hover:text-foreground transition-colors inline-flex items-center gap-1"
         >
           {t.back}
         </Link>
-        <LanguageSwitch />
+        <div className="flex items-center gap-3 sm:gap-4">
+          <LanguageSwitch />
+          <ThemeToggle />
+        </div>
       </nav>
 
       {/* Header y Métricas */}
       <section className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="px-2.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/60 text-[11px] font-mono text-emerald-400">
+          <span className="px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
             {t.badge}
           </span>
-          <span className="text-zinc-500 font-mono text-xs">{t.fileTag}</span>
+          <span className="text-muted font-mono text-xs">{t.fileTag}</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-100">
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
           {t.title}
         </h1>
-        <p className="text-sm text-zinc-400 max-w-3xl leading-relaxed">
+        <p className="text-sm text-muted max-w-3xl leading-relaxed">
           {t.desc}
         </p>
 
         {/* Data Strip / Métricas Clave */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-xs font-mono">
           {t.metrics.map((m, i) => (
-            <div key={i} className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-              <span className="text-zinc-500 block text-[10px]">{m.label}</span>
-              <span className={`text-lg font-bold ${i === 1 ? "text-rose-400" : i === 2 ? "text-zinc-200" : "text-emerald-400"}`}>
+            <div key={i} className="p-3 rounded-xl bg-surface border border-border shadow-sm">
+              <span className="text-muted block text-[10px] font-semibold">{m.label}</span>
+              <span
+                className={`text-lg font-bold ${
+                  i === 1
+                    ? "text-rose-600 dark:text-rose-400"
+                    : i === 2
+                    ? "text-foreground"
+                    : "text-emerald-600 dark:text-emerald-400"
+                }`}
+              >
                 {m.val}
               </span>
-              <span className="text-[10px] text-zinc-500 block mt-0.5">{m.sub}</span>
+              <span className="text-[10px] text-muted block mt-0.5">{m.sub}</span>
             </div>
           ))}
         </div>
@@ -162,32 +174,36 @@ export default function AlumnasRoadmapPage() {
 
       {/* 1. Problem Statement y Micro-encuesta v2 */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s1.title}
         </h2>
-        <p className="text-sm text-zinc-300 leading-relaxed">
+        <p className="text-sm text-foreground/85 leading-relaxed font-sans">
           {t.s1.p1}
         </p>
 
-        <div className="p-4 rounded-lg bg-zinc-900/30 border border-zinc-800 text-xs text-zinc-400 space-y-3">
-          <div className="font-mono text-zinc-300 text-[11px] font-semibold">
+        <div className="p-5 rounded-xl bg-surface border border-border text-xs text-muted space-y-3 shadow-sm">
+          <div className="font-mono text-foreground text-[11px] font-semibold">
             {t.s1.boxTitle}
           </div>
-          <ol className="list-decimal pl-5 space-y-1.5 font-mono text-[11px] text-zinc-300">
+          <ol className="list-decimal pl-5 space-y-2 font-mono text-[11px] text-foreground/80">
             <li>
-              <strong>{t.s1.q1Label}</strong> {t.s1.q1Text} <em>{t.s1.q1Sub}</em>
+              <strong className="text-foreground">{t.s1.q1Label}</strong> {t.s1.q1Text}{" "}
+              <em className="text-muted">{t.s1.q1Sub}</em>
             </li>
             <li>
-              <strong>{t.s1.q2Label}</strong> {t.s1.q2Text} <em>{t.s1.q2Sub}</em>
+              <strong className="text-foreground">{t.s1.q2Label}</strong> {t.s1.q2Text}{" "}
+              <em className="text-muted">{t.s1.q2Sub}</em>
             </li>
             <li>
-              <strong>{t.s1.q3Label}</strong> {t.s1.q3Text} <em>{t.s1.q3Sub}</em>
+              <strong className="text-foreground">{t.s1.q3Label}</strong> {t.s1.q3Text}{" "}
+              <em className="text-muted">{t.s1.q3Sub}</em>
             </li>
             <li>
-              <strong>{t.s1.q4Label}</strong> {t.s1.q4Text}
+              <strong className="text-foreground">{t.s1.q4Label}</strong> {t.s1.q4Text}
             </li>
             <li>
-              <strong>{t.s1.q5Label}</strong> {t.s1.q5Text} <em>{t.s1.q5Sub}</em>
+              <strong className="text-foreground">{t.s1.q5Label}</strong> {t.s1.q5Text}{" "}
+              <em className="text-muted">{t.s1.q5Sub}</em>
             </li>
           </ol>
         </div>
@@ -195,13 +211,13 @@ export default function AlumnasRoadmapPage() {
 
       {/* 2. Matriz RICE Interactiva */}
       <section className="space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-zinc-800 pb-2">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-border pb-2">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-muted">
             {t.s2.title}
           </h2>
-          <span className="text-xs font-mono text-emerald-400">{t.s2.badge}</span>
+          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s2.badge}</span>
         </div>
-        <p className="text-xs text-zinc-400">
+        <p className="text-xs text-muted font-sans">
           {t.s2.desc}
         </p>
 
@@ -211,33 +227,33 @@ export default function AlumnasRoadmapPage() {
 
       {/* 3. La Decisión Incómoda y el Fallo Documentado */}
       <section className="space-y-4">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-muted border-b border-border pb-2">
           {t.s3.title}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
           {/* Trade-off incómodo */}
-          <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-2">
-            <span className="font-mono text-rose-400 text-[11px] block font-semibold">
+          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
+            <span className="font-mono text-rose-600 dark:text-rose-400 text-[11px] block font-bold">
               {t.s3.tradeoffTitle}
             </span>
-            <p className="text-zinc-400 leading-relaxed">
+            <p className="text-muted leading-relaxed">
               {t.s3.tradeoffP1}
             </p>
-            <div className="pt-2 text-[11px] font-mono text-zinc-300 border-t border-zinc-800/60 leading-relaxed">
+            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border leading-relaxed">
               <strong>{t.s3.tradeoffDefenseLabel}</strong> {t.s3.tradeoffDefenseText}
             </div>
           </div>
 
           {/* Fallo y reversión */}
-          <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-2">
-            <span className="font-mono text-amber-400 text-[11px] block font-semibold">
+          <div className="p-5 rounded-xl bg-surface border border-border space-y-2 shadow-sm">
+            <span className="font-mono text-amber-600 dark:text-amber-400 text-[11px] block font-bold">
               {t.s3.failureTitle}
             </span>
-            <p className="text-zinc-400 leading-relaxed">
+            <p className="text-muted leading-relaxed">
               {t.s3.failureP1}
             </p>
-            <div className="pt-2 text-[11px] font-mono text-zinc-300 border-t border-zinc-800/60 leading-relaxed">
+            <div className="pt-2 text-[11px] font-mono text-foreground border-t border-border leading-relaxed">
               <strong>{t.s3.failureFixLabel}</strong> {t.s3.failureFixText}
             </div>
           </div>
@@ -245,14 +261,14 @@ export default function AlumnasRoadmapPage() {
       </section>
 
       {/* 4. Conexión de Cierre del Portfolio */}
-      <section className="p-6 rounded-xl bg-zinc-900/30 border border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <section className="p-6 rounded-2xl bg-surface border border-border shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="space-y-1">
-          <span className="text-xs font-mono text-emerald-400">{t.s4.badge}</span>
-          <p className="text-xs text-zinc-300 font-sans">{t.s4.desc}</p>
+          <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">{t.s4.badge}</span>
+          <p className="text-xs text-muted font-sans">{t.s4.desc}</p>
         </div>
         <Link
           href="/"
-          className="px-4 py-2 rounded bg-zinc-100 text-zinc-900 text-xs font-mono font-semibold hover:bg-emerald-400 transition-colors whitespace-nowrap"
+          className="px-4 py-2.5 rounded-lg bg-foreground text-background text-xs font-mono font-semibold hover:opacity-90 transition-opacity whitespace-nowrap shadow-sm"
         >
           {t.s4.btn}
         </Link>
