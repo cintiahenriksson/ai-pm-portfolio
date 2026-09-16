@@ -22,6 +22,8 @@ export const translations = {
         ],
       },
       casesSectionTitle: "Casos de Estudio Detallados",
+    casesTransparency:
+      "Casos de portafolio basados en experiencia real de la industria — datos sintéticos, razonamiento real.",
       cases: {
         case1: {
           tag: "Caso 1 — “Por qué se van”",
@@ -230,6 +232,8 @@ export const translations = {
         ],
       },
       casesSectionTitle: "Detailed Case Studies",
+    casesTransparency:
+      "Scenario-based portfolio cases built on real industry experience — synthetic data, real reasoning.",
       cases: {
         case1: {
           tag: "Case 1 — “Why They Leave”",
