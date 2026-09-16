@@ -1,87 +1,193 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import RiceCalculator from "@/components/RiceCalculator";
+import LanguageSwitch from "@/components/LanguageSwitch";
+import { useLanguage } from "@/context/LanguageContext";
+
+const content = {
+  es: {
+    back: "← Volver al Portfolio",
+    badge: "Caso 03 • Roadmap guiado por Feedback & RICE",
+    fileTag: "roadmap/rice_sensitivity.v1.xlsx",
+    title: "Del feedback de mis alumnas a un roadmap de producto digital",
+    desc: "Captura cualitativa sobre usuarias reales (alumnas directas, Instagram y transacciones en Gumroad). Filtrado de sesgos de cortesía, priorización con matriz RICE estresada y defensa con datos para descartar la funcionalidad más pedida en redes sociales.",
+    metrics: [
+      { label: "ORIGEN DE DATOS", val: "1ª Mano", sub: "Alumnas + IG + Gumroad" },
+      { label: "DECISIÓN INCÓMODA", val: "-10 sem", sub: "Descarte de App Nativa" },
+      { label: "TIME-TO-VALUE", val: "2,5 sem", sub: "Sprint 1 completado" },
+      { label: "TEST DE SENSIBILIDAD", val: "Resiliente", sub: "Confianza penalizada al 50%" },
+    ],
+    s1: {
+      title: "01. Captura Cualitativa: Eliminación del Sesgo de Cortesía",
+      p1: "El problema de producto: las alumnas de formación física y hábitos pierden el ritmo entre sesiones guiadas. Para no caer en la trampa de preguntar «¿Qué te gustaría que construya?» (que produce listas de deseos infinitas y cero compromiso), la micro-encuesta v2 se calibró sobre comportamiento pasado y disposición transaccional inmediata.",
+      boxTitle: "Micro-encuesta de 5 preguntas (sin sesgo inductivo):",
+      q1Label: "Frecuencia real:",
+      q1Text: "En los últimos 14 días, ¿cuántas veces dedicaste al menos 15 minutos a practicar en solitario?",
+      q1Sub: "(Mide hábito base)",
+      q2Label: "Momento de fricción:",
+      q2Text: "Cuando querías practicar y no lo hiciste, ¿qué ocurrió en los 10 minutos previos?",
+      q2Sub: "(Causa raíz abierta)",
+      q3Label: "Alternativas actuales:",
+      q3Text: "¿Cómo intentas resolver este bloqueo hoy cuando estás sola?",
+      q3Sub: "(Descubre competidores reales)",
+      q4Label: "Formato viable:",
+      q4Text: "Selección forzada entre 4 formatos con carga cognitiva decreciente.",
+      q5Label: "Compromiso real:",
+      q5Text: "Opción de reserva anticipada del piloto por 15 € vs esperar lanzamiento abierto",
+      q5Sub: "(Skin in the game)",
+    },
+    s2: {
+      title: "02. Priorización RICE con Análisis de Sensibilidad",
+      badge: "Aritmética reproducible",
+      desc: "Utiliza el control deslizante para comprobar la resiliencia del orden de priorización ante escenarios de alta incertidumbre o degradación de confianza en las métricas.",
+    },
+    s3: {
+      title: "03. Defensa de Trade-Offs & Reversión Metodológica",
+      tradeoffTitle: "Trade-Off Incómodo: Descarte de la App Nativa",
+      tradeoffP1: "En encuestas abiertas de Instagram, el 42% de las alumnas solicitó una app móvil propia. Pese al ruido social, la iniciativa fue descartada por su ratio RICE (15 vs 216).",
+      tradeoffDefenseLabel: "Defensa de PM:",
+      tradeoffDefenseText: "El dolor real era la rendición de cuentas y la falta de tiempo, no la ausencia de software nativo. Construir una app habría costado 10 semanas; los micro-audios con seguimiento por mensajería se entregaron en 2,5 semanas conjuntas con mayor retención final.",
+      failureTitle: "Fallo Documentado: Sesgo de Cortesía en Encuesta v1",
+      failureP1: "En el primer diseño se preguntó: «¿Te gustaría contar con una biblioteca de clases en vídeo?». El 92% respondió que sí. Al lanzar un piloto de vídeos largos, la finalización cayó por debajo del 8% a los 7 días.",
+      failureFixLabel: "Reversión:",
+      failureFixText: "Se reescribió la encuesta (v2) eliminando preguntas sobre intenciones futuras y sustituyéndolas por preguntas de comportamiento retrospectivo contrastable y compromiso transaccional previo.",
+    },
+    s4: {
+      badge: "Scorecard Completo: 4 de 4 Dimensiones",
+      desc: "Has recorrido el ciclo integral: Discovery (C1) → Especificación Técnica y Evals (C2) → Priorización con Datos Propios (C3).",
+      btn: "Volver a la Home del Portfolio →",
+    },
+  },
+  en: {
+    back: "← Back to Portfolio",
+    badge: "Case 03 • Feedback-Driven Roadmap & RICE",
+    fileTag: "roadmap/rice_sensitivity.v1.xlsx",
+    title: "From Student Feedback to a Digital Product Roadmap",
+    desc: "Qualitative discovery on authentic users (direct students, Instagram, and Gumroad transactions). Politeness bias filtering, prioritization with a stressed RICE matrix, and data-backed rationale for discarding the most requested feature on social media.",
+    metrics: [
+      { label: "DATA SOURCE", val: "1st-Party", sub: "Students + IG + Gumroad" },
+      { label: "KEY TRADE-OFF", val: "-10 wks", sub: "Native App Rejected" },
+      { label: "TIME-TO-VALUE", val: "2.5 wks", sub: "Sprint 1 completed" },
+      { label: "SENSITIVITY TEST", val: "Resilient", sub: "Confidence penalized at 50%" },
+    ],
+    s1: {
+      title: "01. Qualitative Discovery: Eliminating Politeness Bias",
+      p1: "The product problem: students in physical training and mindfulness habits lose momentum between live sessions. To avoid the trap of asking “What would you like me to build?” (which yields endless wishlists and zero commitment), the v2 micro-survey was calibrated around past observable behavior and immediate transactional willingness.",
+      boxTitle: "5-Question Micro-Survey (Zero Inductive Bias):",
+      q1Label: "Actual frequency:",
+      q1Text: "In the last 14 days, how many times did you spend at least 15 minutes practicing solo?",
+      q1Sub: "(Measures baseline habit)",
+      q2Label: "Friction trigger:",
+      q2Text: "When you intended to practice but didn't, what happened in the 10 minutes prior?",
+      q2Sub: "(Open-ended root cause)",
+      q3Label: "Current workarounds:",
+      q3Text: "How do you try to unblock yourself today when you're alone?",
+      q3Sub: "(Uncovers real competitors)",
+      q4Label: "Viable format:",
+      q4Text: "Forced choice across 4 formats with decreasing cognitive load.",
+      q5Label: "Skin in the game:",
+      q5Text: "Early-bird pilot reservation option for €15 vs waiting for open launch",
+      q5Sub: "(Verifiable commitment)",
+    },
+    s2: {
+      title: "02. RICE Prioritization with Sensitivity Analysis",
+      badge: "Reproducible arithmetic",
+      desc: "Use the slider to test the resilience of the priority ranking under high uncertainty or degraded metric confidence.",
+    },
+    s3: {
+      title: "03. Trade-Off Defense & Methodological Pivot",
+      tradeoffTitle: "Uncomfortable Trade-Off: Rejecting the Native Mobile App",
+      tradeoffP1: "In open Instagram polls, 42% of students requested a dedicated mobile app. Despite social momentum, the feature was discarded based on its RICE score (15 vs 216).",
+      tradeoffDefenseLabel: "PM Defense:",
+      tradeoffDefenseText: "The root pain point was accountability and lack of time, not the absence of native client software. Building an app would have taken 10 engineering weeks; micro-audio lessons with messaging follow-ups shipped in 2.5 weeks combined with higher long-term retention.",
+      failureTitle: "Documented Failure: Courtesy Bias in Survey v1",
+      failureP1: "In the initial survey design, students were asked: “Would you like access to an on-demand video library?”. 92% answered yes. When an on-demand pilot launched, completion plummeted below 8% after 7 days.",
+      failureFixLabel: "Methodological Pivot:",
+      failureFixText: "The survey was rewritten (v2) by eliminating forward-looking hypothetical questions and replacing them with retrospective verifiable habits and upfront transactional commitment.",
+    },
+    s4: {
+      badge: "Full Scorecard: 4 of 4 Dimensions Covered",
+      desc: "You have reviewed the complete lifecycle: Discovery (C1) → Technical Spec & Evals (C2) → First-Party Roadmap Prioritization (C3).",
+      btn: "Return to Portfolio Home →",
+    },
+  },
+};
 
 export default function AlumnasRoadmapPage() {
+  const { lang } = useLanguage();
+  const t = content[lang] || content.es;
+
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16">
-      {/* Navegación y Header */}
-      <section className="space-y-4">
+    <main className="max-w-5xl mx-auto px-6 py-12 font-sans space-y-16 text-zinc-200">
+      {/* Navegación y Selector */}
+      <nav className="flex items-center justify-between border-b border-zinc-800/80 pb-5">
         <Link
           href="/"
-          className="text-xs font-mono text-zinc-500 hover:text-emerald-400 transition-colors inline-flex items-center gap-1"
+          className="text-xs font-mono text-zinc-400 hover:text-emerald-400 transition-colors inline-flex items-center gap-1"
         >
-          ← Volver al Portfolio
+          {t.back}
         </Link>
-        <div className="flex flex-wrap items-center gap-2 pt-2">
+        <LanguageSwitch />
+      </nav>
+
+      {/* Header y Métricas */}
+      <section className="space-y-4">
+        <div className="flex flex-wrap items-center gap-2">
           <span className="px-2.5 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/60 text-[11px] font-mono text-emerald-400">
-            Caso 03 • Roadmap guiado por Feedback & RICE
+            {t.badge}
           </span>
-          <span className="text-zinc-500 font-mono text-xs">roadmap/rice_sensitivity.v1.xlsx</span>
+          <span className="text-zinc-500 font-mono text-xs">{t.fileTag}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-100">
-          Del feedback de mis alumnas a un roadmap de producto digital
+          {t.title}
         </h1>
         <p className="text-sm text-zinc-400 max-w-3xl leading-relaxed">
-          Captura cualitativa sobre usuarias reales (alumnas directas, Instagram y transacciones en Gumroad).
-          Filtrado de sesgos de cortesía, priorización con matriz RICE estresada y defensa con datos para descartar
-          la funcionalidad más pedida en redes sociales.
+          {t.desc}
         </p>
 
         {/* Data Strip / Métricas Clave */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 text-xs font-mono">
-          <div className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-            <span className="text-zinc-500 block text-[10px]">ORIGEN DE DATOS</span>
-            <span className="text-emerald-400 text-lg font-bold">1ª Mano</span>
-            <span className="text-[10px] text-zinc-500 block mt-0.5">Alumnas + IG + Gumroad</span>
-          </div>
-          <div className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-            <span className="text-zinc-500 block text-[10px]">DECISIÓN INCÓMODA</span>
-            <span className="text-rose-400 text-lg font-bold">-10 sem</span>
-            <span className="text-[10px] text-zinc-500 block mt-0.5">Descarte de App Nativa</span>
-          </div>
-          <div className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-            <span className="text-zinc-500 block text-[10px]">TIME-TO-VALUE</span>
-            <span className="text-zinc-200 text-lg font-bold">2,5 sem</span>
-            <span className="text-[10px] text-zinc-500 block mt-0.5">Sprint 1 completado</span>
-          </div>
-          <div className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
-            <span className="text-zinc-500 block text-[10px]">TEST DE SENSIBILIDAD</span>
-            <span className="text-emerald-400 text-lg font-bold">Resiliente</span>
-            <span className="text-[10px] text-zinc-500 block mt-0.5">Confianza penalizada al 50%</span>
-          </div>
+          {t.metrics.map((m, i) => (
+            <div key={i} className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
+              <span className="text-zinc-500 block text-[10px]">{m.label}</span>
+              <span className={`text-lg font-bold ${i === 1 ? "text-rose-400" : i === 2 ? "text-zinc-200" : "text-emerald-400"}`}>
+                {m.val}
+              </span>
+              <span className="text-[10px] text-zinc-500 block mt-0.5">{m.sub}</span>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* 1. Problem Statement y Micro-encuesta v2 */}
       <section className="space-y-4">
         <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
-          01. Captura Cualitativa: Eliminación del Sesgo de Cortesía
+          {t.s1.title}
         </h2>
         <p className="text-sm text-zinc-300 leading-relaxed">
-          El problema de producto: las alumnas de formación física y hábitos pierden el ritmo entre sesiones guiadas.
-          Para no caer en la trampa de preguntar <em>«¿Qué te gustaría que construya?»</em> (que produce listas de deseos infinitas y cero compromiso), la micro-encuesta v2 se calibró sobre comportamiento pasado y disposición transaccional inmediata.
+          {t.s1.p1}
         </p>
 
         <div className="p-4 rounded-lg bg-zinc-900/30 border border-zinc-800 text-xs text-zinc-400 space-y-3">
           <div className="font-mono text-zinc-300 text-[11px] font-semibold">
-            Micro-encuesta de 5 preguntas (sin sesgo inductivo):
+            {t.s1.boxTitle}
           </div>
           <ol className="list-decimal pl-5 space-y-1.5 font-mono text-[11px] text-zinc-300">
             <li>
-              <strong>Frecuencia real:</strong> En los últimos 14 días, ¿cuántas veces dedicaste al menos 15 minutos a practicar en solitario? <em>(Mide hábito base)</em>
+              <strong>{t.s1.q1Label}</strong> {t.s1.q1Text} <em>{t.s1.q1Sub}</em>
             </li>
             <li>
-              <strong>Momento de fricción:</strong> Cuando querías practicar y no lo hiciste, ¿qué ocurrió en los 10 minutos previos? <em>(Causa raíz abierta)</em>
+              <strong>{t.s1.q2Label}</strong> {t.s1.q2Text} <em>{t.s1.q2Sub}</em>
             </li>
             <li>
-              <strong>Alternativas actuales:</strong> ¿Cómo intentas resolver este bloqueo hoy cuando estás sola? <em>(Descubre competidores reales)</em>
+              <strong>{t.s1.q3Label}</strong> {t.s1.q3Text} <em>{t.s1.q3Sub}</em>
             </li>
             <li>
-              <strong>Formato viable:</strong> Selección forzada entre 4 formatos con carga cognitiva decreciente.
+              <strong>{t.s1.q4Label}</strong> {t.s1.q4Text}
             </li>
             <li>
-              <strong>Compromiso real:</strong> Opción de reserva anticipada del piloto por 15 € vs esperar lanzamiento abierto <em>(Skin in the game)</em>.
+              <strong>{t.s1.q5Label}</strong> {t.s1.q5Text} <em>{t.s1.q5Sub}</em>
             </li>
           </ol>
         </div>
@@ -91,12 +197,12 @@ export default function AlumnasRoadmapPage() {
       <section className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-zinc-800 pb-2">
           <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400">
-            02. Priorización RICE con Análisis de Sensibilidad
+            {t.s2.title}
           </h2>
-          <span className="text-xs font-mono text-emerald-400">Aritmética reproducible</span>
+          <span className="text-xs font-mono text-emerald-400">{t.s2.badge}</span>
         </div>
         <p className="text-xs text-zinc-400">
-          Utiliza el control deslizante para comprobar la resiliencia del orden de priorización ante escenarios de alta incertidumbre o degradación de confianza en las métricas.
+          {t.s2.desc}
         </p>
 
         {/* Componente del Simulador RICE */}
@@ -106,33 +212,33 @@ export default function AlumnasRoadmapPage() {
       {/* 3. La Decisión Incómoda y el Fallo Documentado */}
       <section className="space-y-4">
         <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 border-b border-zinc-800 pb-2">
-          03. Defensa de Trade-Offs & Reversión Metodológica
+          {t.s3.title}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
           {/* Trade-off incómodo */}
           <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-2">
             <span className="font-mono text-rose-400 text-[11px] block font-semibold">
-              Trade-Off Incómodo: Descarte de la App Nativa
+              {t.s3.tradeoffTitle}
             </span>
             <p className="text-zinc-400 leading-relaxed">
-              En encuestas abiertas de Instagram, el <strong>42% de las alumnas solicitó una app móvil propia</strong>. Pese al ruido social, la iniciativa fue descartada por su ratio RICE (15 vs 216).
+              {t.s3.tradeoffP1}
             </p>
             <div className="pt-2 text-[11px] font-mono text-zinc-300 border-t border-zinc-800/60 leading-relaxed">
-              <strong>Defensa de PM:</strong> El dolor real era la rendición de cuentas y la falta de tiempo, no la ausencia de software nativo. Construir una app habría costado 10 semanas; los micro-audios con seguimiento por mensajería se entregaron en 2,5 semanas conjuntas con mayor retención final.
+              <strong>{t.s3.tradeoffDefenseLabel}</strong> {t.s3.tradeoffDefenseText}
             </div>
           </div>
 
           {/* Fallo y reversión */}
           <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-2">
             <span className="font-mono text-amber-400 text-[11px] block font-semibold">
-              Fallo Documentado: Sesgo de Cortesía en Encuesta v1
+              {t.s3.failureTitle}
             </span>
             <p className="text-zinc-400 leading-relaxed">
-              En el primer diseño se preguntó: <em>«¿Te gustaría contar con una biblioteca de clases en vídeo?»</em>. El 92% respondió que sí. Al lanzar un piloto de vídeos largos, la finalización cayó por debajo del 8% a los 7 días.
+              {t.s3.failureP1}
             </p>
             <div className="pt-2 text-[11px] font-mono text-zinc-300 border-t border-zinc-800/60 leading-relaxed">
-              <strong>Reversión:</strong> Se reescribió la encuesta (v2) eliminando preguntas sobre intenciones futuras y sustituyéndolas por preguntas de comportamiento retrospectivo contrastable y compromiso transaccional previo.
+              <strong>{t.s3.failureFixLabel}</strong> {t.s3.failureFixText}
             </div>
           </div>
         </div>
@@ -141,16 +247,14 @@ export default function AlumnasRoadmapPage() {
       {/* 4. Conexión de Cierre del Portfolio */}
       <section className="p-6 rounded-xl bg-zinc-900/30 border border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="space-y-1">
-          <span className="text-xs font-mono text-emerald-400">Scorecard Completo: 4 de 4 Dimensiones</span>
-          <p className="text-xs text-zinc-300 font-sans">
-            Has recorrido el ciclo integral: Discovery (C1) → Especificación Técnica y Evals (C2) → Priorización con Datos Propios (C3).
-          </p>
+          <span className="text-xs font-mono text-emerald-400">{t.s4.badge}</span>
+          <p className="text-xs text-zinc-300 font-sans">{t.s4.desc}</p>
         </div>
         <Link
           href="/"
           className="px-4 py-2 rounded bg-zinc-100 text-zinc-900 text-xs font-mono font-semibold hover:bg-emerald-400 transition-colors whitespace-nowrap"
         >
-          Volver a la Home del Portfolio →
+          {t.s4.btn}
         </Link>
       </section>
     </main>

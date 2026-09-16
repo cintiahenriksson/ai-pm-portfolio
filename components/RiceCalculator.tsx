@@ -1,153 +1,223 @@
 "use client";
 import React, { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
-interface Initiative {
-  id: string;
-  name: string;
-  reach: number;
-  impact: number;
-  baseConfidence: number;
-  effort: number;
-  status: "SPRINT_1" | "DISCARDED";
-  rationale: string;
-}
-
-const INITIATIVES: Initiative[] = [
-  {
-    id: "A",
-    name: "Micro-audios asíncronos (10 min)",
-    reach: 180,
-    impact: 2.0,
-    baseConfidence: 0.8,
-    effort: 1.5,
-    status: "SPRINT_1",
-    rationale: "Ataca la fricción de hábito sin abrumar con vídeo largo."
+const content = {
+  es: {
+    sliderLabel: "Penalización por Incertidumbre (Confianza):",
+    sliderHelp: "Simula el impacto de degradar las estimaciones optimistas hasta un 50%.",
+    discountTag: "Descuento aplicado:",
+    thInitiative: "Iniciativa",
+    thReach: "Alcance (R)",
+    thImpact: "Impacto (I)",
+    thConfidence: "Confianza (C)",
+    thEffort: "Esfuerzo (E)",
+    thScore: "Score RICE",
+    effortUnit: "sem",
+    tagDiscarded: "DESCARTADA (TRADE-OFF)",
+    tagWinner: "PRIORIDAD #1 (MVP)",
+    initiatives: [
+      {
+        id: "micro-audios",
+        name: "Micro-audios guiados de 5 min con check-in por mensajería",
+        reach: 450,
+        impact: 3,
+        baseConfidence: 0.8,
+        effort: 2.5,
+        highlight: true,
+      },
+      {
+        id: "comunidad-telegram",
+        name: "Grupo de rendición de cuentas en Telegram",
+        reach: 280,
+        impact: 2,
+        baseConfidence: 0.7,
+        effort: 1.5,
+        highlight: false,
+      },
+      {
+        id: "biblioteca-video",
+        name: "Biblioteca on-demand de clases grabadas (60 min)",
+        reach: 120,
+        impact: 1,
+        baseConfidence: 0.5,
+        effort: 4.0,
+        highlight: false,
+      },
+      {
+        id: "app-nativa",
+        name: "App móvil nativa en iOS/Android (Petición en IG)",
+        reach: 300,
+        impact: 2,
+        baseConfidence: 0.5,
+        effort: 10.0,
+        highlight: false,
+        discarded: true,
+      },
+    ],
   },
-  {
-    id: "B",
-    name: "Acompañamiento semanal por mensajería",
-    reach: 90,
-    impact: 3.0,
-    baseConfidence: 0.8,
-    effort: 1.0,
-    status: "SPRINT_1",
-    rationale: "Resuelve la necesidad de rendición de cuentas con esfuerzo mínimo."
+  en: {
+    sliderLabel: "Uncertainty Penalty (Confidence Discount):",
+    sliderHelp: "Simulates the resilience of the roadmap when optimistic estimates drop up to 50%.",
+    discountTag: "Applied discount:",
+    thInitiative: "Initiative",
+    thReach: "Reach (R)",
+    thImpact: "Impact (I)",
+    thConfidence: "Confidence (C)",
+    thEffort: "Effort (E)",
+    thScore: "RICE Score",
+    effortUnit: "w",
+    tagDiscarded: "DISCARDED (TRADE-OFF)",
+    tagWinner: "PRIORITY #1 (MVP)",
+    initiatives: [
+      {
+        id: "micro-audios",
+        name: "5-min guided micro-audio routines with messaging check-ins",
+        reach: 450,
+        impact: 3,
+        baseConfidence: 0.8,
+        effort: 2.5,
+        highlight: true,
+      },
+      {
+        id: "comunidad-telegram",
+        name: "Telegram peer accountability group",
+        reach: 280,
+        impact: 2,
+        baseConfidence: 0.7,
+        effort: 1.5,
+        highlight: false,
+      },
+      {
+        id: "biblioteca-video",
+        name: "On-demand 60-min video class archive",
+        reach: 120,
+        impact: 1,
+        baseConfidence: 0.5,
+        effort: 4.0,
+        highlight: false,
+      },
+      {
+        id: "app-nativa",
+        name: "Native iOS/Android mobile app (Top IG request)",
+        reach: 300,
+        impact: 2,
+        baseConfidence: 0.5,
+        effort: 10.0,
+        highlight: false,
+        discarded: true,
+      },
+    ],
   },
-  {
-    id: "C",
-    name: "Plataforma web propia con login",
-    reach: 120,
-    impact: 1.0,
-    baseConfidence: 0.5,
-    effort: 6.0,
-    status: "DISCARDED",
-    rationale: "Fricción de acceso excesiva; Gumroad ya cubre la transacción."
-  },
-  {
-    id: "D",
-    name: "App móvil nativa dedicada (iOS/Android)",
-    reach: 150,
-    impact: 2.0,
-    baseConfidence: 0.5,
-    effort: 10.0,
-    status: "DISCARDED",
-    rationale: "Pedida por el 42% en redes, pero rechazada por ratio impacto/coste."
-  }
-];
+};
 
 export default function RiceCalculator() {
-  const [confidencePenalty, setConfidencePenalty] = useState<number>(0);
+  const { lang } = useLanguage();
+  const t = content[lang] || content.es;
 
-  const calculateScore = (init: Initiative) => {
-    const adjustedConfidence = Math.max(0.1, init.baseConfidence - confidencePenalty);
-    return Math.round((init.reach * init.impact * adjustedConfidence) / init.effort);
+  const [discount, setDiscount] = useState<number>(0);
+
+  const calculateScore = (reach: number, impact: number, conf: number, effort: number) => {
+    const adjustedConf = Math.max(0.1, conf * (1 - discount / 100));
+    return Math.round((reach * impact * adjustedConf) / effort);
   };
 
-  const sortedInitiatives = [...INITIATIVES].sort(
-    (a, b) => calculateScore(b) - calculateScore(a)
-  );
+  const sortedInitiatives = [...t.initiatives].sort((a, b) => {
+    const scoreA = calculateScore(a.reach, a.impact, a.baseConfidence, a.effort);
+    const scoreB = calculateScore(b.reach, b.impact, b.baseConfidence, b.effort);
+    return scoreB - scoreA;
+  });
 
   return (
-    <div className="border border-zinc-700 bg-zinc-950 rounded-xl p-6 font-sans">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-zinc-800">
-        <div>
-          <h3 className="text-sm font-mono text-emerald-400 uppercase tracking-wide">
-            Test de Sensibilidad RICE Dinámico
-          </h3>
-          <p className="text-xs text-zinc-400 mt-1">
-            Simula incertidumbre degradando la confianza en todas las hipótesis.
-          </p>
-        </div>
-        <div className="flex items-center gap-3 bg-zinc-900 px-4 py-2 rounded-lg border border-zinc-800">
-          <label htmlFor="confidence-slider" className="text-xs font-mono text-zinc-300">
-            Penalización de Confianza:
+    <div className="p-5 rounded-2xl bg-zinc-900/40 border border-zinc-800 space-y-6 font-mono text-xs">
+      {/* Slider de Sensibilidad */}
+      <div className="space-y-2 bg-zinc-950 p-4 rounded-xl border border-zinc-800/80">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <label className="text-zinc-200 font-semibold">
+            {t.sliderLabel}
           </label>
-          <input
-            id="confidence-slider"
-            type="range"
-            min="0"
-            max="0.4"
-            step="0.05"
-            value={confidencePenalty}
-            onChange={(e) => setConfidencePenalty(parseFloat(e.target.value))}
-            className="accent-emerald-500 cursor-pointer w-28"
-          />
-          <span className="text-xs font-mono font-bold text-emerald-400 min-w-[40px] text-right">
-            -{(confidencePenalty * 100).toFixed(0)}%
+          <span className="text-emerald-400 font-bold">
+            {t.discountTag} -{discount}%
           </span>
         </div>
+        <input
+          type="range"
+          min="0"
+          max="50"
+          step="5"
+          value={discount}
+          onChange={(e) => setDiscount(Number(e.target.value))}
+          className="w-full accent-emerald-400 cursor-pointer"
+        />
+        <p className="text-[11px] text-zinc-500 font-sans">
+          {t.sliderHelp}
+        </p>
       </div>
 
-      <div className="overflow-x-auto mt-4">
-        <table className="w-full text-left text-xs font-mono">
-          <thead>
-            <tr className="text-zinc-500 border-b border-zinc-800/80">
-              <th className="pb-3">Iniciativa</th>
-              <th className="pb-3">Reach</th>
-              <th className="pb-3">Impact</th>
-              <th className="pb-3">Conf. Ajustada</th>
-              <th className="pb-3">Effort (sem)</th>
-              <th className="pb-3 text-right">RICE Score</th>
-              <th className="pb-3 text-right">Decisión</th>
+      {/* Tabla RICE */}
+      <div className="overflow-x-auto">
+        <table className="w-full text-left border border-zinc-800 rounded-lg overflow-hidden">
+          <thead className="bg-zinc-900/80 text-zinc-400 text-[11px]">
+            <tr className="border-b border-zinc-800">
+              <th className="p-3">{t.thInitiative}</th>
+              <th className="p-3 text-center">{t.thReach}</th>
+              <th className="p-3 text-center">{t.thImpact}</th>
+              <th className="p-3 text-center">{t.thConfidence}</th>
+              <th className="p-3 text-center">{t.thEffort}</th>
+              <th className="p-3 text-right">{t.thScore}</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-800/40">
+          <tbody className="divide-y divide-zinc-800/60 bg-zinc-950 text-zinc-300">
             {sortedInitiatives.map((item) => {
-              const score = calculateScore(item);
-              const isSelected = item.status === "SPRINT_1";
+              const adjustedConf = Math.max(0.1, item.baseConfidence * (1 - discount / 100));
+              const score = calculateScore(item.reach, item.impact, item.baseConfidence, item.effort);
+
               return (
-                <tr key={item.id} className="hover:bg-zinc-900/30 transition-colors">
-                  <td className="py-3 text-zinc-200 font-sans font-medium">
-                    <span className="font-mono text-zinc-500 mr-2">[{item.id}]</span>
-                    {item.name}
+                <tr
+                  key={item.id}
+                  className={
+                    item.highlight
+                      ? "bg-emerald-950/20"
+                      : item.discarded
+                      ? "bg-rose-950/10 opacity-70"
+                      : ""
+                  }
+                >
+                  <td className="p-3 font-sans">
+                    <span className="font-semibold block text-zinc-200">{item.name}</span>
+                    {item.highlight && (
+                      <span className="text-[10px] font-mono text-emerald-400 font-bold">
+                        {t.tagWinner}
+                      </span>
+                    )}
+                    {item.discarded && (
+                      <span className="text-[10px] font-mono text-rose-400 font-bold">
+                        {t.tagDiscarded}
+                      </span>
+                    )}
                   </td>
-                  <td className="py-3 text-zinc-400">{item.reach}</td>
-                  <td className="py-3 text-zinc-400">{item.impact.toFixed(1)}</td>
-                  <td className="py-3 text-emerald-400 font-bold">
-                    {((item.baseConfidence - confidencePenalty) * 100).toFixed(0)}%
+                  <td className="p-3 text-center">{item.reach}</td>
+                  <td className="p-3 text-center">{item.impact}</td>
+                  <td className="p-3 text-center text-zinc-400">
+                    {Math.round(adjustedConf * 100)}%
                   </td>
-                  <td className="py-3 text-zinc-400">{item.effort.toFixed(1)}</td>
-                  <td className="py-3 text-right font-bold text-zinc-100">{score}</td>
-                  <td className="py-3 text-right">
-                    <span
-                      className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                        isSelected
-                          ? "bg-emerald-950 text-emerald-400 border border-emerald-800"
-                          : "bg-zinc-900 text-zinc-500 border border-zinc-800"
-                      }`}
-                    >
-                      {isSelected ? "PRIORIZADO" : "DESCARTADO"}
-                    </span>
+                  <td className="p-3 text-center">{item.effort}{t.effortUnit}</td>
+                  <td
+                    className={`p-3 text-right font-bold text-sm ${
+                      item.highlight
+                        ? "text-emerald-400"
+                        : item.discarded
+                        ? "text-rose-400"
+                        : "text-zinc-200"
+                    }`}
+                  >
+                    {score}
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-      </div>
-      <div className="mt-4 pt-3 border-t border-zinc-800/60 text-[11px] text-zinc-500 font-mono flex justify-between">
-        <span>Fórmula: (Reach × Impact × Confidence) / Effort</span>
-        <span>Aritmética visible • Sin cajas negras</span>
       </div>
     </div>
   );
