@@ -129,14 +129,14 @@ export default function RiceCalculator() {
   });
 
   return (
-    <div className="p-5 rounded-2xl bg-zinc-900/40 border border-zinc-800 space-y-6 font-mono text-xs">
-      {/* Slider de Sensibilidad */}
-      <div className="space-y-2 bg-zinc-950 p-4 rounded-xl border border-zinc-800/80">
+    <div className="p-5 rounded-2xl bg-surface border border-border space-y-6 text-xs">
+      {/* Sensitivity slider */}
+      <div className="space-y-2 bg-surface-2 p-4 rounded-xl border border-border">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-          <label className="text-zinc-200 font-semibold">
+          <label className="text-foreground font-semibold font-mono">
             {t.sliderLabel}
           </label>
-          <span className="text-emerald-400 font-bold">
+          <span className="text-accent font-bold font-mono">
             {t.discountTag} -{discount}%
           </span>
         </div>
@@ -147,18 +147,18 @@ export default function RiceCalculator() {
           step="5"
           value={discount}
           onChange={(e) => setDiscount(Number(e.target.value))}
-          className="w-full accent-emerald-400 cursor-pointer"
+          className="w-full cursor-pointer"
         />
-        <p className="text-[11px] text-zinc-500 font-sans">
+        <p className="text-[11px] text-muted leading-relaxed">
           {t.sliderHelp}
         </p>
       </div>
 
-      {/* Tabla RICE */}
+      {/* RICE table */}
       <div className="overflow-x-auto">
-        <table className="w-full text-left border border-zinc-800 rounded-lg overflow-hidden">
-          <thead className="bg-zinc-900/80 text-zinc-400 text-[11px]">
-            <tr className="border-b border-zinc-800">
+        <table className="w-full text-left border border-border rounded-lg overflow-hidden font-mono">
+          <thead className="bg-surface-2 text-muted text-[11px]">
+            <tr className="border-b border-border">
               <th className="p-3">{t.thInitiative}</th>
               <th className="p-3 text-center">{t.thReach}</th>
               <th className="p-3 text-center">{t.thImpact}</th>
@@ -167,7 +167,7 @@ export default function RiceCalculator() {
               <th className="p-3 text-right">{t.thScore}</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-800/60 bg-zinc-950 text-zinc-300">
+          <tbody className="divide-y divide-border bg-surface text-foreground/80">
             {sortedInitiatives.map((item) => {
               const adjustedConf = Math.max(0.1, item.baseConfidence * (1 - discount / 100));
               const score = calculateScore(item.reach, item.impact, item.baseConfidence, item.effort);
@@ -177,38 +177,38 @@ export default function RiceCalculator() {
                   key={item.id}
                   className={
                     item.highlight
-                      ? "bg-emerald-950/20"
+                      ? "bg-accent-soft"
                       : item.discarded
-                      ? "bg-rose-950/10 opacity-70"
+                      ? "bg-warm/10 opacity-70"
                       : ""
                   }
                 >
                   <td className="p-3 font-sans">
-                    <span className="font-semibold block text-zinc-200">{item.name}</span>
+                    <span className="font-semibold block text-foreground">{item.name}</span>
                     {item.highlight && (
-                      <span className="text-[10px] font-mono text-emerald-400 font-bold">
+                      <span className="text-[10px] font-mono text-accent font-bold">
                         {t.tagWinner}
                       </span>
                     )}
                     {item.discarded && (
-                      <span className="text-[10px] font-mono text-rose-400 font-bold">
+                      <span className="text-[10px] font-mono text-warm font-bold">
                         {t.tagDiscarded}
                       </span>
                     )}
                   </td>
                   <td className="p-3 text-center">{item.reach}</td>
                   <td className="p-3 text-center">{item.impact}</td>
-                  <td className="p-3 text-center text-zinc-400">
+                  <td className="p-3 text-center text-muted">
                     {Math.round(adjustedConf * 100)}%
                   </td>
                   <td className="p-3 text-center">{item.effort}{t.effortUnit}</td>
                   <td
                     className={`p-3 text-right font-bold text-sm ${
                       item.highlight
-                        ? "text-emerald-400"
+                        ? "text-accent"
                         : item.discarded
-                        ? "text-rose-400"
-                        : "text-zinc-200"
+                        ? "text-warm"
+                        : "text-foreground"
                     }`}
                   >
                     {score}
