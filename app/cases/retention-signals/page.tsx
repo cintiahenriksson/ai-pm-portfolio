@@ -310,22 +310,6 @@ export default function RetentionSignalsPage() {
             </p>
           </section>
 
-          {/* Reflection callout */}
-          <section className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 sm:p-10">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-24 -right-16 h-64 w-64 rounded-full bg-accent/10 blur-3xl"
-            />
-            <div className="relative space-y-3">
-              <p className="text-xs uppercase tracking-[0.2em] text-accent">What I would test next</p>
-              <p className="max-w-3xl text-[15px] leading-relaxed text-foreground/85">
-                Whether clearer consent, a visible auto-top-up status, and an easy in-context disable control reduce the
-                auto-top-up disable rate and support contacts without reducing successful top-ups or subscription
-                conversion.
-              </p>
-            </div>
-          </section>
-
           {/* Prev / next footer */}
           <nav className="flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
             <Link
