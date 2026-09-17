@@ -6,12 +6,12 @@ import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
-const caseSlugs = ["remesas-discovery", "agente-pagos", "alumnas-roadmap"] as const;
+const caseSlugs = ["remesas-discovery", "agente-pagos", "alumnas-roadmap", "retention-signals"] as const;
 
 export default function Home() {
   const { lang } = useLanguage();
   const t = translations[lang];
-  const cases = [t.cases.case1, t.cases.case2, t.cases.case3];
+  const cases = [t.cases.case1, t.cases.case2, t.cases.case3, t.cases.case4];
 
   return (
     <>

@@ -70,6 +70,14 @@ const content = {
       desc: "El 55% de quejas concentradas en estados de transacción y soporte ausente justificó la creación del agente.",
       btn: "Ver Caso 2: Agente de Pagos →",
     },
+    nav: {
+      prevLabel: "Anterior",
+      prevTitle: "Todos los casos",
+      prevHref: "/#casos",
+      nextLabel: "Siguiente",
+      nextTitle: "02 — Agente de pagos",
+      nextHref: "/cases/agente-pagos",
+    },
   },
   en: {
     back: "← Back to Portfolio",
@@ -134,6 +142,14 @@ const content = {
       badge: "Product Chain: Discovery → Build",
       desc: "55% of complaints concentrated in transaction status and unresponsive support justified building the agent.",
       btn: "View Case 2: Support Agent →",
+    },
+    nav: {
+      prevLabel: "Previous",
+      prevTitle: "All case studies",
+      prevHref: "/#casos",
+      nextLabel: "Next",
+      nextTitle: "02 — Payments support agent",
+      nextHref: "/cases/agente-pagos",
     },
   },
 };
@@ -290,6 +306,30 @@ export default function RemesasDiscoveryPage() {
               </Link>
             </div>
           </section>
+
+          {/* Prev / next footer */}
+          <nav className="flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <Link
+              href={t.nav.prevHref}
+              className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent"
+            >
+              <span aria-hidden="true" className="transition-transform group-hover:-translate-x-1">←</span>
+              <span>
+                <span className="block text-[11px] uppercase tracking-[0.14em]">{t.nav.prevLabel}</span>
+                <span className="block font-medium text-foreground group-hover:text-accent">{t.nav.prevTitle}</span>
+              </span>
+            </Link>
+            <Link
+              href={t.nav.nextHref}
+              className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent sm:text-right"
+            >
+              <span className="sm:order-2" aria-hidden="true">→</span>
+              <span className="sm:order-1">
+                <span className="block text-[11px] uppercase tracking-[0.14em]">{t.nav.nextLabel}</span>
+                <span className="block font-medium text-foreground group-hover:text-accent">{t.nav.nextTitle}</span>
+              </span>
+            </Link>
+          </nav>
         </div>
       </main>
 

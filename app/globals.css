@@ -19,6 +19,16 @@
   --color-accent-soft: var(--accent-soft);
   --color-accent-foreground: var(--accent-fg);
   --color-warm: var(--warm);
+
+  /* Status scale — used by the Retention Signals dashboard */
+  --color-risk: var(--risk);
+  --color-risk-soft: var(--risk-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-stable: var(--stable);
+  --color-stable-soft: var(--stable-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
 }
 
 /* Class-based dark variant (.dark on <html>) */
@@ -39,6 +49,15 @@
   --accent-soft: #ecebfb;    /* accent wash */
   --accent-fg: #ffffff;      /* text on accent */
   --warm: #b45f3c;           /* muted clay counterpoint */
+
+  --risk: #b23b2e;           /* warm red — trust risk */
+  --risk-soft: #f7e9e6;
+  --warn: #a06a12;           /* amber — investigate */
+  --warn-soft: #f7efdf;
+  --stable: #3f7d5b;         /* muted green — stable */
+  --stable-soft: #e7f1eb;
+  --info: #4b5675;           /* blue-grey — neutral data */
+  --info-soft: #eceef4;
 }
 
 /* ------------------------------------------------------------------ */
@@ -56,6 +75,15 @@
   --accent-soft: #1e2044;
   --accent-fg: #0a0b16;
   --warm: #e0895f;
+
+  --risk: #e58e7b;           /* warm red — trust risk */
+  --risk-soft: #2b1a16;
+  --warn: #d9a85a;           /* amber — investigate */
+  --warn-soft: #2a2113;
+  --stable: #7fb497;         /* muted green — stable */
+  --stable-soft: #16241d;
+  --info: #9aa3c0;           /* blue-grey — neutral data */
+  --info-soft: #1c2036;
 }
 
 /* ------------------------------------------------------------------ */
