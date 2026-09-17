@@ -73,6 +73,22 @@ export const translations = {
             "Un escenario realista: alumnas que terminan una clase y no tienen nada entre “clase en vivo” y “app de meditación genérica”, lo que lleva a que la práctica se caiga a los 10 días y no haya retención ni ingreso recurrente.",
           cta: "Ver test de sensibilidad RICE y trade-offs →",
         },
+        case4: {
+          tag: "Caso 4 — Retention Signals",
+          sub: "Alertas de riesgo de confianza",
+          title: "Detectar riesgo de confianza antes del churn",
+          p1: "Este caso construye un dashboard explicable que convierte feedback emergente de clientes en alertas de riesgo de confianza y decisiones de producto, sobre un servicio hipotético de llamadas, suscripciones, top-ups y remesas. El escenario central: cargos inesperados de auto-top-up tras un cambio en el flujo de suscripción.",
+          privacyLabel: "Garantía de privacidad:",
+          privacyText:
+            "Todos los nombres, eventos, métricas, versiones de app y telemetría son ficticios o simulados. Las categorías cualitativas se inspiran en patrones públicos de reseñas; los datos de producto a nivel de evento están simulados para demostración. No usa datos confidenciales de ninguna empresa.",
+          whyLabel: "Por qué este caso:",
+          whyText:
+            "Muestra el modelo operativo de un PM senior: detectar una señal, inspeccionar su distribución y evidencia, validarla con los datos internos apropiados, contener el daño potencial y convertir el aprendizaje verificado en una decisión de producto—sin confundir correlación con causalidad.",
+          bgLabel: "Background:",
+          bgText:
+            "Los equipos suelen reaccionar a la queja más reciente y ruidosa, perdiendo si un tema empeora realmente con el tiempo y si señala una pérdida de confianza financiera de alta severidad que exige intervención inmediata.",
+          cta: "Abrir dashboard interactivo y decision record →",
+        },
       },
       aboutTeaser: {
         badge: "Sobre mí",
@@ -282,6 +298,22 @@ export const translations = {
           bgText:
             "A common product hurdle: students finish a live session with no continuous support between live classes and generic apps, causing practice to drop off after 10 days without retention or sustainable recurring revenue.",
           cta: "Explore RICE sensitivity test & trade-offs →",
+        },
+        case4: {
+          tag: "Case 4 — Retention Signals",
+          sub: "Trust-risk alerting",
+          title: "Detecting trust-risk before churn",
+          p1: "This case builds an explainable dashboard that turns emerging customer feedback into trust-risk alerts and product decisions, on a hypothetical international calling, subscriptions, top-up, and remittances service. The focus scenario: unexpected auto-top-up charges after a subscription-flow change.",
+          privacyLabel: "Privacy guarantee:",
+          privacyText:
+            "All names, events, metrics, app versions, and telemetry are fictional or simulated. Qualitative categories are informed by public app-review patterns; event-level product analytics are simulated for demonstration. It does not use confidential data from any real company.",
+          whyLabel: "Why this case:",
+          whyText:
+            "It shows a senior-PM operating model: detect a signal, inspect its distribution and evidence, validate it with appropriate internal data, contain potential harm, and convert verified learning into a product decision—without mistaking correlation for causality.",
+          bgLabel: "Background:",
+          bgText:
+            "Teams often react to the loudest recent complaint, missing whether a topic is genuinely worsening over time and whether it signals a high-severity loss of financial trust that requires immediate intervention.",
+          cta: "Open interactive dashboard & decision record →",
         },
       },
       aboutTeaser: {
