@@ -87,7 +87,7 @@ export default function Home() {
         {/* ---------------------------------------------------------- */}
         <section id="casos" className="max-w-6xl mx-auto px-5 sm:px-8 py-8 sm:py-12 scroll-mt-20">
           <div className="space-y-2 border-b border-border pb-5">
-            <p className="text-xs uppercase tracking-[0.22em] text-accent">01 — 03</p>
+            <p className="text-xs uppercase tracking-[0.22em] text-accent">01 — 04</p>
             <h2 className="font-display text-3xl sm:text-4xl tracking-tight">
               {t.casesSectionTitle}
             </h2>
