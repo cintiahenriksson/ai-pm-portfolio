@@ -203,6 +203,14 @@ const content = {
       text: "Este escenario demuestra la priorización informada por feedback y la secuenciación de roadmap. Complementa los otros casos del portfolio sobre síntesis de investigación, evaluación de producto de IA y decisiones de producto basadas en evidencia.",
       btn: "Volver a la Home del Portfolio",
     },
+    nav: {
+      prevLabel: "Anterior",
+      prevTitle: "02 — Agente de pagos",
+      prevHref: "/cases/agente-pagos",
+      nextLabel: "Siguiente",
+      nextTitle: "04 — Señales de retención",
+      nextHref: "/cases/retention-signals",
+    },
   },
   en: {
     back: "← Back to Portfolio",
@@ -397,6 +405,14 @@ const content = {
       label: "Portfolio context",
       text: "This scenario demonstrates feedback-informed prioritisation and roadmap sequencing. It complements the portfolio’s other cases on research synthesis, AI-product evaluation and evidence-led product decisions.",
       btn: "Return to Portfolio Home",
+    },
+    nav: {
+      prevLabel: "Previous",
+      prevTitle: "02 — Payments support agent",
+      prevHref: "/cases/agente-pagos",
+      nextLabel: "Next",
+      nextTitle: "04 — Retention Signals",
+      nextHref: "/cases/retention-signals",
     },
   },
 };
@@ -698,6 +714,30 @@ export default function AlumnasRoadmapPage() {
               </Link>
             </div>
           </section>
+
+          {/* Prev / next footer */}
+          <nav className="flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <Link
+              href={t.nav.prevHref}
+              className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent"
+            >
+              <span aria-hidden="true" className="transition-transform group-hover:-translate-x-1">←</span>
+              <span>
+                <span className="block text-[11px] uppercase tracking-[0.14em]">{t.nav.prevLabel}</span>
+                <span className="block font-medium text-foreground group-hover:text-accent">{t.nav.prevTitle}</span>
+              </span>
+            </Link>
+            <Link
+              href={t.nav.nextHref}
+              className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent sm:text-right"
+            >
+              <span className="sm:order-2" aria-hidden="true">→</span>
+              <span className="sm:order-1">
+                <span className="block text-[11px] uppercase tracking-[0.14em]">{t.nav.nextLabel}</span>
+                <span className="block font-medium text-foreground group-hover:text-accent">{t.nav.nextTitle}</span>
+              </span>
+            </Link>
+          </nav>
         </div>
       </main>
 

@@ -74,6 +74,14 @@ const content = {
       desc: "De la especificación técnica y evaluación del agente a la priorización de producto digital con feedback real y matriz RICE.",
       btn: "Ver Caso 3: Roadmap de Alumnas →",
     },
+    nav: {
+      prevLabel: "Anterior",
+      prevTitle: "01 — Por qué se van",
+      prevHref: "/cases/remesas-discovery",
+      nextLabel: "Siguiente",
+      nextTitle: "03 — Del feedback al roadmap",
+      nextHref: "/cases/alumnas-roadmap",
+    },
   },
   en: {
     back: "← Back to Portfolio",
@@ -141,6 +149,14 @@ const content = {
       badge: "Next Step • First-Party Data Decision",
       desc: "From technical agent specifications and evaluations to digital product roadmap prioritization backed by authentic feedback and RICE.",
       btn: "View Case 3: Student Roadmap →",
+    },
+    nav: {
+      prevLabel: "Previous",
+      prevTitle: "01 — Why they leave",
+      prevHref: "/cases/remesas-discovery",
+      nextLabel: "Next",
+      nextTitle: "03 — Student feedback to roadmap",
+      nextHref: "/cases/alumnas-roadmap",
     },
   },
 };
@@ -327,6 +343,30 @@ export default function AgentePagosPage() {
               </Link>
             </div>
           </section>
+
+          {/* Prev / next footer */}
+          <nav className="flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <Link
+              href={t.nav.prevHref}
+              className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent"
+            >
+              <span aria-hidden="true" className="transition-transform group-hover:-translate-x-1">←</span>
+              <span>
+                <span className="block text-[11px] uppercase tracking-[0.14em]">{t.nav.prevLabel}</span>
+                <span className="block font-medium text-foreground group-hover:text-accent">{t.nav.prevTitle}</span>
+              </span>
+            </Link>
+            <Link
+              href={t.nav.nextHref}
+              className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent sm:text-right"
+            >
+              <span className="sm:order-2" aria-hidden="true">→</span>
+              <span className="sm:order-1">
+                <span className="block text-[11px] uppercase tracking-[0.14em]">{t.nav.nextLabel}</span>
+                <span className="block font-medium text-foreground group-hover:text-accent">{t.nav.nextTitle}</span>
+              </span>
+            </Link>
+          </nav>
         </div>
       </main>
 
