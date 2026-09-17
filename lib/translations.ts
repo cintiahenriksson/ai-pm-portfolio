@@ -6,10 +6,10 @@ export const translations = {
         backHome: "← Volver al Portfolio",
       },
       hero: {
-        badge: "Senior Product Manager • 8+ años en fintech y telecom • IA hands-on",
-        title: "Reducir churn, aliviar la carga de soporte y llevar IA segura a producción.",
+        badge: "Senior Product Manager · Plataformas técnicas, fintech y telecom",
+        title: "Convertir infraestructura compleja en productos en los que la gente confía.",
         subtitle:
-          "Una líder de producto con 8+ años en fintech y telecom, llevando productos de MVP a producción en sistemas multiplataforma y multi-PSP. Estos tres casos de extremo a extremo aplican ese mismo rigor a la IA: discovery estructurado de clientes, harness de evaluación con release gates y roadmaps sometidos a análisis de sensibilidad.",
+          "Soy Senior Product Manager y conecto sistemas backend, datos, ingeniería, diseño y experiencia de cliente. En fintech y telecom, he reconstruido infraestructura de llamadas heredada, liderado migraciones de datos, establecido las bases de analítica de producto y llevado productos de MVP a producción—incluyendo transferencias de dinero y experiencias de llamadas globales.",
       },
       scorecard: {
         title: "Portfolio Gates & Scorecard Coverage",
@@ -216,10 +216,10 @@ export const translations = {
         backHome: "← Back to Portfolio",
       },
       hero: {
-        badge: "Senior Product Manager • 8+ years in fintech & telecom • Deep hands-on AI",
-        title: "Cutting churn, deflecting support load, and shipping safe AI to production.",
+        badge: "Senior Product Manager · Technical platforms, fintech & telecom",
+        title: "Turning complex infrastructure into products people trust.",
         subtitle:
-          "A product leader with 8+ years in fintech and telecom, taking products from MVP to production across multi-platform, multi-PSP systems. These three end-to-end cases apply that same rigor to AI: structured customer discovery, formal eval harnesses with release gates, and roadmaps stressed with sensitivity analysis.",
+          "I'm a Senior Product Manager who bridges backend systems, data, engineering, design, and customer experience. Across fintech and telecom, I've rebuilt legacy calling infrastructure, led data migrations, established product analytics foundations, and taken products from MVP to production—including money transfers and global calling experiences.",
       },
       scorecard: {
         title: "Portfolio Gates & Scorecard Coverage",
