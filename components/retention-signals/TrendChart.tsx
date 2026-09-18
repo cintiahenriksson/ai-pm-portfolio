@@ -1,6 +1,6 @@
 "use client";
 import React, { useId } from "react";
-import type { StatusKind } from "@/lib/retention-signals-data";
+import type { Lang, StatusKind } from "@/lib/retention-signals-data";
 
 export interface ChartSeries {
   id: string;
@@ -25,7 +25,13 @@ interface Props {
   activeIndex: number | null;
   onPointSelect: (index: number) => void;
   valueSuffix?: string;
+  lang?: Lang;
 }
+
+const CHART_COPY: Record<Lang, { trend: string; to: string; inspect: string; valuesShownIn: string }> = {
+  en: { trend: "Trend chart", to: "to", inspect: "Inspect", valuesShownIn: "values shown in" },
+  es: { trend: "Gráfico de tendencia", to: "a", inspect: "Inspeccionar", valuesShownIn: "valores mostrados en" },
+};
 
 const W = 820;
 const H = 320;
@@ -41,9 +47,11 @@ export default function TrendChart({
   activeIndex,
   onPointSelect,
   valueSuffix = "",
+  lang = "en",
 }: Props) {
   const gradId = useId();
   const n = labels.length;
+  const copy = CHART_COPY[lang];
 
   const maxVal = Math.max(
     1,
@@ -66,7 +74,7 @@ export default function TrendChart({
         viewBox={`0 0 ${W} ${H}`}
         className="w-full h-auto"
         role="img"
-        aria-label={`Trend chart: ${series.map((s) => s.label).join(", ")} across ${labels[0]} to ${labels[n - 1]}`}
+        aria-label={`${copy.trend}: ${series.map((s) => s.label).join(", ")} — ${labels[0]} ${copy.to} ${labels[n - 1]}`}
       >
         {/* Gridlines + y labels */}
         {yTicks.map((t, i) => (
@@ -176,7 +184,7 @@ export default function TrendChart({
             className="cursor-pointer focus:outline-none"
             tabIndex={0}
             role="button"
-            aria-label={`Inspect ${lab}`}
+            aria-label={`${copy.inspect} ${lab}`}
             onClick={() => onPointSelect(i)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -192,7 +200,7 @@ export default function TrendChart({
         <figcaption className="mt-2 flex items-center gap-2 text-xs text-muted">
           <span className="inline-block h-3 w-0 border-l border-dashed border-risk" aria-hidden="true" />
           {releaseLabel}
-          {valueSuffix ? <span className="sr-only"> values shown in {valueSuffix}</span> : null}
+          {valueSuffix ? <span className="sr-only"> {copy.valuesShownIn} {valueSuffix}</span> : null}
         </figcaption>
       )}
     </figure>
