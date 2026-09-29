@@ -109,7 +109,7 @@ export const translations = {
       aboutTeaser: {
         badge: "Sobre mí",
         title: "Cintia Henriksson",
-        desc: "Senior Product Manager con más de 8 años liderando producto en fintech y telecomunicaciones (Rebtel, MAJORITY) y más de una década en el sector. De gestionar 100+ tickets técnicos diarios y bases de datos con SQL, a escalar pagos multi-PSP, lanzar un MVP de operador global desde Miami a producción en 3 meses y diseñar sistemas de IA gobernados con release gates.",
+        desc: "Senior Product Manager con más de 8 años liderando producto en fintech y telecomunicaciones y más de una década en el sector. De gestionar 100+ tickets técnicos diarios y bases de datos con SQL, a escalar pagos multi-PSP, lanzar un MVP de operador global desde Miami a producción en 3 meses y diseñar sistemas de IA gobernados con release gates.",
         cvBtn: "CV (PDF) ↓",
         aboutBtn: "Conocer mi trayectoria →",
       },
@@ -351,7 +351,7 @@ export const translations = {
       aboutTeaser: {
         badge: "About me",
         title: "Cintia Henriksson",
-        desc: "Senior Product Manager with 8+ years leading consumer fintech and telecom products (Rebtel, MAJORITY) and over a decade in tech. From resolving 100+ complex daily technical tickets and querying databases with SQL, to scaling multi-PSP infrastructure, launching a US global operator MVP from Miami to production in under 3 months, and designing governed AI systems with release gates.",
+        desc: "Senior Product Manager with 8+ years leading consumer fintech and telecom products and over a decade in tech. From resolving 100+ complex daily technical tickets and querying databases with SQL, to scaling multi-PSP infrastructure, launching a US global operator MVP from Miami to production in under 3 months, and designing governed AI systems with release gates.",
         cvBtn: "CV (PDF) ↓",
         aboutBtn: "Explore my background →",
       },
