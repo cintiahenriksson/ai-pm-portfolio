@@ -56,7 +56,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    creator: "@cintiahenriksson",
     images: ["/profile.jpg"],
   },
 };
@@ -74,7 +73,6 @@ const personJsonLd = {
   sameAs: [
     "https://www.linkedin.com/in/cintiahenriksson",
     "https://github.com/cintiahenriksson",
-    "https://x.com/cintiahenriksson",
   ],
   knowsAbout: [
     "Product Management",
