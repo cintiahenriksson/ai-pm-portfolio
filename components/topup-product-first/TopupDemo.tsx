@@ -283,7 +283,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
             </label>
             <div className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-3 py-2.5 focus-within:border-accent/60">
               <span className="flex items-center gap-1.5 border-r border-border pr-3 text-sm font-medium text-foreground/80">
-                CO +57
+                +57
               </span>
               <input
                 id="topup-phone"
