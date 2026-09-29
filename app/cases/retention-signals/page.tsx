@@ -84,7 +84,7 @@ const content = {
     prevLabel: "Previous",
     prevTitle: "03 — Student feedback to roadmap",
     nextLabel: "Next",
-    nextTitle: "All case studies",
+    nextTitle: "05 — Show the value before the number",
   },
   es: {
     badge: "Caso 04 · Estrategia de producto · Síntesis de feedback asistida por IA",
@@ -159,7 +159,7 @@ const content = {
     prevLabel: "Anterior",
     prevTitle: "03 — Del feedback de estudiantes al roadmap",
     nextLabel: "Siguiente",
-    nextTitle: "Todos los casos",
+    nextTitle: "05 — Mostrar el valor antes del número",
   },
 } as const;
 
@@ -395,7 +395,7 @@ export default function RetentionSignalsPage() {
               </span>
             </Link>
             <Link
-              href="/#casos"
+              href="/cases/topup-product-first"
               className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent sm:text-right"
             >
               <span className="sm:order-2" aria-hidden="true">→</span>

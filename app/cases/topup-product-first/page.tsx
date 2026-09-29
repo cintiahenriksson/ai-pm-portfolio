@@ -1025,21 +1025,27 @@ export default function TopupProductFirstPage() {
             <p className="text-xs leading-relaxed text-muted">{t.disclosure}</p>
           </section>
 
-          {/* Prev / Next */}
-          <nav className="grid gap-4 border-t border-border pt-8 sm:grid-cols-2">
+          {/* Prev / next footer */}
+          <nav className="flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
             <Link
               href="/cases/retention-signals"
-              className="group rounded-2xl border border-border bg-surface p-5 hover:border-accent/40"
+              className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent"
             >
-              <p className="text-xs uppercase tracking-[0.14em] text-muted">{t.prevLabel}</p>
-              <p className="mt-1 font-display text-lg tracking-tight group-hover:text-accent">{t.prevTitle}</p>
+              <span aria-hidden="true" className="transition-transform group-hover:-translate-x-1">←</span>
+              <span>
+                <span className="block text-[11px] uppercase tracking-[0.14em]">{t.prevLabel}</span>
+                <span className="block font-medium text-foreground group-hover:text-accent">{t.prevTitle}</span>
+              </span>
             </Link>
             <Link
               href="/#casos"
-              className="group rounded-2xl border border-border bg-surface p-5 text-right hover:border-accent/40"
+              className="group inline-flex items-center gap-2 text-sm text-muted hover:text-accent sm:text-right"
             >
-              <p className="text-xs uppercase tracking-[0.14em] text-muted">{t.nextLabel}</p>
-              <p className="mt-1 font-display text-lg tracking-tight group-hover:text-accent">{t.nextTitle}</p>
+              <span className="sm:order-2" aria-hidden="true">→</span>
+              <span className="sm:order-1">
+                <span className="block text-[11px] uppercase tracking-[0.14em]">{t.nextLabel}</span>
+                <span className="block font-medium text-foreground group-hover:text-accent">{t.nextTitle}</span>
+              </span>
             </Link>
           </nav>
         </div>
