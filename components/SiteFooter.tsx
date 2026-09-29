@@ -5,7 +5,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const footerCopy = {
   en: {
-    tagline: "Governed AI systems, multi-platform products, and evidence-driven roadmaps.",
+    tagline: "Product manager turning customer insight and emerging technology into products that people use and businesses can sustain.",
     contact: "Get in touch",
     nav: "Explore",
     home: "Home",
@@ -16,7 +16,7 @@ const footerCopy = {
     based: "Product Manager · Stockholm, SE",
   },
   es: {
-    tagline: "Sistemas de IA gobernados, productos multiplataforma y roadmaps basados en evidencia.",
+    tagline: "Product manager que convierte el conocimiento del cliente y la tecnología emergente en productos que la gente usa y que los negocios pueden sostener.",
     contact: "Hablemos",
     nav: "Explorar",
     home: "Inicio",

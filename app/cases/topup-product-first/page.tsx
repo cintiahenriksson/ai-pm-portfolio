@@ -22,7 +22,7 @@ const VERBATIM = {
 const content = {
   en: {
     eyebrow: "Case Study 05 / Product experimentation",
-    title: "Show the value before the number",
+    title: "Show the value before entering the number",
     subtitle:
       "Testing whether product discovery should come before recipient verification in international mobile top-ups.",
     badge: "Portfolio simulation · Experiment design, not a live A/B result",
@@ -281,7 +281,7 @@ const content = {
 
   es: {
     eyebrow: "Caso 05 / Experimentación de producto",
-    title: "Mostrar el valor antes del número",
+    title: "Mostrar el valor antes de ingresar el número",
     subtitle:
       "Probar si el descubrimiento de producto debe ir antes de la verificación del destinatario en recargas móviles internacionales.",
     badge: "Simulación de portafolio · Diseño de experimento, no un resultado A/B real",

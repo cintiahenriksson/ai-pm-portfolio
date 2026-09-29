@@ -90,7 +90,7 @@ export const translations = {
           cta: "Abrir dashboard interactivo y decision record →",
         },
         case5: {
-          tag: "Caso 5 — Mostrar el valor antes del número",
+          tag: "Caso 5 — Mostrar el valor antes de ingresar el número",
           sub: "Experimentación de producto",
           title: "¿El descubrimiento de producto debe ir antes de la verificación del número?",
           p1: "Este caso diseña un MVP acotado, producto-primero, para recargas móviles internacionales (EE. UU. → Colombia) y un experimento A/B que prueba si mostrar beneficios ilustrativos para el destinatario antes de pedir el número aumenta las compras completadas—sin causar discrepancias de oferta tras la verificación.",
@@ -332,7 +332,7 @@ export const translations = {
           cta: "Open interactive dashboard & decision record →",
         },
         case5: {
-          tag: "Case 5 — Show the value before the number",
+          tag: "Case 5 — Show the value before entering the number",
           sub: "Product experimentation",
           title: "Should product discovery come before number verification?",
           p1: "This case designs a narrow, product-first MVP for international mobile top-ups (US → Colombia) and an A/B experiment that tests whether showing illustrative recipient benefits before asking for the number increases completed purchases—without causing offer mismatches after verification.",

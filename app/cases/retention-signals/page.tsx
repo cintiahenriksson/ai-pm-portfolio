@@ -84,7 +84,7 @@ const content = {
     prevLabel: "Previous",
     prevTitle: "03 — Student feedback to roadmap",
     nextLabel: "Next",
-    nextTitle: "05 — Show the value before the number",
+    nextTitle: "05 — Show the value before entering the number",
   },
   es: {
     badge: "Caso 04 · Estrategia de producto · Síntesis de feedback asistida por IA",
@@ -159,7 +159,7 @@ const content = {
     prevLabel: "Anterior",
     prevTitle: "03 — Del feedback de estudiantes al roadmap",
     nextLabel: "Siguiente",
-    nextTitle: "05 — Mostrar el valor antes del número",
+    nextTitle: "05 — Mostrar el valor antes de ingresar el número",
   },
 } as const;
 
