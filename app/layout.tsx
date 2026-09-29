@@ -24,17 +24,64 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const SITE_TITLE = "Cintia Henriksson — Senior Product Manager";
+const SITE_DESCRIPTION =
+  "Portfolio of Cintia Henriksson: a Product Manager turning customer insight and emerging technology into products that people use and businesses can sustain.";
+const SITE_URL = getSiteUrl();
+
 export const metadata: Metadata = {
-  metadataBase: new URL(getSiteUrl()),
-  title: "Cintia Henriksson — Senior Product Manager",
-  description:
-    "Portfolio of Cintia Henriksson: a Senior Product Manager crafting governed AI systems, multi-platform fintech products, and evidence-driven roadmaps.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Cintia Henriksson",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+    images: [
+      {
+        url: "/profile.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cintia Henriksson — Senior Product Manager",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/profile.jpg"],
   },
 };
 
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Cintia Henriksson",
+  jobTitle: "Product Manager",
+  description: SITE_DESCRIPTION,
+  url: SITE_URL,
+  image: `${SITE_URL}/profile.jpg`,
+  sameAs: [
+    "https://www.linkedin.com/in/cintiahenriksson",
+    "https://github.com/cintiahenriksson",
+  ],
+  knowsAbout: [
+    "Product Management",
+    "AI Governance",
+    "Fintech",
+    "Product Discovery",
+    "Roadmapping",
+  ],
+};
 
 export default function RootLayout({
   children,
@@ -51,6 +98,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="font-sans bg-background text-foreground antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <LanguageProvider>{children}</LanguageProvider>
         <Analytics />
       </body>
