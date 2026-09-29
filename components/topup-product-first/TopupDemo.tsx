@@ -65,6 +65,9 @@ const T = {
       "No real recharge, payment, supplier call or phone lookup occurred. This screen only demonstrates the end of the flow.",
     startOver: "Start over",
     select: "Select",
+    phoneLabel: "Recipient's mobile number",
+    phonePlaceholder: "300 000 0000",
+    phoneHint: "For illustration only — no real number is sent or stored. Pick a demo token below to continue.",
   },
   es: {
     simLabel: "Simulación · sin compra real",
@@ -110,6 +113,9 @@ const T = {
       "No ocurrió ninguna recarga, pago, llamada a proveedor ni consulta de número reales. Esta pantalla solo demuestra el final del flujo.",
     startOver: "Empezar de nuevo",
     select: "Seleccionar",
+    phoneLabel: "Número de móvil del destinatario",
+    phonePlaceholder: "300 000 0000",
+    phoneHint: "Solo ilustrativo — no se envía ni se guarda ningún número real. Elige un token de demo abajo para continuar.",
   },
 } as const;
 
@@ -132,6 +138,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
   const [step, setStep] = useState<Step>("b-browse");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [scenarioId, setScenarioId] = useState<ScenarioId | null>(null);
+  const [phone, setPhone] = useState("");
 
   const scenario: DemoScenario | null = useMemo(
     () => SCENARIOS.find((s) => s.id === scenarioId) ?? null,
@@ -231,7 +238,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
           onClick={onAction}
           className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground hover:opacity-90"
         >
-          {confirmed ? t.continue : t.ctaCheck}
+          {confirmed ? t.continue : t.select}
         </button>
       </div>
     );
@@ -269,6 +276,27 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
           <div className="space-y-1">
             <h4 className="font-display text-lg tracking-tight text-foreground">{t.aNumberTitle}</h4>
             <p className="text-sm leading-relaxed text-muted">{t.aNumberBody}</p>
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="topup-phone" className="block text-xs uppercase tracking-[0.14em] text-muted">
+              {t.phoneLabel}
+            </label>
+            <div className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-3 py-2.5 focus-within:border-accent/60">
+              <span className="flex items-center gap-1.5 border-r border-border pr-3 text-sm font-medium text-foreground/80">
+                CO +57
+              </span>
+              <input
+                id="topup-phone"
+                type="tel"
+                inputMode="numeric"
+                autoComplete="off"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value.replace(/[^\d\s]/g, "").slice(0, 12))}
+                placeholder={t.phonePlaceholder}
+                className="w-full bg-transparent text-sm text-foreground tabular-nums outline-none placeholder:text-muted/60"
+              />
+            </div>
+            <p className="text-[11px] leading-relaxed text-muted">{t.phoneHint}</p>
           </div>
           <TokenPicker
             onPick={(id) => {
