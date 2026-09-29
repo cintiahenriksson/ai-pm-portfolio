@@ -6,12 +6,12 @@ import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
-const caseSlugs = ["remesas-discovery", "agente-pagos", "alumnas-roadmap", "retention-signals"] as const;
+const caseSlugs = ["remesas-discovery", "agente-pagos", "alumnas-roadmap", "retention-signals", "topup-product-first"] as const;
 
 export default function Home() {
   const { lang } = useLanguage();
   const t = translations[lang];
-  const cases = [t.cases.case1, t.cases.case2, t.cases.case3, t.cases.case4];
+  const cases = [t.cases.case1, t.cases.case2, t.cases.case3, t.cases.case4, t.cases.case5];
 
   return (
     <>
@@ -87,7 +87,7 @@ export default function Home() {
         {/* ---------------------------------------------------------- */}
         <section id="casos" className="max-w-6xl mx-auto px-5 sm:px-8 py-8 sm:py-12 scroll-mt-20">
           <div className="space-y-2 border-b border-border pb-5">
-            <p className="text-xs uppercase tracking-[0.22em] text-accent">01 — 04</p>
+            <p className="text-xs uppercase tracking-[0.22em] text-accent">01 — 05</p>
             <h2 className="font-display text-3xl sm:text-4xl tracking-tight">
               {t.casesSectionTitle}
             </h2>

@@ -89,6 +89,22 @@ export const translations = {
             "Los equipos suelen reaccionar a la queja más reciente y ruidosa, perdiendo si un tema empeora realmente con el tiempo y si señala una pérdida de confianza financiera de alta severidad que exige intervención inmediata.",
           cta: "Abrir dashboard interactivo y decision record →",
         },
+        case5: {
+          tag: "Caso 5 — Mostrar el valor antes del número",
+          sub: "Experimentación de producto",
+          title: "¿El descubrimiento de producto debe ir antes de la verificación del número?",
+          p1: "Este caso diseña un MVP acotado, producto-primero, para recargas móviles internacionales (EE. UU. → Colombia) y un experimento A/B que prueba si mostrar beneficios ilustrativos para el destinatario antes de pedir el número aumenta las compras completadas—sin causar discrepancias de oferta tras la verificación.",
+          privacyLabel: "Garantía de privacidad:",
+          privacyText:
+            "Todos los operadores, productos, precios, tipos de cambio, promociones, resultados de experimento y economía son ficticios o simulados. No se usa información confidencial de ningún empleador ni proveedor, ni se recogen números reales o datos personales.",
+          whyLabel: "Por qué este caso:",
+          whyText:
+            "Muestra rigor en experimentación y decisión de inversión: hipótesis, árbol de métricas con guardarraíles, planificación de tamaño muestral, punto de equilibrio por margen de contribución y una regla de éxito comercial que separa el aumento de clics del valor de negocio real.",
+          bgLabel: "Background:",
+          bgText:
+            "Hoy el número de teléfono desbloquea el catálogo. Construir un catálogo global pre-número es caro; el experimento busca evidencia de valor comercial antes de comprometer esa integración y complejidad operativa.",
+          cta: "Explorar el diseño del experimento y la demo A/B →",
+        },
       },
       aboutTeaser: {
         badge: "Sobre mí",
@@ -314,6 +330,22 @@ export const translations = {
           bgText:
             "Teams often react to the loudest recent complaint, missing whether a topic is genuinely worsening over time and whether it signals a high-severity loss of financial trust that requires immediate intervention.",
           cta: "Open interactive dashboard & decision record →",
+        },
+        case5: {
+          tag: "Case 5 — Show the value before the number",
+          sub: "Product experimentation",
+          title: "Should product discovery come before number verification?",
+          p1: "This case designs a narrow, product-first MVP for international mobile top-ups (US → Colombia) and an A/B experiment that tests whether showing illustrative recipient benefits before asking for the number increases completed purchases—without causing offer mismatches after verification.",
+          privacyLabel: "Privacy guarantee:",
+          privacyText:
+            "All operators, products, prices, exchange rates, promotions, experiment results and economics are fictional or simulated. No confidential employer or supplier information is used, and no real numbers or personal data are collected.",
+          whyLabel: "Why this case:",
+          whyText:
+            "It demonstrates experimentation and investment rigor: a hypothesis, a metric tree with guardrails, sample-size planning, contribution-margin break-even, and a commercial-success rule that separates click lift from real business value.",
+          bgLabel: "Background:",
+          bgText:
+            "Today the phone number unlocks the catalogue. Building a global pre-number catalogue is expensive; the experiment seeks evidence of commercial value before committing to that integration and operational complexity.",
+          cta: "Explore the experiment design & A/B demo →",
         },
       },
       aboutTeaser: {

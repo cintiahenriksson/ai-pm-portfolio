@@ -19,4 +19,6 @@ export const ROUTES = [
   "/cases/remesas-discovery",
   "/cases/agente-pagos",
   "/cases/alumnas-roadmap",
+  "/cases/retention-signals",
+  "/cases/topup-product-first",
 ] as const;
