@@ -31,9 +31,10 @@ const T = {
     // flow A
     aNumberTitle: "Enter the recipient's number to see eligible products",
     aNumberBody:
-      "In the control flow the number comes first. Pick a demo recipient token — no real number is sent or stored.",
+      "In the control flow the number comes first. The operator is identified from the number, then eligible products appear.",
     aBrowseTitle: "Eligible products for this number",
-    aBrowseBody: "Prices and benefits below are confirmed for the verified operator.",
+    aBrowseBody: "The operator was identified from the number, so prices and benefits below are already confirmed.",
+    ctaShowProducts: "Show available products",
     // flow B
     bBrowseTitle: "Explore example top-ups by operator",
     bBrowseBody:
@@ -67,7 +68,7 @@ const T = {
     select: "Select",
     phoneLabel: "Recipient's mobile number",
     phonePlaceholder: "300 000 0000",
-    phoneHint: "For illustration only — no real number is sent or stored. Pick a demo token below to continue.",
+    phoneHint: "For illustration only — no real number is sent or stored.",
   },
   es: {
     simLabel: "Simulación · sin compra real",
@@ -80,9 +81,10 @@ const T = {
     all: "Todos",
     aNumberTitle: "Introduce el número del destinatario para ver productos elegibles",
     aNumberBody:
-      "En el flujo de control, el número va primero. Elige un token de destinatario de demo: no se envía ni se guarda ningún número real.",
+      "En el flujo de control, el número va primero. El operador se identifica a partir del número y luego aparecen los productos elegibles.",
     aBrowseTitle: "Productos elegibles para este número",
-    aBrowseBody: "Los precios y beneficios de abajo están confirmados para el operador verificado.",
+    aBrowseBody: "El operador se identificó a partir del número, así que los precios y beneficios de abajo ya están confirmados.",
+    ctaShowProducts: "Mostrar productos disponibles",
     bBrowseTitle: "Explora recargas de ejemplo por operador",
     bBrowseBody:
       "Introduce el número del destinatario para confirmar los productos disponibles, los beneficios exactos y el precio final antes de pagar.",
@@ -115,7 +117,7 @@ const T = {
     select: "Seleccionar",
     phoneLabel: "Número de móvil del destinatario",
     phonePlaceholder: "300 000 0000",
-    phoneHint: "Solo ilustrativo — no se envía ni se guarda ningún número real. Elige un token de demo abajo para continuar.",
+    phoneHint: "Solo ilustrativo — no se envía ni se guarda ningún número real.",
   },
 } as const;
 
@@ -198,7 +200,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
   }: {
     p: TopupProduct;
     variant: "illustrative" | "confirmed";
-    onAction: () => void;
+    onAction?: () => void;
   }) {
     const confirmed = variant === "confirmed";
     return (
@@ -233,13 +235,15 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
           </span>
         )}
 
-        <button
-          type="button"
-          onClick={onAction}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground hover:opacity-90"
-        >
-          {confirmed ? t.continue : t.select}
-        </button>
+        {onAction && (
+          <button
+            type="button"
+            onClick={onAction}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground hover:opacity-90"
+          >
+            {confirmed ? t.continue : t.select}
+          </button>
+        )}
       </div>
     );
   }
@@ -298,18 +302,19 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
             </div>
             <p className="text-[11px] leading-relaxed text-muted">{t.phoneHint}</p>
           </div>
-          <TokenPicker
-            onPick={(id) => {
-              setScenarioId(id);
-              setStep("a-browse");
-            }}
-          />
+          <button
+            type="button"
+            onClick={() => setStep("a-browse")}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground hover:opacity-90"
+          >
+            {t.ctaShowProducts}
+          </button>
         </div>
       );
     }
 
-    if (step === "a-browse" && scenario) {
-      const op = scenario.detectedOperator;
+    if (step === "a-browse") {
+      const op: OperatorId = "A";
       const list = PRODUCTS.filter((p) => p.operator === op);
       return (
         <div className="space-y-4">
@@ -324,15 +329,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((p) => (
-              <ProductCard
-                key={p.id}
-                p={p}
-                variant="confirmed"
-                onAction={() => {
-                  setSelectedId(p.id);
-                  setStep("checkout");
-                }}
-              />
+              <ProductCard key={p.id} p={p} variant="confirmed" />
             ))}
           </div>
         </div>
