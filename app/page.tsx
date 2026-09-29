@@ -6,12 +6,12 @@ import SiteFooter from "@/components/SiteFooter";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/lib/translations";
 
-const caseSlugs = ["remesas-discovery", "agente-pagos", "alumnas-roadmap", "retention-signals"] as const;
+const caseSlugs = ["remesas-discovery", "agente-pagos", "alumnas-roadmap", "retention-signals", "topup-product-first"] as const;
 
 export default function Home() {
   const { lang } = useLanguage();
   const t = translations[lang];
-  const cases = [t.cases.case1, t.cases.case2, t.cases.case3, t.cases.case4];
+  const cases = [t.cases.case1, t.cases.case2, t.cases.case3, t.cases.case4, t.cases.case5];
 
   return (
     <>
@@ -87,7 +87,7 @@ export default function Home() {
         {/* ---------------------------------------------------------- */}
         <section id="casos" className="max-w-6xl mx-auto px-5 sm:px-8 py-8 sm:py-12 scroll-mt-20">
           <div className="space-y-2 border-b border-border pb-5">
-            <p className="text-xs uppercase tracking-[0.22em] text-accent">01 — 04</p>
+            <p className="text-xs uppercase tracking-[0.22em] text-accent">01 — 05</p>
             <h2 className="font-display text-3xl sm:text-4xl tracking-tight">
               {t.casesSectionTitle}
             </h2>
@@ -103,12 +103,12 @@ export default function Home() {
                 href={`/cases/${caseSlugs[i]}`}
                 className="group relative block overflow-hidden rounded-3xl border border-border bg-surface p-7 sm:p-10 hover:border-accent/40 hover:shadow-[0_24px_60px_-24px_rgba(75,69,212,0.35)] hover:-translate-y-1 transition-all"
               >
-                <div className="grid gap-6 lg:grid-cols-[auto_1fr] lg:gap-10">
+                <div className="grid gap-6 lg:grid-cols-[10rem_1fr] lg:gap-10">
                   <div className="flex items-baseline gap-4 lg:flex-col lg:items-start lg:gap-2">
                     <span className="font-display text-6xl sm:text-7xl leading-none text-accent/25 group-hover:text-accent/60 transition-colors">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-xs uppercase tracking-[0.16em] text-muted lg:mt-2">
+                    <span className="text-xs uppercase tracking-[0.16em] text-muted lg:mt-2 text-balance">
                       {c.sub}
                     </span>
                   </div>
