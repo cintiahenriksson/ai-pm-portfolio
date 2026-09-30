@@ -16,7 +16,7 @@ import {
 
 type Flow = "A" | "B";
 type OperatorFilter = "all" | OperatorId;
-type Step = "a-number" | "a-browse" | "b-browse" | "b-verify" | "b-result" | "checkout";
+type Step = "a-number" | "a-browse" | "a-review" | "b-browse" | "b-verify" | "b-result" | "checkout";
 
 const T = {
   en: {
@@ -69,6 +69,13 @@ const T = {
     phoneLabel: "Recipient's mobile number",
     phonePlaceholder: "300 000 0000",
     phoneHint: "For illustration only — no real number is sent or stored.",
+    tokenDisclaimer:
+      "Choose one of the following paths to simulate the experience. You don't need to enter a phone number in the field above.",
+    aReviewTitle: "Review your top-up",
+    aReviewBody: "The product was confirmed for this number, so the price and benefit below are final.",
+    recipientNumber: "Recipient number",
+    notEntered: "Not entered (demo)",
+    backToProducts: "Back to products",
   },
   es: {
     simLabel: "Simulación · sin compra real",
@@ -118,6 +125,13 @@ const T = {
     phoneLabel: "Número de móvil del destinatario",
     phonePlaceholder: "300 000 0000",
     phoneHint: "Solo ilustrativo — no se envía ni se guarda ningún número real.",
+    tokenDisclaimer:
+      "Elige una de las siguientes rutas para simular la experiencia. No necesitas introducir un número de teléfono en el campo de arriba.",
+    aReviewTitle: "Revisa tu recarga",
+    aReviewBody: "El producto se confirmó para este número, así que el precio y el beneficio de abajo son definitivos.",
+    recipientNumber: "Número del destinatario",
+    notEntered: "No introducido (demo)",
+    backToProducts: "Volver a los productos",
   },
 } as const;
 
@@ -156,6 +170,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
     setOperatorFilter("all");
     setSelectedId(null);
     setScenarioId(null);
+    setPhone("");
     setStep(nextFlow === "A" ? "a-number" : "b-browse");
   }
 
@@ -176,6 +191,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
     return (
       <fieldset className="space-y-3">
         <legend className="text-xs uppercase tracking-[0.14em] text-muted">{t.chooseToken}</legend>
+        <p className="text-xs leading-relaxed text-muted">{t.tokenDisclaimer}</p>
         <div className="grid gap-2.5 sm:grid-cols-2">
           {SCENARIOS.map((s) => (
             <button
@@ -197,10 +213,12 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
     p,
     variant,
     onAction,
+    actionLabel,
   }: {
     p: TopupProduct;
     variant: "illustrative" | "confirmed";
     onAction?: () => void;
+    actionLabel?: string;
   }) {
     const confirmed = variant === "confirmed";
     return (
@@ -241,7 +259,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
             onClick={onAction}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground hover:opacity-90"
           >
-            {confirmed ? t.continue : t.select}
+            {actionLabel ?? (confirmed ? t.continue : t.select)}
           </button>
         )}
       </div>
@@ -270,6 +288,35 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
     );
   }
 
+  // Called as a function (not <Component />) so the input keeps focus between keystrokes.
+  function renderPhoneField(inputId: string) {
+    return (
+      <div className="space-y-2">
+        <label htmlFor={inputId} className="block text-xs uppercase tracking-[0.14em] text-muted">
+          {t.phoneLabel}
+        </label>
+        <div className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-3 py-2.5 focus-within:border-accent/60">
+          <span className="flex items-center gap-1.5 border-r border-border pr-3 text-sm font-medium text-foreground/80">
+            +57
+          </span>
+          <input
+            id={inputId}
+            type="tel"
+            inputMode="numeric"
+            autoComplete="off"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value.replace(/[^\d\s]/g, "").slice(0, 12))}
+            placeholder={t.phonePlaceholder}
+            className="w-full bg-transparent text-sm text-foreground tabular-nums outline-none placeholder:text-muted/60"
+          />
+        </div>
+        <p className="text-[11px] leading-relaxed text-muted">{t.phoneHint}</p>
+      </div>
+    );
+  }
+
+  const phoneDisplay = phone.trim() ? `+57 ${phone.trim()}` : t.notEntered;
+
   /* ------------------------------- steps ------------------------------- */
 
   function renderStep() {
@@ -281,27 +328,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
             <h4 className="font-display text-lg tracking-tight text-foreground">{t.aNumberTitle}</h4>
             <p className="text-sm leading-relaxed text-muted">{t.aNumberBody}</p>
           </div>
-          <div className="space-y-2">
-            <label htmlFor="topup-phone" className="block text-xs uppercase tracking-[0.14em] text-muted">
-              {t.phoneLabel}
-            </label>
-            <div className="flex items-center gap-2 rounded-2xl border border-border bg-surface px-3 py-2.5 focus-within:border-accent/60">
-              <span className="flex items-center gap-1.5 border-r border-border pr-3 text-sm font-medium text-foreground/80">
-                +57
-              </span>
-              <input
-                id="topup-phone"
-                type="tel"
-                inputMode="numeric"
-                autoComplete="off"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value.replace(/[^\d\s]/g, "").slice(0, 12))}
-                placeholder={t.phonePlaceholder}
-                className="w-full bg-transparent text-sm text-foreground tabular-nums outline-none placeholder:text-muted/60"
-              />
-            </div>
-            <p className="text-[11px] leading-relaxed text-muted">{t.phoneHint}</p>
-          </div>
+          {renderPhoneField("topup-phone-a")}
           <button
             type="button"
             onClick={() => setStep("a-browse")}
@@ -329,8 +356,67 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((p) => (
-              <ProductCard key={p.id} p={p} variant="confirmed" />
+              <ProductCard
+                key={p.id}
+                p={p}
+                variant="confirmed"
+                actionLabel={t.select}
+                onAction={() => {
+                  setSelectedId(p.id);
+                  setStep("a-review");
+                }}
+              />
             ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (step === "a-review" && selected) {
+      return (
+        <div className="space-y-4">
+          <div className="space-y-1">
+            <h4 className="font-display text-lg tracking-tight text-foreground">{t.aReviewTitle}</h4>
+            <p className="text-sm leading-relaxed text-muted">{t.aReviewBody}</p>
+          </div>
+          <div className="rounded-2xl border border-stable/40 bg-stable-soft/50 p-5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="inline-flex items-center rounded-full bg-stable-soft px-2.5 py-0.5 text-[11px] font-semibold text-stable">
+                {t.confirmedTitle}
+              </span>
+              <span className="text-xs text-foreground/70">
+                {t.recipientNumber}: <span className="font-medium tabular-nums text-foreground">{phoneDisplay}</span>
+              </span>
+            </div>
+            <p className="mt-3 text-sm font-semibold text-foreground">
+              {PRODUCT_TYPE_LABEL[selected.type][lang]} · {opLabel(selected.operator)}
+            </p>
+            <dl className="mt-3 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl border border-border bg-surface-2 p-3">
+                <dt className="text-[11px] uppercase tracking-[0.12em] text-muted">{t.verifiedPrice}</dt>
+                <dd className="mt-1 font-display text-lg tabular-nums text-foreground">{fmtUsd(selected.payUsd)}</dd>
+              </div>
+              <div className="rounded-xl border border-border bg-surface-2 p-3">
+                <dt className="text-[11px] uppercase tracking-[0.12em] text-muted">{t.verifiedBenefit}</dt>
+                <dd className="mt-1 text-sm text-foreground/90">{benefitLine(selected, lang)}</dd>
+              </div>
+            </dl>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => setStep("checkout")}
+              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground hover:opacity-90"
+            >
+              {t.continue}
+            </button>
+            <button
+              type="button"
+              onClick={() => setStep("a-browse")}
+              className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground hover:border-accent/60"
+            >
+              {t.backToProducts}
+            </button>
           </div>
         </div>
       );
@@ -378,6 +464,7 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
             </div>
             <p className="mt-1 text-xs text-warn">{t.illustrative}</p>
           </div>
+          {renderPhoneField("topup-phone-b")}
           <TokenPicker
             onPick={(id) => {
               setScenarioId(id);
@@ -524,6 +611,9 @@ export default function TopupDemo({ lang, embedded = false }: { lang: Lang; embe
             </div>
             <p className="mt-1 text-sm text-muted">
               {t.recipientGets}: {benefitLine(selected, lang)}
+            </p>
+            <p className="mt-1 text-sm text-muted">
+              {t.recipientNumber}: <span className="tabular-nums text-foreground/90">{phoneDisplay}</span>
             </p>
           </div>
           <button
