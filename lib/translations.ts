@@ -6,10 +6,12 @@ export const translations = {
         backHome: "← Volver al Portfolio",
       },
       hero: {
-        badge: "Senior Product Manager · Plataformas técnicas, fintech y telecom",
-        title: "Convertir infraestructura compleja en productos en los que la gente confía.",
+        badge: "Senior Product Manager · Plataformas técnicas, fintech y telecom · Fotógrafa",
+        title: "Convierto infraestructura compleja en experiencias de producto claras y confiables.",
         subtitle:
-          "Soy Senior Product Manager y conecto sistemas backend, datos, ingeniería, diseño y experiencia de cliente. En fintech y telecom, he reconstruido infraestructura de llamadas heredada, liderado migraciones de datos, establecido las bases de analítica de producto y llevado productos de MVP a producción—incluyendo transferencias de dinero y experiencias de llamadas globales.",
+          "Soy Senior Product Manager y conecto sistemas backend, datos, ingeniería, diseño y experiencia de cliente. En fintech y telecom, he reconstruido infraestructura heredada, liderado migraciones de datos, establecido las bases de analítica de producto y llevado productos de MVP a producción — incluyendo transferencias de dinero y experiencias de llamadas globales.",
+        subtitle2:
+          "Con formación en fotografía artística y diseño de iluminación, aporto una mirada entrenada para la composición, la claridad y los detalles que definen cómo las personas viven los productos.",
       },
       scorecard: {
         title: "Portfolio Gates & Scorecard Coverage",
@@ -147,6 +149,9 @@ export const translations = {
         opsItem2Text: " Monitorización técnica de sistemas, resolución de escalados de nivel 2 y 3, configuración de bases de datos e investigación de patrones de fraude.",
         opsItem3Label: "Support Trainer & Agent (2014 – 2017):",
         opsItem3Text: " Formación presencial de centros de soporte distribuidos en Bolivia y Filipinas, gestionando más de 100 casos técnicos complejos diarios en primera línea.",
+        artTitle: "Una líder de producto técnica con formación artística",
+        artP1: "Antes de dedicarme a la gestión de producto, me formé en fotografía artística, diseño de iluminación y tratamiento de imagen. La fotografía me enseñó a observar con atención, tomar decisiones intencionadas y comunicar a través de la composición, la luz y el detalle.",
+        artP2: "Hoy, esa formación define cómo abordo el trabajo de producto: busco claridad en sistemas complejos, entiendo cómo los pequeños detalles afectan la percepción del cliente y trabajo de cerca con diseño e ingeniería para crear experiencias que transmitan confianza y coherencia.",
         purposeTitle: "Mi enfoque de producto",
         purposeP1: "Combino discovery estructurado, pensamiento sistémico, fluidez técnica y un fuerte foco en la experiencia de usuario. Me importa entender el problema de fondo antes de comprometerme con una solución, hacer explícitos los trade-offs y crear alineación entre equipos.",
         purposeP2: "En la práctica eso significa empezar por el cliente y el problema de fondo, entender un sistema antes de cambiarlo, hacer visible la complejidad, usar datos e investigación en conjunto y colaborar en profundidad con ingeniería y diseño —diseñando para la fiabilidad, la confianza y la mantenibilidad a largo plazo. Doy lo mejor de mí donde los sistemas son complejos, el problema del cliente importa y el equipo necesita a alguien que conecte los detalles técnicos con un mejor resultado de producto.",
@@ -248,10 +253,12 @@ export const translations = {
         backHome: "← Back to Portfolio",
       },
       hero: {
-        badge: "Senior Product Manager · Technical platforms, fintech & telecom",
-        title: "Turning complex infrastructure into products people trust.",
+        badge: "Senior Product Manager · Technical Platforms, Fintech & Telecom · Photographer",
+        title: "I turn complex infrastructure into clear, trustworthy product experiences.",
         subtitle:
-          "I'm a Senior Product Manager who bridges backend systems, data, engineering, design, and customer experience. Across fintech and telecom, I've rebuilt legacy calling infrastructure, led data migrations, established product analytics foundations, and taken products from MVP to production—including money transfers and global calling experiences.",
+          "I’m a Senior Product Manager who bridges backend systems, data, engineering, design, and customer experience. Across fintech and telecom, I’ve rebuilt legacy infrastructure, led data migrations, established product analytics foundations, and taken products from MVP to production — including money transfers and global calling experiences.",
+        subtitle2:
+          "With a background in artistic photography and lighting design, I bring a trained eye for composition, clarity, and the details that shape how people experience products.",
       },
       scorecard: {
         title: "Portfolio Gates & Scorecard Coverage",
@@ -389,6 +396,9 @@ export const translations = {
         opsItem2Text: " Handled system monitoring, tier-2 and tier-3 escalations, database configurations, and fraud pattern investigations.",
         opsItem3Label: "Support Trainer & Agent (2014 – 2017):",
         opsItem3Text: " On-site training for distributed support centers in Bolivia and the Philippines, managing 100+ complex tier-1 technical cases daily.",
+        artTitle: "A technical product leader with an artistic background",
+        artP1: "Before moving into product management, I trained in artistic photography, lighting design, and image processing. Photography taught me to observe closely, make intentional choices, and communicate through composition, light, and detail.",
+        artP2: "Today, that background shapes how I approach product work: I look for clarity in complex systems, understand how small details affect customer perception, and work closely with design and engineering to create experiences that feel trustworthy and coherent.",
         purposeTitle: "My product approach",
         purposeP1: "I combine structured discovery, systems thinking, technical fluency, and a strong focus on user experience. I care about understanding the underlying problem before committing to a solution, making trade-offs explicit, and creating alignment across teams.",
         purposeP2: "In practice that means starting with the customer and the underlying problem, understanding a system before changing it, making complexity visible, using data and research together, and partnering deeply with engineering and design—designing for reliability, trust, and long-term maintainability. I'm at my best where systems are complex, the customer problem matters, and the team needs someone who can connect the technical details to a better product outcome.",

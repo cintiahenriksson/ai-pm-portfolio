@@ -41,9 +41,10 @@ export default function Home() {
                   {t.hero.title}
                 </h1>
 
-                <p className="max-w-xl text-lg text-muted leading-relaxed text-pretty">
-                  {t.hero.subtitle}
-                </p>
+            <div className="flex max-w-xl flex-col gap-4 text-lg text-muted leading-relaxed text-pretty">
+              <p>{t.hero.subtitle}</p>
+              <p>{t.hero.subtitle2}</p>
+            </div>
 
                 <div className="flex flex-wrap items-center gap-3 pt-2">
                   <a

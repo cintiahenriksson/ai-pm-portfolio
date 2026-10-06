@@ -128,6 +128,19 @@ export default function AboutPage() {
         </section>
 
         {/* ---------------------------------------------------------- */}
+        {/* Artistic background                                        */}
+        {/* ---------------------------------------------------------- */}
+        <section className="max-w-5xl mx-auto px-5 sm:px-8 py-8 sm:py-12">
+          <h2 className="font-display text-3xl sm:text-4xl tracking-tight text-balance border-b border-border pb-5">
+            {t.artTitle}
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 text-[15px] sm:text-base leading-relaxed text-muted">
+            <p className="text-pretty">{t.artP1}</p>
+            <p className="text-pretty">{t.artP2}</p>
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------------- */}
         {/* Career timeline                                            */}
         {/* ---------------------------------------------------------- */}
         <section className="max-w-5xl mx-auto px-5 sm:px-8 py-8 sm:py-12">
